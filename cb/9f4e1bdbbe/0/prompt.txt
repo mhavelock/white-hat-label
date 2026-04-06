@@ -1,0 +1,3 @@
+great. they look good. plz commit. I've added some more files from the anthropicprinciple architecture folder - and added some into a 'template-examples' folder. I'd like to include these. plz review & improve against requirements in /docs/init/setup.txt. remove any reference to anthropicprinciple..
+
+Create a CLAUDE.md - based around this as a 'white-label' skeleton foundation starter project, and also include areas in /docs/init/CLAUDE.txt - leave TBA if not relevant yet.
