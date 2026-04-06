@@ -500,6 +500,77 @@ The task is: [task description].</pre>
 
     </section>
 
+    <hr class="u-divider-emoji" data-emoji="✉️" aria-hidden="true">
+
+    <!-- =====================================================================
+         Contact
+         ===================================================================== -->
+    <section class="contact-section" id="contact" aria-label="Contact">
+
+      <!-- Sent confirmation — :target flash on redirect from form submit -->
+      <div id="sent" role="alertdialog" aria-modal="true" aria-label="Message sent" aria-describedby="sent-message">
+        <div class="sent-modal">
+          <p class="sent-message" id="sent-message">✓ Message sent</p>
+          <a href="#" class="sent-close" aria-label="Close notification">×</a>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <img
+          class="contact-form-logo"
+          src="favicon.svg"
+          alt=""
+          width="48"
+          height="48"
+          aria-hidden="true"
+        >
+
+        <h2 class="contact-form-title">Get in Touch</h2>
+        <p class="contact-form-desc">Questions, feedback, or just want to say hello?</p>
+
+        <!-- Bluesky link — shown on mobile card, hidden in desktop pill -->
+        <ul class="contact-links" aria-label="Social links">
+          <li>
+            <!-- https://github.com/philhawksworth/bluesky-flutterby (MIT) -->
+            <a href="https://bsky.app/profile/[handle.bsky.social]" target="_blank" rel="noopener noreferrer" aria-label="Bluesky">
+              <svg class="bsky-flutter" viewBox="0 0 566 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+                <defs>
+                  <path id="bsky-wing" fill="currentColor" d="M 123.244 35.008 C 188.248 83.809 283.836 176.879 283.836 235.857 C 283.836 316.899 283.879 235.845 283.836 376.038 C 283.889 375.995 282.67 376.544 280.212 383.758 C 266.806 423.111 214.487 576.685 94.841 453.913 C 31.843 389.269 61.013 324.625 175.682 305.108 C 110.08 316.274 36.332 297.827 16.093 225.504 C 10.271 204.699 0.343 76.56 0.343 59.246 C 0.343 -27.451 76.342 -0.206 123.244 35.008 Z" />
+                </defs>
+                <use href="#bsky-wing" class="left" />
+                <use href="#bsky-wing" class="right" />
+              </svg>
+            </a>
+          </li>
+        </ul>
+
+        <form action="[https://your-form-endpoint.example.com]?redirect=[https://yourdomain.com/%23sent]" method="POST">
+          <div class="input-field">
+            <i aria-hidden="true">👤</i>
+            <input type="text" name="name" placeholder="name" aria-label="Your name" autocomplete="name" required>
+          </div>
+
+          <div class="input-field">
+            <i aria-hidden="true">✉</i>
+            <input type="email" name="email" placeholder="email" aria-label="Your email address" autocomplete="email" required>
+          </div>
+
+          <div class="input-field">
+            <i aria-hidden="true">💬</i>
+            <input type="text" name="message" placeholder="message" aria-label="Your message" required>
+          </div>
+
+          <button class="btn-contact" type="submit">Send Message</button>
+
+          <div class="options">
+            Or say hello on
+            <a href="https://bsky.app/profile/[handle.bsky.social]" target="_blank" rel="noopener noreferrer">Bluesky</a>
+          </div>
+        </form>
+      </div>
+
+    </section>
+
   </main>
 
   <!-- =====================================================================
@@ -595,9 +666,21 @@ The task is: [task description].</pre>
         <a href="docs/ARCHITECTURE.md" class="footer-nav-link">Architecture</a>
         <a href="docs/plan/plan-rules.md" class="footer-nav-link">Plan Rules</a>
         <a href="CLAUDE.md" class="footer-nav-link">CLAUDE.md</a>
+        <a href="https://bsky.app/profile/[handle.bsky.social]" class="footer-nav-link" target="_blank" rel="noopener noreferrer" aria-label="Bluesky">
+          <svg class="bsky-flutter" viewBox="0 0 566 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <defs>
+              <path id="bsky-wing-footer" fill="currentColor" d="M 123.244 35.008 C 188.248 83.809 283.836 176.879 283.836 235.857 C 283.836 316.899 283.879 235.845 283.836 376.038 C 283.889 375.995 282.67 376.544 280.212 383.758 C 266.806 423.111 214.487 576.685 94.841 453.913 C 31.843 389.269 61.013 324.625 175.682 305.108 C 110.08 316.274 36.332 297.827 16.093 225.504 C 10.271 204.699 0.343 76.56 0.343 59.246 C 0.343 -27.451 76.342 -0.206 123.244 35.008 Z" />
+            </defs>
+            <use href="#bsky-wing-footer" class="left" />
+            <use href="#bsky-wing-footer" class="right" />
+          </svg>
+        </a>
       </nav>
     </div>
   </footer>
+
+  <!-- Dev logger — remove this script tag in production if not needed -->
+  <script src="js/logger.js" defer></script>
 
 </body>
 </html>
