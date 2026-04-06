@@ -54,3 +54,4 @@ package-lock.json
 
 # temp working directory — screenshots, scratch files
 /docs/tmp/
+docs/build-assets/
