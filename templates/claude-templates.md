@@ -1,4 +1,4 @@
-# Claude Templates — anthropicprinciple.ai
+# Claude Templates — [PROJECT_NAME]
 
 Prompt templates and document templates for use with Claude Code on this project.
 
@@ -35,22 +35,143 @@ Or describe the change and ask:
 Write a commit message for: [describe what changed]
 ```
 
-Format: `type(scope): description` — types: `feat` `fix` `style` `refactor` `docs` `perf` `test` `chore`
+Format: `type(scope): description` — types: `feat` `fix` `style` `refactor` `docs` `perf` `test` `chore` `a11y` `seo`
 
 Examples:
-- `feat(clock): add pattern 5`
-- `fix(controls): persist UTC offset on reload`
-- `perf(clock): throttle pattern phase to 30fps`
-- `docs(claude): update file manifest`
+- `feat(nav): add mobile hamburger menu`
+- `fix(form): validate email field on submit`
+- `perf(images): add srcset for retina devices`
+- `docs(architecture): update file structure section`
+- `a11y(modal): add focus trap on open`
 
 ---
 
-## Template 3 — GitHub Agentic Workflow Debug
+## Template 3 — New Feature Brief
 
-Use when a gh-aw workflow fails in GitHub Actions.
+Use to kick off a new feature implementation cleanly.
 
 ```
-The workflow [workflow-name] is failing. Here are the logs: [paste logs]
+I want to add [feature name] to [PROJECT_NAME].
+
+Context:
+- [What it should do]
+- [Where it lives — which page / component]
+- [Any constraints — no external dependencies, must work without JS, etc.]
+
+Before writing any code, please:
+1. Read the relevant existing files
+2. Confirm your approach with me
+3. Then implement
+```
+
+---
+
+## Template 4 — Bug Investigation
+
+Use when diagnosing an unexpected behaviour.
+
+```
+[Describe the bug: what was expected, what actually happened]
+
+Browser: [browser + version]
+Console output:
+[paste any console errors here]
+
+Steps to reproduce:
+1. [Step]
+2. [Step]
+
+Please:
+1. Read the relevant files before proposing a fix
+2. Identify the root cause (not just the symptom)
+3. Confirm your diagnosis before changing code
+```
+
+---
+
+## Template 5 — Session Handoff
+
+### Light Handoff (tooling/config sessions with no code changes)
+
+File path: `context/summaries/handoff-YYYY-MM-DD-[topic].md`
+
+```markdown
+# Session Handoff — YYYY-MM-DD — [Topic]
+
+## Session Type
+[Configuration / Docs / Research] — [brief qualifier]
+
+## What Was Done
+
+### Goal
+[One sentence]
+
+### Outcome
+[Resolved / Partial / Blocked]
+
+### Steps Covered
+1. [Step]
+
+## Key Facts Established
+
+| Item | Value |
+|------|-------|
+| [Fact] | [Value] |
+
+## State at Session End
+- [What is working or resolved]
+
+## Next Session
+[What to pick up, or "No outstanding actions."]
+```
+
+### Full Handoff (feature/code sessions)
+
+Use the full template in `context/summaries/handoff_template.md`.
+
+---
+
+## Template 6 — PageSpeed / Performance Audit
+
+```
+Please run a performance audit on the current state of the project.
+
+Check against the criteria in CLAUDE.md (Performance Features section) and identify anything that would drop the PageSpeed score below 95 on mobile or desktop. List issues by priority.
+
+Also check:
+- CLS issues (missing image dimensions, layout shifts)
+- Render-blocking resources
+- Image optimisation opportunities
+- Unused CSS or JS
+```
+
+---
+
+## Template 7 — Accessibility Audit
+
+```
+Please run an accessibility audit on [page/component].
+
+Check against WCAG 2.1 AA criteria:
+- All images have descriptive alt text
+- All form inputs have associated labels
+- Colour contrast meets 4.5:1 for text, 3:1 for UI components
+- All interactive elements are keyboard reachable
+- Focus order is logical
+- Focus indicators are visible
+- Semantic HTML landmarks present
+- Heading hierarchy is correct (one h1, sequential levels)
+```
+
+---
+
+## Template 8 — GitHub Actions Workflow Debug
+
+Use when a workflow fails in GitHub Actions.
+
+```
+The workflow [workflow-name] is failing. Here are the logs:
+[paste logs]
 
 Please identify the root cause and suggest a fix.
 ```
@@ -66,135 +187,22 @@ Please identify the root cause and suggest a fix.
 
 ---
 
-## Template 4 — Session Handoff
+## Template 9 — Architecture Sync
 
-### Light Handoff (use for tooling/config sessions with no code changes)
-
-File path: `docs/summaries/handoff-YYYY-MM-DD-[topic].md`
-
-```markdown
-# Session Handoff — YYYY-MM-DD — [Topic]
-
-## Session Type
-[Configuration / Feature / Bug fix / Refactor / Docs] — [brief qualifier]
-
-## What Was Done
-
-### Goal
-[One sentence: what were we trying to achieve?]
-
-### Outcome
-[Resolved / Partial / Blocked] — [one sentence on result]
-
-### Steps Covered
-1. [Step]
-2. [Step]
-3. [Step]
-
-## Key Facts Established
-
-| Item | Value |
-|------|-------|
-| [Fact] | [Value] |
-
-## State at Session End
-- [Bullet: what is working]
-- [Bullet: what files were modified, if any]
-
-## Next Session
-[What to pick up next, or "No outstanding actions."]
-```
-
-### Full Handoff (use for feature/code sessions)
-
-```markdown
-# Session Handoff — YYYY-MM-DD — [Topic]
-
-## Session Type
-[Type] — [qualifier]
-
-## What Was Done
-
-### Goal
-[What were we trying to achieve?]
-
-### Outcome
-[Result summary]
-
-### Changes Made
-
-| File | Change |
-|------|--------|
-| [path] | [what changed] |
-
-### Steps Covered
-1. [Step with outcome]
-2. [Step with outcome]
-
-## Key Facts & Decisions
-
-| Item | Value / Decision |
-|------|-----------------|
-| [Item] | [Value] |
-
-## Known Constraints
-- [Any gotchas, limits, or non-obvious rules established this session]
-
-## State at Session End
-- [What is working]
-- [What is not working / deferred]
-
-## Checklist Status
-
-### Mat's Checklist
-- [ ] Clock animation runs correctly
-- [ ] Countdown mode works
-- [ ] localStorage persists across reload
-- [ ] Controls page inputs save on change
-- [ ] Keyboard accessible
-- [ ] Responsive at 320 / 480 / 768 / 1024 / 1440px
-- [ ] Landscape mode fits viewport
-- [ ] Dark mode verified
-
-### Claude's Checklist
-- [ ] No inline styles
-- [ ] No `!important`
-- [ ] No `max-width` media queries
-- [ ] `box-sizing: border-box` in every reset
-- [ ] CSS custom properties for all colours/spacing
-- [ ] `defer` on all scripts
-- [ ] Schema.org JSON-LD present
-
-## Next Session
-[What to pick up, with priority order]
-```
-
----
-
-## Template 5 — New Feature Brief
-
-Use to kick off a new feature implementation cleanly.
+Use to check whether docs still match code:
 
 ```
-I want to add [feature name] to anthropicprinciple.ai.
+Read docs/ARCHITECTURE.md and docs/architecture/CORE_PATTERNS.md.
+Then read [list of key files].
 
-Context:
-- [What it should do]
-- [Where it lives — index.html / clock-controls.html / new page]
-- [Any constraints — no JS if CSS can do it, no dependencies, etc.]
-
-Before writing any code, please:
-1. Read the relevant existing files
-2. Confirm your approach with me
-3. Then implement
+Are there any divergences between what the docs describe and what the code actually does?
+List each divergence as: [Doc claim] vs [Actual code behaviour].
 ```
 
----
-
-## Template 6 — PageSpeed Audit
+Use to check for internal contradictions:
 
 ```
-Please run a PageSpeed / performance audit on the current state of the project.
-
-Check against the criteria in CLAUDE.md (Performance Features section) and identify anything that would drop the score below 95 on mobile or desktop. List issues by priority.
+Read docs/ARCHITECTURE.md, docs/SYSTEM.md, and docs/architecture/CORE_PATTERNS.md.
+Identify the top 5 internal contradictions or tensions between these documents.
+For each: quote both sides of the tension, and suggest a resolution.
 ```
