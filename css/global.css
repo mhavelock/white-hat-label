@@ -1,0 +1,428 @@
+/* ==========================================================================
+   GLOBAL STYLES — [PROJECT_NAME]
+   ==========================================================================
+   1.  Design tokens
+   2.  Reset
+   3.  Base elements
+   4.  Typography
+   5.  Layout
+   6.  Header
+   7.  Footer
+   8.  Basic Navigation
+   --------------------------------------------------------------------------
+   @import url("grid.css");
+   @import url("utilities.css");
+   @import url("global-xtra.css");
+   ========================================================================== */
+
+/* ==========================================================================
+   Imports
+   ========================================================================== */
+
+@import url("grid.css");
+@import url("utilities.css");
+@import url("global-xtra.css");
+
+
+/* ==========================================================================
+   1. Design tokens
+   Dark-mode colour overrides are in theme.css @media (prefers-color-scheme: dark).
+   ========================================================================== */
+
+:root {
+  /* Colour — light mode */
+  --color-bg:                   #ffffff;
+  --color-surface:              #f2f4f7;
+  --color-surface-2:            #e8ecf2;
+  --color-border:               #dde1ea;
+  --color-text:                 #1d1f24;
+  --color-text-muted:           #5a6375;
+  --color-btn-primary-bg:       #a1b1ca;
+  --color-btn-primary-text:     #1d1f24;
+  --color-btn-secondary-bg:     #3e3b1b;
+  --color-btn-secondary-text:   #a1b1ca;
+  --color-focus:                #4a7fcb;
+  --color-accent:               #3a5fa8;
+  --color-alert-info-bg:        #eaf2ff;
+  --color-alert-info-text:      #1d3a6b;
+  --color-alert-success-bg:     #e8f9ef;
+  --color-alert-success-text:   #1a5c35;
+  --color-alert-warning-bg:     #fff8e6;
+  --color-alert-warning-text:   #6b4800;
+  --color-alert-error-bg:       #ffeaea;
+  --color-alert-error-text:     #6b1a1a;
+
+  /* Typography */
+  --font-body:                  Arial, Helvetica, sans-serif;
+  --font-heading:               Verdana, Arial, sans-serif;
+  --font-brand:                 'Fredoka', Verdana, Arial, sans-serif;
+  --font-mono:                  'Courier New', Courier, monospace;
+  --font-size-xsm:              1.1rem;
+  --font-size-sm:               1.3rem;
+  --font-size-base:             1.6rem;
+  --font-size-md:               1.8rem;
+  --font-size-lg:               2rem;
+  --font-size-xl:               2.4rem;
+  --font-size-2xl:              3rem;
+  --font-size-3xl:              3.6rem;
+  --font-size-4xl:              4.8rem;
+  --font-weight-light:          300;
+  --font-weight-body:           400;
+  --font-weight-heading:        700;
+  --line-height-body:           1.5;
+  --line-height-relaxed:        1.7;
+  --line-height-heading:        1.2;
+  --line-height-tight:          1.1;
+  --letter-space:               0.01em;
+  --letter-space-wide:          0.08em;
+
+  /* Spacing (rem — 1rem = 10px at 62.5% root) */
+  --space-1:   0.4rem;
+  --space-2:   0.8rem;
+  --space-3:   1.2rem;
+  --space-4:   1.6rem;
+  --space-5:   2rem;
+  --space-6:   2.4rem;
+  --space-8:   3.2rem;
+  --space-10:  4rem;
+  --space-12:  4.8rem;
+  --space-16:  6.4rem;
+  --space-20:  8rem;
+  --space-24:  9.6rem;
+
+  /* Layout */
+  --max-width:          1440px;
+  --content-width:      72rem;
+  --min-width:          320px;
+  --min-element-width:  288px;
+  --grid-gutter:        1.6rem;
+  --grid-cols:          12;
+
+  /* Border radius */
+  --radius-sm:    0.4rem;
+  --radius-md:    0.8rem;
+  --radius-lg:    1.6rem;
+  --radius-xl:    2.4rem;
+  --radius-pill:  9999px;
+
+  /* Shadows */
+  --shadow-sm:  0 1px 3px rgb(0 0 0 / 0.08);
+  --shadow-md:  0 4px 12px rgb(0 0 0 / 0.10);
+  --shadow-lg:  0 8px 24px rgb(0 0 0 / 0.14);
+
+  /* Transitions */
+  --transition-fast:  150ms ease;
+  --transition-base:  250ms ease;
+  --transition-slow:  400ms ease;
+}
+
+
+/* ==========================================================================
+   2. Reset
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  /* 62.5% → 1rem = 10px. Makes rem arithmetic intuitive. */
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  letter-spacing: var(--letter-space);
+  line-height: var(--line-height-body);
+}
+
+body {
+  font-size: var(--font-size-base);
+  min-height: 100dvh;
+  overflow-x: clip;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+img,
+picture,
+video,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+
+/* ==========================================================================
+   3. Base elements
+   ========================================================================== */
+
+:focus-visible {
+  border-radius: var(--radius-sm);
+  outline: 2px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+::selection {
+  background-color: var(--color-btn-primary-bg);
+  color: var(--color-btn-primary-text);
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin-block: var(--space-8);
+}
+
+ul,
+ol {
+  padding-inline-start: var(--space-6);
+}
+
+li {
+  margin-bottom: var(--space-2);
+}
+
+code {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  padding: 0.1em 0.4em;
+}
+
+pre {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-mono);
+  font-size: var(--font-size-sm);
+  line-height: 1.6;
+  overflow-x: auto;
+  padding: var(--space-4);
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+table {
+  border-collapse: collapse;
+  font-size: var(--font-size-sm);
+  width: 100%;
+}
+
+th,
+td {
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-3) var(--space-4);
+  text-align: start;
+}
+
+th {
+  background-color: var(--color-surface);
+  font-weight: bold;
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+
+/* ==========================================================================
+   4. Typography
+   ========================================================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  font-weight: var(--font-weight-heading);
+  line-height: var(--line-height-heading);
+}
+
+h1 { font-size: var(--font-size-4xl); }
+h2 { font-size: var(--font-size-3xl); }
+h3 { font-size: var(--font-size-2xl); }
+h4 { font-size: var(--font-size-xl); }
+h5 { font-size: var(--font-size-lg); }
+h6 { font-size: var(--font-size-base); }
+
+/* Desktop fluid overrides are in theme.css */
+
+p {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-relaxed);
+  max-width: 65ch;
+}
+
+a {
+  color: var(--color-text);
+  transition: opacity var(--transition-fast);
+}
+
+a:hover  { opacity: 0.75; }
+a:active { opacity: 0.85; }
+
+strong { font-weight: bold; }
+em     { font-style: italic; }
+small  { font-size: var(--font-size-sm); }
+address { font-style: normal; }
+time    { white-space: nowrap; }
+
+/* Prose — long-form pages */
+.prose p          { margin-bottom: var(--space-4); }
+.prose h2         { margin-bottom: var(--space-3); margin-top: var(--space-12); }
+.prose h3         { margin-bottom: var(--space-2); margin-top: var(--space-8); }
+.prose ul,
+.prose ol         { margin-bottom: var(--space-4); }
+.prose li         { font-size: var(--font-size-base); margin-bottom: var(--space-2); }
+
+.prose-header {
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: var(--space-8);
+  padding-block: var(--space-10);
+}
+
+.prose-meta {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  margin-block-start: var(--space-2);
+}
+
+
+/* ==========================================================================
+   5. Layout
+   ========================================================================== */
+
+main {
+  margin-inline: auto;
+  max-width: var(--max-width);
+  min-width: var(--min-width);
+  overflow-x: clip;
+  padding: var(--space-4) var(--space-4) 0;
+  position: relative;
+  z-index: 1;
+}
+
+.container {
+  margin-inline: auto;
+  max-width: var(--max-width);
+  padding-inline: var(--space-4);
+  width: 100%;
+}
+
+/* Page section — consistent vertical rhythm */
+.section {
+  padding-block: var(--space-16);
+}
+
+.section-alt {
+  background-color: var(--color-surface);
+  margin-inline: calc(var(--space-4) * -1);
+  padding-inline: var(--space-4);
+}
+
+.section-header {
+  margin-bottom: var(--space-10);
+  max-width: var(--content-width);
+}
+
+.section-header.u-text-center {
+  margin-inline: auto;
+}
+
+.section-title {
+  margin-bottom: var(--space-3);
+}
+
+.section-subtitle {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-lg);
+  max-width: 52ch;
+}
+
+/* Card */
+.card {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5) var(--space-6);
+  transition: box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.card-alt {
+  background-color: var(--color-surface);
+}
+
+.card-title {
+  font-size: var(--font-size-lg);
+  font-weight: bold;
+  margin-bottom: var(--space-3);
+}
+
+.card-meta {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--space-3);
+}
+
+.card-body {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-relaxed);
+  max-width: none;
+}
+
+/* Tag / badge */
+.tag {
+  background-color: var(--color-surface-2);
+  border-radius: var(--radius-pill);
+  color: var(--color-text-muted);
+  display: inline-block;
+  font-size: var(--font-size-xsm);
+  font-weight: bold;
+  letter-spacing: var(--letter-space-wide);
+  padding: 0.2em 0.8em;
+  text-transform: uppercase;
+}
+
+.tag-accent {
+  background-color: var(--color-accent);
+  color: #ffffff;
+}
