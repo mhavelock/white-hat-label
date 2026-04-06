@@ -1,0 +1,88 @@
+# Serverside — [PROJECT_NAME]
+
+> **Template skeleton.** Fill in the project-specific values. Delete sections that don't apply. Add sections for serverside components this project uses.
+
+---
+
+## Overview
+
+| Type | Value |
+|------|-------|
+| Architecture | [Static site / SPA / Full-stack / Headless CMS / etc.] |
+| Backend | [None / Node.js / PHP / Python / etc.] |
+| Database | [None / PostgreSQL / MySQL / Supabase / etc.] |
+| Auth | [None / NextAuth / Auth0 / Clerk / etc.] |
+
+---
+
+## Hosting
+
+| Component | Details |
+|-----------|---------|
+| Host | [GitHub Pages / Vercel / Cloudflare Pages / etc.] |
+| Source branch | `main` |
+| Build step | [None — files served as-is / `npm run build` / etc.] |
+| HTTPS | [Enforced automatically / manual SSL config] |
+| CDN | [Provider CDN / Cloudflare / None] |
+
+---
+
+## Domain
+
+| Component | Details |
+|-----------|---------|
+| Domain | [domain.com] |
+| DNS provider | [Cloudflare / Namecheap / Google / etc.] |
+| CNAME / A record target | [hosting-provider.io] |
+| CNAME file | [`CNAME` in repo root] — required for GitHub Pages custom domains |
+
+---
+
+## Environment Variables
+
+| Variable | Purpose | Required in production |
+|----------|---------|----------------------|
+| `[VAR_NAME]` | [What it does] | Yes / No |
+
+> Store secrets in [GitHub Actions Secrets / Vercel env / .env (never committed)].
+
+---
+
+## What This Project Does NOT Have
+
+Any suggestion to add the following requires a new ADR:
+
+- [List things that are intentionally absent for this project]
+- Example: No server-side database (settings stored in `localStorage`)
+- Example: No authentication
+- Example: No analytics on the main page
+
+---
+
+## Security Posture
+
+| Concern | Approach |
+|---------|----------|
+| User data | [What data is collected, where it's stored] |
+| External links | All `target="_blank"` use `rel="noopener noreferrer"` |
+| Dynamic content | No `innerHTML` with untrusted input — `textContent` or DOM methods only |
+| Dependencies | [Zero / Minimal / Regularly audited — `npm audit`] |
+| Secrets | Never committed to git — stored in environment variables |
+
+---
+
+## CI/CD Pipeline
+
+| Step | Tool | Trigger |
+|------|------|---------|
+| [Test / Build / Deploy / etc.] | [GitHub Actions / Vercel / etc.] | [push to main / PR / etc.] |
+
+---
+
+## Monitoring
+
+| What | How |
+|------|-----|
+| Uptime | [Check [domain.com] directly / StatusPage / UptimeRobot] |
+| Errors | [Browser console / Sentry / CloudWatch / None] |
+| Deploy status | [GitHub Pages / Vercel dashboard / GitHub Actions tab] |

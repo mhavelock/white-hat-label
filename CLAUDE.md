@@ -6,7 +6,9 @@
 
 ## Summary
 
-**[PROJECT_NAME]** is a [one-sentence description of what the project is and does].
+**[PROJECT_NAME]** is a [one-sentence description of what the project does and for whom].
+
+[Optional: one more sentence on the core purpose, unique aspect, or key technical constraint.]
 
 ---
 
@@ -15,15 +17,15 @@
 | Layer | Technology |
 |-------|-----------|
 | Markup | HTML5 — semantic, W3C valid |
-| Presentation | CSS3 — custom properties, Flexbox, Grid; no framework |
+| Presentation | CSS3 — custom properties, Flexbox/Grid; no framework |
 | Behaviour | Vanilla JavaScript — ES2020+, IIFE modules |
-| Fonts | [System fonts / Google Fonts / custom] |
+| Fonts | [System fonts / specify if custom] |
 | Hosting | [GitHub Pages / Vercel / Cloudflare Pages] |
 | CI | [GitHub Actions / GitLab CI] |
-| Domain | [domain.com] (CNAME) |
+| Domain | [domain.com] |
 | Local dev | `npx live-server` — `http://127.0.0.1:5500` |
 
-> **Optional stack additions:** React, Next.js, TypeScript, SASS, Tailwind, AlpineJS, Node.js, PHP, MySQL, PostgreSQL, Encore, Cloudflare Workers, Service Workers, OpenRouter, NGINX.
+> **Optional stack additions available in this project:** React, Next.js, TypeScript, SASS, Tailwind, AlpineJS, Node.js, PHP, MySQL, PostgreSQL, Cloudflare Workers, Service Workers, OpenRouter, NGINX.
 
 **No build step unless specified. Pure HTML/CSS/JS by default.**
 
@@ -44,7 +46,8 @@
 
 ```
 [project-root]/
-├── index.html              # Main entry point
+├── CLAUDE.md               # This file — project instructions for Claude Code
+├── README.md               # Public-facing project readme
 │
 ├── assets/
 │   ├── audio/              # Audio files
@@ -55,7 +58,7 @@
 │   └── photos/             # Photography
 │
 ├── styles/
-│   ├── theme.css           # Design tokens — colours, spacing, typography
+│   ├── theme.css           # ⭐ Design tokens — single source of truth
 │   ├── global.css          # Base element defaults, reset, links, buttons, forms
 │   ├── grid.css            # 12-column grid system
 │   ├── components.css      # Reusable UI components — header, modal, alert, tooltip
@@ -69,39 +72,54 @@
 │
 ├── docs/
 │   ├── ARCHITECTURE.md     # System overview and structural decisions
-│   ├── SYSTEM.md           # Developer rules, naming conventions, never-do constraints
+│   ├── SYSTEM.md           # Developer rules, naming conventions
 │   └── architecture/       # Extended reference docs
+│       ├── CORE_PATTERNS.md             # G1–G13 constraints — read before any code change
+│       ├── DECISIONS.md                 # Architecture decision records (ADRs)
+│       ├── FEEDBACK-LOOPS.md            # Wins, limits, rules from project history
+│       ├── BREAKTHROUGHS.md             # Key problem-solving records
+│       ├── ARCHITECTURE_EXTENSION.md    # Coding standards detail, token reference
+│       ├── CODEBASE-AUDIT.md            # Audit approach and prompts
+│       ├── REFLECTIVE-SYNC.md           # Session sync prompts
+│       ├── CLAUDE_ARCHITECTURE.md       # How to use the docs / reading order
+│       ├── CHECKPOINTS.md               # Auto-checkpoint triggers and format
+│       ├── FE-VISUALISATION.md          # Visual debugging approach
+│       ├── six-hats.md                  # Thinking approach models
+│       └── template-examples/           # Example implementations to adapt
+│           ├── GEMINI-CONSULTANCY.md    # Second-model review protocol
+│           ├── SERVERSIDE.md            # Serverside infrastructure template
+│           └── STANDARDS.md            # Standards tracking template
 │
 └── context/
-    ├── summaries/          # Tasklist and handoff summaries
-    └── [context files]     # Requirements, research, reference material
+    └── summaries/
+        ├── plan-rules.md               # Session operating rules
+        ├── tasklist.md                 # Task register
+        └── handoff_template.md         # Handoff template
 ```
 
 ### ⚠️ Protected files — do not modify without explicit instruction
 
 | File | Why protected |
 |------|--------------|
-| `[file]` | [Reason] |
+| TBA | TBA |
 
 ---
 
 ## Technical Development Approach
 
-- **No unnecessary dependencies.** Prefer plain HTML/CSS/JS. Add a framework only when it solves a real problem.
+- **No unnecessary dependencies.** Prefer plain HTML/CSS/JS. Add a framework only when it solves a real problem that cannot be solved without it.
 - **CSS-first.** Use CSS for UI state wherever possible (`:checked`, `:focus-visible`, `@media`, custom properties, `@keyframes`). Add JS only when CSS cannot achieve the goal.
 - **Separation of concerns.** HTML = structure and content. CSS = all presentation. JS = behaviour only. No inline styles. No inline event handlers.
 - **Progressive enhancement.** Core content and function must work without JS. JS then layers on interactive enhancement.
 - **Modular JS.** Each JS file is a self-contained IIFE or module. No globals. No shared mutable state across files.
 - **CSS custom properties.** All colours, spacing, and timing values are defined as `--custom-properties` in `styles/theme.css`. Never hard-code values in component CSS.
-- **Mobile-first CSS.** Base styles target the smallest screen. Use `min-width` media queries to layer on complexity for larger screens. Never use `max-width` for responsive breakpoints.
-- **Flex for layout, Grid for components.** Use Flexbox for page-level flow. CSS Grid for components where a two-dimensional structure is semantically correct.
+- **Mobile-first CSS.** Base styles target the smallest screen. Use `min-width` media queries. Never use `max-width` for responsive breakpoints.
+- **Flex for layout, Grid for components.** Flexbox for page-level flow. CSS Grid where 2D structure is semantically correct.
 - **Chained classes.** Separate structural and presentational concerns using chained classes where it improves clarity.
-- **`localStorage` persistence.** User preferences and session data survive page reloads via `localStorage`. Always sanitise reads before use.
 - **`requestAnimationFrame` for animation.** Never `setInterval` for animations. Always pause via `visibilitychange` when the tab is hidden.
 
 ### HTML
-- Semantic HTML5 landmarks on every page.
-- One `<h1>` per page; heading hierarchy sequential.
+- Semantic HTML5. One `<h1>` per page. Sequential heading hierarchy.
 - Every `<input>` paired with `<label for="...">`.
 - Every `<img>` has `alt`, `width`, `height`.
 - `defer` on all `<script>` tags.
@@ -122,11 +140,11 @@
 
 ## UX Goals
 
-- **Immediate feedback.** Content renders and is usable without delay — no spinner, no splash screen.
+- **Immediate feedback.** Content renders and is usable without delay.
 - **Large touch targets.** All interactive controls ≥ 44 × 44 px.
 - **Clean and minimal.** No decoration that doesn't serve the experience.
 - **Settings persist automatically.** No save button needed — `localStorage` updates on every change.
-- **Orientation aware.** Layouts adapt gracefully to landscape on small-screen devices.
+- **Orientation aware.** Layouts adapt to landscape on small-screen devices.
 - **Reduced motion respect.** Animations respect `prefers-reduced-motion: reduce`.
 - **Keyboard accessible.** Every interactive element reachable by Tab, operable by Enter/Space, dismissable by Escape.
 
@@ -138,8 +156,8 @@
 - `<meta name="description">` on every page.
 - Open Graph `og:` tags — title, description, type, image, url.
 - `<link rel="canonical">` on every page.
-- Schema.org JSON-LD structured data (`WebSite`, `WebApplication`, or appropriate type).
-- Semantic HTML5 landmarks: `<main>`, `<header>`, `<nav>`, `<footer>` where appropriate.
+- Schema.org JSON-LD structured data on each page.
+- Semantic HTML5 landmarks on every page.
 - `lang="en"` on `<html>`.
 - `<meta name="robots" content="index, follow">` on indexable pages.
 - `site.webmanifest` for PWA and search discoverability.
@@ -148,17 +166,16 @@
 
 ## Performance Features
 
-- Zero or minimal third-party scripts.
 - Critical CSS loaded as a single `<link>` in `<head>`.
-- System fonts by default — zero font-loading requests unless custom fonts are required.
 - All `<img>` elements have `width`, `height`, `alt`; below-fold images use `loading="lazy"`.
-- `srcset` with `250w` and `500w` resolution variants; `sizes` reflects layout breakpoints. Retina images served to retina devices.
+- `srcset` with `250w` and `500w` resolution variants; retina images served to retina devices.
+- `sizes` reflects layout breakpoints.
 - Explicit image dimensions prevent Cumulative Layout Shift (CLS).
 - Images cannot shrink outside their container — always check at low viewport widths.
 - `defer` attribute on all `<script>` tags.
 - CSS animations use `transform` and `opacity` only.
 - `aspect-ratio` on image containers prevents CLS on load.
-- `logger.js` buffers log entries in memory — no synchronous `sessionStorage` I/O on every call.
+- `logger.js` buffers log entries in memory — no synchronous storage I/O on every call.
 - **Target: Google PageSpeed ≥ 95 on both mobile and desktop.**
 
 ---
@@ -167,15 +184,15 @@
 
 | Page | Content |
 |------|---------|
-| `index.html` | [Description] |
+| `index.html` | TBA |
 
 ---
 
 ## Layout & Style Guide
 
 ### Grid
-- **12-column grid** for page-level layouts (`.container`, `.row`, `.col-*`).
-- **Flex layout** for the main page layout. Grid only for components where 2D structure is correct.
+- **12-column grid** for page-level layouts — `.container`, `.row`, `.col-*`.
+- **Flex for page layout.** Grid only for components where 2D structure is correct.
 - **Gutter:** `1rem` (16px at browser default).
 - **Max content width:** `1440px`.
 - **Minimum element width:** `288px` (prevents over-compression on small devices).
@@ -188,7 +205,7 @@
 | Body, paragraphs | `Arial, Helvetica, sans-serif` | normal |
 | Monospace / code | `'Courier New', Courier, monospace` | normal |
 
-- Base: `1rem = 16px` (browser default — do not override `font-size` on `html` or `body`).
+- Base: `1rem = 16px` — do not override `font-size` on `html` or `body`.
 - All font sizes in `em`. All spacing distances in `rem`.
 - Responsive line height: `1.5` base; `1.7` at ≥ 768px.
 
@@ -207,9 +224,9 @@
 | `--color-link` | `#1d1f24` | `#a1b1ca` |
 | `--color-focus` | `#1d1f24` | `#a1b1ca` |
 
-All tokens defined in `styles/theme.css`. All dark-mode overrides via `@media (prefers-color-scheme: dark)` and `[data-theme="dark"]`.
+All tokens defined in `styles/theme.css`. Dark-mode overrides via `@media (prefers-color-scheme: dark)` and `[data-theme="dark"]`.
 
-Custom component styles that differ from the global brand (above) should be added in a separate stylesheet and extend the global styles.
+Custom component styles that deviate from global brand should extend via a separate stylesheet.
 
 ### Spacing Scale
 
@@ -254,17 +271,15 @@ Custom component styles that differ from the global brand (above) should be adde
 - **Mobile-first always.** `@media (min-width: …)` only. Never `max-width`.
 - **`box-sizing: border-box`** in every stylesheet reset.
 - **CSS custom properties** for every colour, spacing value, and transition duration.
-- **Cursor pointer** on all buttons and button-styled links.
+- **`cursor: pointer`** on all buttons and button-styled links.
 
 ---
 
 ## Standards Compliance
 
-- HTML5, W3C valid.
+- HTML5, W3C valid. Run `npx html-validate` before committing HTML.
 - WCAG 2.1 AA.
-- `lang="en"` on `<html>`.
-- `<meta charset="UTF-8">` first in `<head>`.
-- `<!doctype html>` lowercase.
+- `lang="en"` on `<html>`. `<meta charset="UTF-8">` first in `<head>`. `<!doctype html>` lowercase.
 - Semantic landmarks: `<main>`, `<header>`, `<nav>`, `<footer>`.
 - Every `<input>` and `<textarea>` paired with a `<label for="…">`.
 - Every `<img>` has `alt`, `width`, `height`.
@@ -286,6 +301,7 @@ Custom component styles that differ from the global brand (above) should be adde
 |-------|---------------|
 | `frontend-standards` | Any time HTML, CSS, or JS is written, reviewed, or refactored |
 | `git-commit-messaging` | Every commit — produces Conventional Commits format messages |
+| `fe-visualisation` | Any time a visual or layout issue needs debugging before proposing a fix |
 
 ---
 
@@ -296,7 +312,7 @@ After each significant change, run this review prompt:
 > "Taking into account the best practices docs in the project `docs/` folder, please run a code review on what we have. Look for better code organisation, clean code improvements, performance improvements, browser memory usage issues, and a security check. Update the md docs and memory file then add and commit to git. Suggest any additional best practice improvements and anything important I may have forgotten. Check changes didn't break completed task functionality."
 
 ### Your Checklist
-- [ ] [Feature works as expected — add specific checks per feature here]
+- [ ] [Feature works as expected — add specific feature checks here]
 - [ ] Responsive at 320 / 480 / 768 / 1024 / 1440px
 - [ ] Landscape mode fits viewport
 - [ ] Dark mode verified at OS level
@@ -348,11 +364,12 @@ git commit -m "style(css): update brand colour tokens"
 - **Branches:** `dev` for development work; `main` for production. Merge via PR.
 - **Commit messages:** Conventional Commits — `type(scope): description`
   - Types: `feat` `fix` `style` `refactor` `docs` `perf` `test` `chore` `a11y` `seo`
-  - Examples: `feat(nav): add mobile hamburger menu` · `fix(form): validate email on submit` · `style(css): mobile-first refactor`
+  - Examples: `feat(nav): add mobile hamburger menu` · `fix(form): validate email on submit` · `style(css): update brand tokens`
 - **Always `git diff` before committing** — review every change.
 - **Stop and show `git diff` after each task** — confirm with user before proceeding.
 - **`git push` requires explicit user confirmation** — push deploys immediately to production.
 - Use the `git-commit-messaging` skill for all commit messages.
+- See `context/summaries/plan-rules.md` for full session operating rules.
 
 ---
 
@@ -374,8 +391,8 @@ Logger.clear();                  // clear sessionStorage log store
 ```
 
 - Entries buffered in memory — no synchronous storage I/O on `log()` calls.
-- On `beforeunload`, buffer is flushed to `sessionStorage` and a summary snapshot written to `localStorage`.
-- Logger is passive: it never throws, never blocks execution.
+- On `beforeunload`, buffer is flushed to `sessionStorage`; a summary snapshot is written to `localStorage`.
+- Logger is passive: never throws, never blocks execution.
 - `Logger.flush()` — write buffer to sessionStorage immediately (e.g. before an expected crash).
-- Test logs included by default: localStorage availability, sessionStorage availability, hero image load time, script load times.
-- Remove `<script src="js/logger.js">` from HTML before production deployment if not needed.
+- **Default test logs included:** localStorage availability, sessionStorage availability, hero image load time, script load times.
+- Remove `<script src="js/logger.js">` from HTML before production if not required.
