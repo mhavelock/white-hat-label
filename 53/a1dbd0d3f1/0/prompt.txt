@@ -1,0 +1,1 @@
+Plz set up a plan system structure - based on Cowork/anthropicprinciple/plan folder - create a test-list.md template and a handoff_date.md template. Create an example-task-list.md and example-handoff_date.md based on the task required to set this starter project up. Add a copy of plan-rules.md
