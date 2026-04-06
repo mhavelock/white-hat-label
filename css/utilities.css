@@ -1,0 +1,174 @@
+/* ==========================================================================
+   UTILITIES
+   ==========================================================================
+   Single-purpose helper classes.
+   Prefix: u- (layout), is- (state, applied by JS)
+   ========================================================================== */
+
+/* ==========================================================================
+   1. Accessibility — screen-reader only
+   ========================================================================== */
+
+.u-sr-only:not(:focus):not(:active) {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+/* Skip to main content — accessible, visually hidden until focused */
+.u-skip-link {
+  background-color: var(--color-bg);
+  border: 2px solid var(--color-focus);
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  font-weight: bold;
+  left: var(--space-4);
+  padding: var(--space-3) var(--space-5);
+  position: absolute;
+  text-decoration: none;
+  top: var(--space-4);
+  transform: translateY(-200%);
+  transition: transform var(--transition-fast);
+  z-index: 9999;
+}
+
+.u-skip-link:focus {
+  transform: translateY(0);
+}
+
+
+/* ==========================================================================
+   2. Display
+   ========================================================================== */
+
+.u-block         { display: block; }
+.u-inline-block  { display: inline-block; }
+.u-flex          { display: flex; }
+.u-hidden        { display: none; }
+
+/* Show/hide by viewport */
+.u-mobile-only {
+  display: block;
+}
+
+.u-desktop-only {
+  display: none;
+}
+
+@media (width >= 768px) {
+  .u-mobile-only  { display: none; }
+  .u-desktop-only { display: block; }
+}
+
+/* Landscape mobile hide */
+@media (orientation: landscape) and (max-height: 500px) {
+  .u-hide-landscape { display: none; }
+}
+
+
+/* ==========================================================================
+   3. Text
+   ========================================================================== */
+
+.u-text-center  { text-align: center; }
+.u-text-start   { text-align: start; }
+.u-text-end     { text-align: end; }
+.u-text-muted   { color: var(--color-text-muted); }
+.u-text-upper   { text-transform: uppercase; letter-spacing: 0.08em; }
+.u-text-sm      { font-size: var(--font-size-sm); }
+.u-text-lg      { font-size: var(--font-size-lg); }
+.u-text-bold    { font-weight: bold; }
+
+
+/* ==========================================================================
+   4. Spacing
+   ========================================================================== */
+
+.u-mt-auto      { margin-top: auto; }
+.u-mb-0         { margin-bottom: 0; }
+.u-mt-4         { margin-top: var(--space-4); }
+.u-mb-4         { margin-bottom: var(--space-4); }
+.u-mt-8         { margin-top: var(--space-8); }
+.u-mb-8         { margin-bottom: var(--space-8); }
+.u-p-0          { padding: 0; }
+
+
+/* ==========================================================================
+   5. Flex helpers
+   ========================================================================== */
+
+.u-flex-center {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.u-flex-between {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.u-flex-gap-4 {
+  display: flex;
+  gap: var(--space-4);
+}
+
+.u-flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+
+/* ==========================================================================
+   6. Dividers
+   ========================================================================== */
+
+.u-divider {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin-block: var(--space-8);
+}
+
+.u-divider-emoji {
+  border: none;
+  margin-block: var(--space-10);
+  opacity: 0.5;
+  position: relative;
+  text-align: center;
+}
+
+.u-divider-emoji::before {
+  background: linear-gradient(
+    to right,
+    transparent,
+    color-mix(in srgb, var(--color-text) 15%, transparent) 30%,
+    color-mix(in srgb, var(--color-text) 15%, transparent) 70%,
+    transparent
+  );
+  content: '';
+  display: block;
+  height: 1px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 50%;
+}
+
+.u-divider-emoji::after {
+  background: var(--color-bg);
+  border-radius: 4rem;
+  box-shadow: inset 0 2px 4px color-mix(in srgb, #000000 20%, transparent);
+  content: attr(data-emoji);
+  display: inline-block;
+  font-size: 1.6rem;
+  line-height: 1;
+  padding: 0.4rem 1.2rem;
+  position: relative;
+  z-index: 1;
+}

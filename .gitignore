@@ -2,7 +2,7 @@
 .env*
 
 .vercel
-.claude
+# .claude
 .vscode/
 dist/
 logs/
@@ -49,7 +49,7 @@ package-lock.json
 /.playwright-mcp/
 
 # dev screenshots dumped at repo root
-/*.png
+# *.png excluded — favicon PNGs (apple-touch-icon.png, favicon-96x96.png, web-app-manifest-*.png) are tracked
 /*.jpg
 
 # temp working directory — screenshots, scratch files

@@ -1,0 +1,206 @@
+/* ==========================================================================
+   THEME — [PROJECT_NAME]
+   ==========================================================================
+   1.  Font (Fredoka via Google Fonts)
+   2.  Theme tokens — light / dark (via prefers-color-scheme)
+   3.  Global type overrides
+   4.  Navigation overrides
+   --------------------------------------------------------------------------
+   @import url("svg-variables.css");
+   ========================================================================== */
+
+/* ==========================================================================
+   Imports
+   ========================================================================== */
+
+@import url("svg-variables.css");
+
+
+/* ==========================================================================
+   1. Font
+   Fredoka variable (300–700) is loaded via Google Fonts in HTML <head>.
+   ========================================================================== */
+
+/* Loaded externally — no @font-face required here */
+
+
+/* ==========================================================================
+   2. Theme tokens — light / dark
+   ========================================================================== */
+
+/* Light mode — explicit; matches :root in global.css */
+:root {
+  --color-bg:                   #ffffff;
+  --color-surface:              #f2f4f7;
+  --color-surface-2:            #e8ecf2;
+  --color-border:               #dde1ea;
+  --color-text:                 #1d1f24;
+  --color-text-muted:           #5a6375;
+  --color-btn-primary-bg:       #a1b1ca;
+  --color-btn-primary-text:     #1d1f24;
+  --color-btn-secondary-bg:     #3e3b1b;
+  --color-btn-secondary-text:   #a1b1ca;
+  --color-focus:                #4a7fcb;
+  --color-accent:               #3a5fa8;
+  --color-alert-info-bg:        #eaf2ff;
+  --color-alert-info-text:      #1d3a6b;
+  --color-alert-success-bg:     #e8f9ef;
+  --color-alert-success-text:   #1a5c35;
+  --color-alert-warning-bg:     #fff8e6;
+  --color-alert-warning-text:   #6b4800;
+  --color-alert-error-bg:       #ffeaea;
+  --color-alert-error-text:     #6b1a1a;
+  --shadow-sm:                  0 1px 3px rgb(0 0 0 / 0.08);
+  --shadow-md:                  0 4px 12px rgb(0 0 0 / 0.10);
+  --shadow-lg:                  0 8px 24px rgb(0 0 0 / 0.14);
+  /* Navigation */
+  --nav-bg:                     rgba(255, 255, 255, 0.92);
+  --nav-border:                 rgba(221, 225, 234, 0.8);
+  --nav-text:                   #1d1f24;
+}
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg:                   #111318;
+    --color-surface:              #1a1d26;
+    --color-surface-2:            #22262f;
+    --color-border:               #2c3044;
+    --color-text:                 #a1b1ca;
+    --color-text-muted:           #6b7a94;
+    --color-btn-primary-bg:       #1d1f24;
+    --color-btn-primary-text:     #a1b1ca;
+    --color-btn-secondary-bg:     #ebe6b7;
+    --color-btn-secondary-text:   #1d1f24;
+    --color-focus:                #7aaff0;
+    --color-accent:               #7aaff0;
+    --color-alert-info-bg:        #1a2540;
+    --color-alert-info-text:      #90b8f0;
+    --color-alert-success-bg:     #152a1e;
+    --color-alert-success-text:   #7fcfa0;
+    --color-alert-warning-bg:     #2a2005;
+    --color-alert-warning-text:   #d4a845;
+    --color-alert-error-bg:       #2a0f0f;
+    --color-alert-error-text:     #d48080;
+    --shadow-sm:                  0 1px 3px rgb(0 0 0 / 0.3);
+    --shadow-md:                  0 4px 12px rgb(0 0 0 / 0.4);
+    --shadow-lg:                  0 8px 24px rgb(0 0 0 / 0.5);
+    /* Navigation */
+    --nav-bg:                     rgba(17, 19, 24, 0.92);
+    --nav-border:                 rgba(44, 48, 68, 0.8);
+    --nav-text:                   #a1b1ca;
+  }
+}
+
+/* Manual dark mode override via [data-theme="dark"] */
+[data-theme="dark"] {
+  --color-bg:                   #111318;
+  --color-surface:              #1a1d26;
+  --color-surface-2:            #22262f;
+  --color-border:               #2c3044;
+  --color-text:                 #a1b1ca;
+  --color-text-muted:           #6b7a94;
+  --color-btn-primary-bg:       #1d1f24;
+  --color-btn-primary-text:     #a1b1ca;
+  --color-btn-secondary-bg:     #ebe6b7;
+  --color-btn-secondary-text:   #1d1f24;
+  --color-focus:                #7aaff0;
+  --color-accent:               #7aaff0;
+  --nav-bg:                     rgba(17, 19, 24, 0.92);
+  --nav-border:                 rgba(44, 48, 68, 0.8);
+  --nav-text:                   #a1b1ca;
+}
+
+
+/* ==========================================================================
+   3. Global type overrides
+   Fredoka as brand/heading font; fluid heading sizes on desktop.
+   ========================================================================== */
+
+html {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  transition: background-color var(--transition-slow), color var(--transition-slow);
+}
+
+/* Fredoka for headings — applied via CSS custom property override */
+h1,
+h2,
+h3 {
+  font-family: var(--font-brand);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Desktop: fluid heading sizes */
+@media (width >= 768px) {
+  h1 {
+    font-size: clamp(var(--font-size-3xl), 5vw, var(--font-size-4xl));
+  }
+
+  h2 {
+    font-size: clamp(var(--font-size-2xl), 3.5vw, var(--font-size-3xl));
+  }
+
+  h3 {
+    font-size: clamp(var(--font-size-xl), 2.5vw, var(--font-size-2xl));
+  }
+}
+
+/* Hero headline — brand font, large */
+.hero-title {
+  font-family: var(--font-brand);
+  font-size: clamp(var(--font-size-3xl), 8vw, 6.4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: var(--line-height-tight);
+}
+
+/* Lead paragraph */
+.lead {
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
+  max-width: 55ch;
+}
+
+@media (width >= 768px) {
+  .lead {
+    font-size: var(--font-size-xl);
+  }
+}
+
+/* Eyebrow label above headings */
+.eyebrow {
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  font-size: var(--font-size-sm);
+  font-weight: bold;
+  letter-spacing: var(--letter-space-wide);
+  margin-bottom: var(--space-3);
+  text-transform: uppercase;
+}
+
+
+/* ==========================================================================
+   4. Navigation overrides
+   Glassmorphism sticky header.
+   ========================================================================== */
+
+.site-header {
+  backdrop-filter: blur(16px) saturate(180%);
+  background-color: var(--nav-bg);
+  border-bottom-color: var(--nav-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.site-logo-text {
+  font-family: var(--font-brand);
+  font-size: var(--font-size-xl);
+  font-weight: 700;
+}
+
+.site-nav-link {
+  color: var(--nav-text);
+  font-family: var(--font-brand);
+  font-weight: 600;
+}
