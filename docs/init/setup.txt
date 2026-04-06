@@ -108,3 +108,64 @@ Content summary.
 
 Organise assets folders: audio, bgs, components, graphics,  icons, photos
 Organise css files: badges, components, custom, global, grid, theme, utilities
+
+
+---
+
+  Root
+  - CLAUDE.md — full project instruction file
+  with all setup.txt specs: stack, tech
+  approach, UX goals, SEO, performance,
+  layout/colour/typography system, CSS
+  conventions, standards compliance, test
+  programme (both checklists), git workflow,
+  logging system
+  - README.md — clean public-facing readme
+
+  docs/
+  - ARCHITECTURE.md — golden thread doc:
+  structural decisions, file structure,
+  page/script dependency diagram, CSS
+  architecture, data flow, conventions quick
+  reference, "What We Never Do" table
+  - SYSTEM.md — developer rules: naming
+  conventions, CSS/JS/HTML rules, commit
+  conventions
+
+  docs/architecture/
+  - CORE_PATTERNS.md — G1–G13 constraints
+  (generic, no project-specific patterns), with
+  history behind each rule and 7 detailed code
+  patterns
+  - DECISIONS.md — ADR register template with
+  two populated starter ADRs
+  - FEEDBACK-LOOPS.md — wins, limits and hard
+  rules (with project-specific examples as
+  placeholders)
+  - BREAKTHROUGHS.md — reflective record
+  template with a worked example
+  - ARCHITECTURE_EXTENSION.md — token reference,
+   CSS/JS conventions detail, common pitfalls,
+  schema.org reference, logger reference
+  - CODEBASE-AUDIT.md — audit chunks, G1–G13
+  checklist, standard audit prompt
+  - REFLECTIVE-SYNC.md — session-start/mid/end
+  prompts, red team reset pattern
+  - CLAUDE_ARCHITECTURE.md — reading order guide
+   and entry prompts
+
+  context/summaries/
+  - plan-rules.md — 7 session operating rules +
+  entry prompts                                 
+  - tasklist.md — task register with status key
+  - handoff_template.md — full handoff template 
+  with both checklists                          
+                      
+  templates/claude-templates.md — 9 prompt      
+  templates: code review, commit, feature brief,
+   bug investigation, handoff (light + full),
+  PageSpeed audit, accessibility audit, GH      
+  Actions debug, architecture sync  
+
+---
+
