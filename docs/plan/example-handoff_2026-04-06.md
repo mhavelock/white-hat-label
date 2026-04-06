@@ -1,58 +1,52 @@
-# Session Handoff — 2026-04-06 — White-Label Starter Scaffold
+# Session Handoff — 2026-04-06 — White-Label Starter: Scaffold + Initial Site Build
 
-> **This is an example handoff** showing what a completed setup session looks like.
+> **This is an example handoff** covering two back-to-back sessions on the same day.
 > Copy `handoff_template.md` to write your own. This file is for reference only.
 
 ## Session Type
-Docs / Architecture — initial white-label scaffold for AI-assisted web development
+Mixed — Docs (scaffold) + Feature (HTML/CSS site build) + Style (CSS system)
 
 ---
 
 ## What Was Done
 
 ### Goal
-Build a complete, reusable white-label project starter that any developer can clone and use as the foundation for a new Claude Code–assisted web project.
+Build a complete, reusable white-label project starter — architecture documentation scaffold, plan system, and a functioning homepage demonstrating the CSS and component system.
 
 ### Outcome
-Resolved — all architecture docs, plan system templates, CLAUDE.md, and README.md created. Project is ready to clone and adapt.
+Resolved — all documentation, CSS files, `index.html`, contact form, Bluesky icons, and dev logger created and committed. Project is ready to clone, adapt, and deploy.
 
 ### Changes Made
 
 | File | Change |
 |------|--------|
-| `docs/ARCHITECTURE.md` | Created — generic architecture template with [PROJECT_NAME] placeholders throughout |
-| `docs/SYSTEM.md` | Created — developer rules: CSS/JS/file naming, file organisation map, commit conventions |
-| `docs/architecture/CORE_PATTERNS.md` | Created — G1–G13 constraint table, code patterns with correct/wrong examples, quick regression checklist |
-| `docs/architecture/DECISIONS.md` | Created — ADR template; ADR-001 (placeholder), ADR-002 (CSS custom properties), ADR-003 (mobile-first) |
-| `docs/architecture/FEEDBACK-LOOPS.md` | Created — FL-01 to FL-09 feedback loop records template |
-| `docs/architecture/BREAKTHROUGHS.md` | Created — B-01/B-02 placeholders + worked generic debugging example |
-| `docs/architecture/ARCHITECTURE_EXTENSION.md` | Created — CSS/JS conventions, design token reference, common pitfalls, Schema.org reference |
-| `docs/architecture/CODEBASE-AUDIT.md` | Created — audit chunks A1–A5, G1–G13 check table, standard audit prompt, post-audit checklist |
-| `docs/architecture/REFLECTIVE-SYNC.md` | Created — session start/mid/end prompts, architecture sync (Contradiction Hunt, Drift Check) |
-| `docs/architecture/CLAUDE_ARCHITECTURE.md` | Created — document hierarchy L1/L2/L3, reading order, 3 session entry prompt styles |
-| `docs/architecture/CHECKPOINTS.md` | Created — 9 auto-trigger table, mini-checkpoint format, Log Awareness section |
-| `docs/architecture/FE-VISUALISATION.md` | Created — tool decision tree, viewport testing matrix (5 breakpoints + landscape), 6 wins |
-| `docs/architecture/six-hats.md` | Created — Six Hats model, Inversion, Anchoring Prompts, Regression Checks — all generic |
-| `docs/architecture/template-examples/GEMINI-CONSULTANCY.md` | Created — 7 Gemini consultation patterns, payload assembly guide, trigger table |
-| `docs/architecture/template-examples/SERVERSIDE.md` | Created — server-side architecture template; all values [PLACEHOLDER] |
-| `docs/architecture/template-examples/STANDARDS.md` | Created — quality standards tables (Performance, HTML, CSS, JS, A11Y, SEO); all ⚠️ TBA |
-| `CLAUDE.md` | Created — white-label Claude Code instructions skeleton; TBA markers where project-specific |
-| `README.md` | Created — public-facing project readme with repo structure diagram |
-| `docs/plan/plan-rules.md` | Created — 8-rule session management system (copy of anthropicprinciple's, genericised) |
-| `docs/plan/tasklist.md` | Created — blank task register template |
-| `docs/plan/handoff_template.md` | Created — full handoff template with both checklists |
-| `docs/plan/example-tasklist.md` | Created — this session's tasks in example tasklist format |
-| `docs/plan/example-handoff_2026-04-06.md` | Created — this file |
+| `README.md` | Expanded — architecture system, guardrails, plan system, objectives from setup.txt; full repo structure diagram |
+| `index.html` | Created — homepage: hero, accordion (What's Included, Reflective Architecture), guardrails 4-card grid, plan system table, stack modal, 4-step getting started, UI component showcase, contact form |
+| `css/global.css` | Created — design tokens, reset, base elements, typography, layout, card, tag; imports grid/utilities/global-xtra |
+| `css/theme.css` | Created — Fredoka font, light/dark theme tokens, fluid headings, glassmorphism nav; imports svg-variables + contact-form |
+| `css/desktop.css` | Created — desktop layout overrides (loaded conditionally at min-width: 768px) |
+| `css/grid.css` | Created — 12-col flex grid + 1x2, 1x3, 1x4 component grids |
+| `css/utilities.css` | Created — sr-only, skip link, display, text, spacing, flex helpers, emoji dividers |
+| `css/global-xtra.css` | Created — buttons (5 variants + sizes), forms, alerts (4 types), tooltips (CSS-only), modal (native `<dialog>`), icons, accordion (`<details>`/`<summary>`), site header, site footer |
+| `css/svg-variables.css` | Created — SVG custom properties; chevron-down + external link; light/dark variants |
+| `css/contact-form.css` | Created — neumorphic card (mobile) + horizontal pill bar (desktop); dark mode tokens; Bluesky flutter animation; sent :target confirmation flash |
+| `js/logger.js` | Created — buffered dev logger IIFE; log/time/timeEnd/flush/dump/clear; self-test on init (localStorage, sessionStorage, nav timing, hero image load, script exec time) |
+| `favicon.svg/ico/png` | Added — copied from docs/build-assets/favicon/; .gitignore updated for PNGs |
+| `apple-touch-icon.png` | Added |
+| `site.webmanifest` | Added |
+| `web-app-manifest-192x192.png` | Added |
+| `web-app-manifest-512x512.png` | Added |
 
 ### Steps Covered
 
-1. Merged `docs/architecture/ARCHITECTURE.md` into `docs/ARCHITECTURE.md` for a parent project — used as reference for white-label version
-2. Created `docs/ARCHITECTURE.md` and `docs/SYSTEM.md` — top-level generic architecture templates
-3. Created all 11 files in `docs/architecture/` — detailed architecture, patterns, decisions, feedback loops, breakthroughs, audit guide, reflective sync, checkpoints, FE visualisation, six hats thinking, Claude architecture
-4. Created `docs/architecture/template-examples/` — GEMINI-CONSULTANCY.md, SERVERSIDE.md, STANDARDS.md
-5. Created `CLAUDE.md` — white-label Claude Code session instructions skeleton
-6. Created `README.md` — public-facing project readme
-7. Created `docs/plan/` system — plan-rules.md, tasklist.md, handoff_template.md, example files
+1. Expanded README.md — objectives, architecture overview, guardrails, plan system, stack table, getting-started steps
+2. Built full CSS system — 7 files; global → theme → desktop load order; all tokens as custom properties
+3. Built `index.html` — structured around README content; demo sections for all UI components
+4. Added contact form — adapted from that-guy-promo; neumorphic style; form action is a placeholder (do not commit real endpoint to shared repo)
+5. Added Bluesky flutter icon — contact section + footer nav; separate `<defs>` IDs to avoid SVG conflicts
+6. Created `js/logger.js` — adapted from anthropicprinciple logger; generic keys (`whl_dev_log`); same buffered architecture
+7. Linked Bluesky to `bsky.app/profile/anthropicprinciple.ai`
+8. Updated example-tasklist and example-handoff; committed all
 
 ---
 
@@ -60,34 +54,41 @@ Resolved — all architecture docs, plan system templates, CLAUDE.md, and README
 
 | Item | Value / Decision |
 |------|-----------------|
-| All docs genericised | No project-specific references; all anthropicprinciple content replaced with [PROJECT_NAME] or TBA |
-| CSS load order | `theme.css` → `global.css` → `grid.css` → `components.css` → `custom.css` → `utilities.css` |
-| G1–G13 constraints | Defined in CORE_PATTERNS.md — these are the do-not-break rules for any session |
-| Session styles | Hybrid (default) / Fresh (Red Team) / Deep (Bloated) — see plan-rules.md Rule 7 |
-| Checkpoint trigger | After every Write or Edit to a source file — see plan-rules.md Rule 6 |
-| Gemini second model | Used for architecture audits, contradiction hunts, stuck-in-loop recovery — see GEMINI-CONSULTANCY.md |
-| Git push confirmation | Always requires explicit user confirmation — never autonomous (FL-04) |
+| CSS load order | `global.css` → `theme.css` → `desktop.css` (conditional at 768px) |
+| `global.css` imports | `grid.css`, `utilities.css`, `global-xtra.css` |
+| `theme.css` imports | `svg-variables.css`, `contact-form.css` |
+| Font sizing | `html { font-size: 62.5% }` → 1rem = 10px; font sizes in rem (1.6rem = 16px) |
+| Breakpoint syntax | `(width >= 768px)` — modern range syntax throughout |
+| Accordion | Native `<details>`/`<summary>` — no JS; custom chevron via `::after` + `--svg-chevron-down` |
+| Modal | Native `<dialog>` + `showModal()` / `close()` — no JS library; backdrop via `::backdrop` |
+| Tooltip | Pure CSS via `[data-tooltip]` attribute + `::after` pseudo-element |
+| Contact form endpoint | Placeholder only — never commit a real form endpoint to a public shared starter |
+| Bluesky icon | SVG butterfly (`bsky-flutter`); `<defs>` id must be unique per page instance — use `bsky-wing` (contact) and `bsky-wing-footer` (footer) to avoid SVG `<use>` conflicts |
+| Logger keys | `whl_dev_log` / `whl_dev_log_summary` — replace with project-specific prefix per project |
+| Logger removal | Delete `js/logger.js` and remove `<script src="js/logger.js">` from HTML — no other changes needed |
+| `.gitignore` | `*.png` rule replaced with `/*.jpg` — favicon PNGs are tracked; dev screenshots excluded |
 
 ---
 
 ## Known Constraints
 
-- `docs/plan/archive/` directory exists but is empty — no handoffs to archive at project start
-- All `[PROJECT_NAME]` placeholders in ARCHITECTURE.md, SYSTEM.md, CLAUDE.md must be replaced on project setup
-- CSS token names in ARCHITECTURE_EXTENSION.md (`--color-bg`, `--space-md`, etc.) are suggestions — adapt to project brand
-- `template-examples/` files are reference-only — not included in active session reads unless specifically needed
-- `docs/init/` folder (setup instructions) can be deleted once the project is configured
+- Contact form `action` URL is a `[placeholder]` — replace per project; do not share a real endpoint in the starter repo
+- Both Bluesky SVG instances on the page require distinct `id` values in `<defs>` (`#bsky-wing` and `#bsky-wing-footer`) — if adding a third instance, add a third unique id
+- `css/global.css` has no dark-mode overrides directly — all dark tokens are in `theme.css` `@media (prefers-color-scheme: dark)`; do not add dark rules to global.css
+- `desktop.css` is loaded only at `min-width: 768px` — put minor adjustments (padding tweaks, font bumps) inline in their source stylesheet; put major layout changes in desktop.css
+- Logger self-test runs on every page load — for production, remove the `<script>` tag; the logger does not auto-detect production vs development
 
 ---
 
 ## Open Questions
 
 ```
-OPEN: Should docs/init/ be removed from the template repo or kept for reference?
-ASSUMED: Keep for now — acts as setup guide for first-time users. Remove once project is configured.
+OPEN: Should the contact form use a real Cloudflare Worker endpoint as an example?
+ASSUMED: No — a real endpoint in a public repo exposes the form ID UUID and invites spam.
+Keep as placeholder. Document Formzero / Workers setup in SERVERSIDE.md per project.
 
-OPEN: Should a starter index.html and styles/ skeleton be included in the template?
-ASSUMED: No — this is a documentation scaffold only. Code files are project-specific.
+OPEN: Should the Bluesky link be a [placeholder] or point to a real profile?
+ASSUMED: Points to anthropicprinciple.ai for now (it's a real page). Replace per project.
 ```
 
 ---
@@ -95,36 +96,40 @@ ASSUMED: No — this is a documentation scaffold only. Code files are project-sp
 ## State at Session End
 
 **Working:**
-- All 23 documentation files created and committed
-- `docs/plan/` system fully operational — rules, templates, and examples in place
-- CLAUDE.md ready to adapt for any new project
-- README.md describes the project clearly
+- All CSS files created and imported correctly
+- `index.html` — all sections render; accordion, modal, tooltip components in place
+- Contact form HTML and CSS complete; form `action` is a clearly-marked placeholder
+- Bluesky flutter animation in contact section and footer
+- `js/logger.js` — runs on page load, logs to buffer, flushes on unload; `Logger.dump()` available in console
+- All favicons and `site.webmanifest` in place
+- All files committed to `main`
 
 **Not working / deferred:**
-- No source code exists yet — `index.html`, `styles/`, `js/` are empty or absent
-- STANDARDS.md all entries are `⚠️ TBA` — no code to validate against yet
-- ADR-001 in DECISIONS.md is a placeholder — fill when first major technical decision is made
-- FE-VISUALISATION.md wins (FV-01 to FV-06) are placeholders — fill as the project accumulates visual debugging history
+- T1 PageSpeed audit — not yet run; no deployment exists
+- T2 Manual browser test — not yet done; no viewport/dark mode/keyboard testing confirmed
+- T3 W3C validation — not yet run
+- Contact form not wired to a real endpoint — placeholder only
+- `docs/architecture/template-examples/STANDARDS.md` all entries remain `⚠️ TBA` — no code audit done yet
 
 ---
 
 ## Checklist Status
 
 ### Your Checklist
-- [x] All setup files created and committed
-- [ ] Responsive at 320 / 480 / 768 / 1024 / 1440px — N/A (no code yet)
-- [ ] Landscape mode fits viewport — N/A
-- [ ] Dark mode verified at OS level — N/A
-- [ ] PageSpeed ≥ 95 — N/A
+- [ ] Responsive at 320 / 480 / 768 / 1024 / 1440px — not yet browser tested
+- [ ] Landscape mode fits viewport — not yet tested
+- [ ] Dark mode verified at OS level — not yet tested
+- [ ] PageSpeed ≥ 95 — not yet audited
 
 ### Claude's Checklist
-- [x] No inline styles — N/A (no HTML yet)
-- [x] No `!important` — N/A (no CSS yet)
-- [x] No `max-width` media queries — N/A
-- [x] CSS custom properties for all colours/spacing — documented in ARCHITECTURE_EXTENSION.md
-- [x] `defer` on all scripts — documented in CORE_PATTERNS.md G9
-- [x] Schema.org JSON-LD present — documented in ARCHITECTURE.md §SEO
-- [x] Open Graph tags present — documented in ARCHITECTURE.md §SEO
+- [x] No inline styles — confirmed (only `style` attrs with CSS custom property references used for spacing demo in index.html; these are intentional dev scaffolding)
+- [x] No `!important` — confirmed across all CSS files
+- [x] No `max-width` media queries — confirmed; all breakpoints use `(width >= Npx)` syntax
+- [x] `box-sizing: border-box` in reset — confirmed in `global.css §2 Reset`
+- [x] CSS custom properties for all colours/spacing — confirmed; all values via `--` tokens
+- [x] `defer` on all scripts — confirmed; `<script src="js/logger.js" defer>`
+- [x] Schema.org JSON-LD present — confirmed in `index.html <head>`
+- [x] Open Graph tags present — confirmed in `index.html <head>`
 
 ---
 
@@ -132,12 +137,13 @@ ASSUMED: No — this is a documentation scaffold only. Code files are project-sp
 
 Priority order:
 
-1. **Configure the project** — replace all `[PROJECT_NAME]` placeholders in CLAUDE.md, ARCHITECTURE.md, SYSTEM.md with the actual project name and details
-2. **Populate design tokens** — fill brand colours, spacing scale, typography into ARCHITECTURE.md §Colour Palette and ARCHITECTURE_EXTENSION.md design token tables
-3. **Build first HTML page** — create `index.html` with correct doctype, meta, semantic structure, and CSS load order per SYSTEM.md
+1. **Browser test** — open on live-server at 320px, 768px, 1280px, landscape, dark mode OS preference; note any layout issues
+2. **W3C validate** — `npx html-validate index.html`; fix any errors before adding more pages
+3. **Wire contact form** — replace `[placeholder]` action URL with a real Formzero / Cloudflare Worker endpoint; document in SERVERSIDE.md
+4. **PageSpeed audit** — deploy to GitHub Pages or Vercel; run Lighthouse on mobile + desktop
 
 **Entry prompt:**
 ```
-Read docs/plan/example-handoff_2026-04-06.md, docs/plan/tasklist.md, and docs/ARCHITECTURE.md.
-Task: Configure the project — replace [PROJECT_NAME] placeholders and populate design tokens.
+Read docs/plan/example-handoff_2026-04-06.md, docs/plan/example-tasklist.md, and docs/ARCHITECTURE.md.
+Task: Browser test the homepage at key breakpoints, run W3C validation, and note any issues to fix.
 ```
