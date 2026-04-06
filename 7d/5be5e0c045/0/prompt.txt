@@ -1,0 +1,1 @@
+great. Plz update README.md with summary details of reflective architecture, guardrails and plan system. Include objectives in /docs/init/setup.txt
