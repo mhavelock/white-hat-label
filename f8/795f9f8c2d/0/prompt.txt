@@ -1,0 +1,8 @@
+I thought it would be good - but it better that i imagined. excellent.
+
+- Add the contact form (+ CSS) from (bottom of) Cowork/projects/that-guy-promo at the bottom
+- Add the Bluesky link icon from Cowork/projects/anthropicpriniciple/full.html (inc CSS)
+- Add css to theme.css via imports.
+—
+
+Plz setup an example logging system like Cowork/anthropicprinciple/js/logger.js
