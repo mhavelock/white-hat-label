@@ -35,8 +35,8 @@
 
 | Item | Value |
 |------|-------|
-| GitHub / GitLab | [repo URL] |
-| Live site | [https://domain.com/] |
+| GitHub / GitLab | https://github.com/mhavelock/white-hat-label |
+| Live site | https://mhavelock.github.io/white-hat-label/ |
 | Branches | `dev` → `main` → production |
 | Git workflow | See [Git Workflow](#git-workflow) below |
 

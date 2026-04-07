@@ -1,0 +1,119 @@
+/* ==========================================================================
+   CONTACT FORM
+   ==========================================================================
+   Mobile: centred neumorphic card, fields stacked.
+   Desktop (>= 768px): horizontal pill bar with logo and fields inline.
+   Dark mode: adapts neumorphic shadows to dark surface.
+   ========================================================================== */
+
+
+/* ==========================================================================
+   Section wrapper
+   ========================================================================== */
+
+.contact-section {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: var(--space-8) var(--space-4) var(--space-12);
+}
+
+
+/* ==========================================================================
+   Bluesky link positioned top-right of card
+   ========================================================================== */
+
+.contact-links {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: center;
+  list-style: none;
+  margin-bottom: var(--space-5);
+  padding: 0;
+}
+
+
+/* ==========================================================================
+   Bluesky flutter icon
+   Adapted from: https://github.com/philhawksworth/bluesky-flutterby (MIT)
+   ========================================================================== */
+
+.bsky-flutter {
+  color: #0085ff;
+  display: block;
+  height: 2.4rem;
+  transition: transform 200ms;
+  width: 2.4rem;
+}
+
+.bsky-flutter .left  { transform-origin: center; }
+.bsky-flutter .right { transform: scale(-1, 1); transform-origin: center; }
+
+.bsky-flutter:hover,
+.bsky-flutter:focus {
+  transform: rotate(-5deg);
+  transition: transform 500ms;
+}
+
+.bsky-flutter:hover .left,
+.bsky-flutter:focus .left {
+  animation: bsky-flutter 430ms ease-in-out;
+  --flip: 1;
+}
+
+.bsky-flutter:hover .right,
+.bsky-flutter:focus .right {
+  animation: bsky-flutter 500ms ease-in-out;
+  --flip: -1;
+}
+
+@keyframes bsky-flutter {
+  10%  { transform: scale(calc(var(--flip) * 1),   0.90); }
+  20%  { transform: scale(calc(var(--flip) * 0.5), 1.00); }
+  40%  { transform: scale(calc(var(--flip) * 0.9), 0.95); }
+  60%  { transform: scale(calc(var(--flip) * 0.3), 1.00); }
+  80%  { transform: scale(calc(var(--flip) * 0.9), 0.95); }
+  100% { transform: scale(calc(var(--flip) * 1),   1.00); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bsky-flutter:hover .left,
+  .bsky-flutter:focus .left,
+  .bsky-flutter:hover .right,
+  .bsky-flutter:focus .right {
+    animation: none;
+  }
+}
+
+
+
+/* ==========================================================================
+   Dark mode — neumorphic tokens
+   ========================================================================== */
+
+:root {
+  --contact-nm-bg:           #e0e5ec;
+  --contact-nm-shadow-dark:  #a3b1c6;
+  --contact-nm-shadow-light: #ffffff;
+  --contact-nm-inset-dark:   #a3b1c6;
+  --contact-nm-inset-light:  #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --contact-nm-bg:           #1a1d28;
+    --contact-nm-shadow-dark:  #0a0c12;
+    --contact-nm-shadow-light: rgba(255, 255, 255, 0.12);
+    --contact-nm-inset-dark:   #0a0c12;
+    --contact-nm-inset-light:  rgba(255, 255, 255, 0.08);
+  }
+}
+
+[data-theme="dark"] {
+  --contact-nm-bg:           #1a1d28;
+  --contact-nm-shadow-dark:  #0a0c12;
+  --contact-nm-shadow-light: rgba(255, 255, 255, 0.12);
+  --contact-nm-inset-dark:   #0a0c12;
+  --contact-nm-inset-light:  rgba(255, 255, 255, 0.08);
+}
+

@@ -6,13 +6,13 @@
   <title>White Hat Label — AI-Assisted Web Development Starter</title>
   <meta name="description" content="A white-label boilerplate starter for AI-assisted web development with Claude Code. Architecture guardrails, session management, and reflective documentation — ready to clone.">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://[domain.com]/">
+  <link rel="canonical" href="https://mhavelock.github.io/white-hat-label/">
 
   <!-- Open Graph -->
   <meta property="og:title" content="White Hat Label">
   <meta property="og:description" content="A white-label boilerplate starter for AI-assisted web development with Claude Code.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://[domain.com]/">
+  <meta property="og:url" content="https://mhavelock.github.io/white-hat-label/">
 
   <!-- Theme colour -->
   <meta name="theme-color" content="#f2f4f7" media="(prefers-color-scheme: light)">
@@ -42,7 +42,7 @@
     "@type": "WebSite",
     "name": "White Hat Label",
     "description": "A white-label boilerplate starter for AI-assisted web development with Claude Code.",
-    "url": "https://[domain.com]/"
+    "url": "https://mhavelock.github.io/white-hat-label/"
   }
   </script>
 </head>
@@ -54,7 +54,8 @@
   <header class="site-header" role="banner">
     <div class="site-header-inner">
       <a href="/" class="site-logo" aria-label="White Hat Label — home">
-        <span class="site-logo-text">White Hat Label</span>
+        <img src="docs/build-assets/rabbit-in-hat.svg" alt="" width="64" height="64" class="site-logo-img" aria-hidden="true">
+        <span class="site-logo-text u-sr-only">White Hat Label</span>
       </a>
       <nav class="site-nav" aria-label="Primary navigation">
         <a href="#whats-included" class="site-nav-link">Docs</a>
@@ -77,7 +78,7 @@
         <p class="lead">A white-label documentation and workflow scaffold for co-developing web projects with Claude Code. Clone it, fill in the blanks, and start building — the architecture guardrails are already in place.</p>
         <div class="u-flex-wrap" style="margin-top: var(--space-8);">
           <a href="#get-started" class="btn btn-primary btn-lg">Get Started</a>
-          <a href="https://github.com/[username]/white-hat-label" class="btn btn-outline btn-lg" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+          <a href="https://github.com/mhavelock/white-hat-label" class="btn btn-outline btn-lg" target="_blank" rel="noopener noreferrer">View on GitHub</a>
         </div>
 
         <!-- Alert demo -->
@@ -261,7 +262,6 @@
          ===================================================================== -->
     <section class="section section-alt" id="reflective-architecture" aria-labelledby="reflective-title">
       <div class="section-header">
-        <p class="eyebrow">Self-Correcting</p>
         <h2 id="reflective-title">Reflective Architecture</h2>
         <p class="section-subtitle">The system is designed to catch drift between documentation and code before it compounds.</p>
       </div>
@@ -375,7 +375,6 @@
          ===================================================================== -->
     <section class="section section-alt" id="stack" aria-labelledby="stack-title">
       <div class="section-header u-text-center">
-        <p class="eyebrow">Compatible With</p>
         <h2 id="stack-title">Stack Support</h2>
         <p class="section-subtitle u-text-center" style="margin-inline: auto;">This starter ships with documentation for vanilla HTML/CSS/JS. The same architecture system works with any of these.</p>
       </div>
@@ -502,32 +501,7 @@ The task is: [task description].</pre>
 
     <hr class="u-divider-emoji" data-emoji="✉️" aria-hidden="true">
 
-    <!-- =====================================================================
-         Contact
-         ===================================================================== -->
     <section class="contact-section" id="contact" aria-label="Contact">
-
-      <!-- Sent confirmation — :target flash on redirect from form submit -->
-      <div id="sent" role="alertdialog" aria-modal="true" aria-label="Message sent" aria-describedby="sent-message">
-        <div class="sent-modal">
-          <p class="sent-message" id="sent-message">✓ Message sent</p>
-          <a href="#" class="sent-close" aria-label="Close notification">×</a>
-        </div>
-      </div>
-
-      <div class="contact-form">
-        <img
-          class="contact-form-logo"
-          src="favicon.svg"
-          alt=""
-          width="48"
-          height="48"
-          aria-hidden="true"
-        >
-
-        <h2 class="contact-form-title">Get in Touch</h2>
-        <p class="contact-form-desc">Questions, feedback, or just want to say hello?</p>
-
         <!-- Bluesky link — shown on mobile card, hidden in desktop pill -->
         <ul class="contact-links" aria-label="Social links">
           <li>
@@ -543,34 +517,7 @@ The task is: [task description].</pre>
             </a>
           </li>
         </ul>
-
-        <form action="[https://your-form-endpoint.example.com]?redirect=[https://yourdomain.com/%23sent]" method="POST">
-          <div class="input-field">
-            <i aria-hidden="true">👤</i>
-            <input type="text" name="name" placeholder="name" aria-label="Your name" autocomplete="name" required>
-          </div>
-
-          <div class="input-field">
-            <i aria-hidden="true">✉</i>
-            <input type="email" name="email" placeholder="email" aria-label="Your email address" autocomplete="email" required>
-          </div>
-
-          <div class="input-field">
-            <i aria-hidden="true">💬</i>
-            <input type="text" name="message" placeholder="message" aria-label="Your message" required>
-          </div>
-
-          <button class="btn-contact" type="submit">Send Message</button>
-
-          <div class="options">
-            Or say hello on
-            <a href="https://bsky.app/profile/anthropicprinciple.ai" target="_blank" rel="noopener noreferrer">Bluesky</a>
-          </div>
-        </form>
-      </div>
-
     </section>
-
   </main>
 
   <!-- =====================================================================
