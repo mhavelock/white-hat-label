@@ -210,3 +210,6 @@ Each session hands off cleanly to the next. Context doesn't degrade. Architectur
 - Multiple people (or AI sessions) touch the same codebase
 - You want Claude to enforce consistent code quality without repeating yourself every session
 - You're making architectural decisions that need to survive future context resets
+
+ -- Claude Sonnet 4.6
+ 
