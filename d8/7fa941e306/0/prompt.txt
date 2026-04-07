@@ -1,0 +1,49 @@
+it appears all previous gemini consultancies fo r the other projects and the one you just did were not gemini consultancies but GLM5 - is that right?
+
+---
+
+i just changes that
+
+---
+
+cool. plz would you check anthropicprinciple for the issues yuo just fixed in white-hat-label
+
+---
+
+cool is it possible z.ai selected the gemini model. what dictates if its gemini or gemini pro?
+
+---
+
+i'm not clear how (before i changed it) the mcp.json was set to mcps/claude-add-models-mcp/index.js (same with anthropicprincimple) - and you called ask_gemini_pro
+
+/Users/mat/Library/Application Support/Claude/claude_desktop_config.json - was set to gemini - was this used?
+
+---
+
+"mcpServers": {
+    "gemini": {
+      "command": "node",
+      "args": [
+        "/Users/mat/AI/mcp-servers/claude-add-models-mcp/gemini/index.js"
+      ],
+      "env": {
+        "GOOGLE_API_KEY": "AIza
+
+---
+
+cool. probably best if the "env": {
+        "GOOGLE_API_KEY": "AIza is mobved out of claude_desktop_config.json - can i just replace with ${GOOGLE_API_KEY} ?
+
+---
+
+ain) ✗ grep GOOGLE_API_KEY ~/.zprofile ~/.zshrc 2>/dev/null
+- no result. 
+- is it a big advantage to move it if neither are moved form local?
+
+---
+
+great. I've changed claude_desktop_config.json to use /Users/mat/AI/mcp-servers/claude-add-models-mcp/gemini/index.js. (as well as the .mcp.json files. plz run a ask_gemini only - and discuss if there's anything we're adding to context at the outset we should only include when needed.
+
+---
+
+ye plz - and anthropicprinciple too

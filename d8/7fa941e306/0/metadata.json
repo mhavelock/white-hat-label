@@ -1,0 +1,44 @@
+{
+  "cli_version": "0.5.1",
+  "checkpoint_id": "d87fa941e306",
+  "session_id": "60639794-6077-4e88-a4d3-70aa566f1233",
+  "strategy": "manual-commit",
+  "created_at": "2026-04-07T00:31:15.252076Z",
+  "branch": "main",
+  "checkpoints_count": 11,
+  "files_touched": [
+    ".claude/commands/arch-check.md",
+    ".claude/commands/project-init.md",
+    ".claude/commands/session-start.md",
+    ".claude/rules/rules/components.md",
+    ".claude/rules/rules/hooks.md",
+    ".claude/rules/rules/services.md",
+    ".mcp.json",
+    "AGENTS.md",
+    "docs/architecture/.ai/memory/active_sprint.md",
+    "docs/architecture/ARCHITECTURE.md",
+    "docs/architecture/SYSTEM.md",
+    "docs/init/CLAUDE.txt"
+  ],
+  "agent": "Claude Code",
+  "turn_id": "c7f29aa1fe98",
+  "token_usage": {
+    "input_tokens": 96,
+    "cache_creation_tokens": 134633,
+    "cache_read_tokens": 5887445,
+    "output_tokens": 47215,
+    "api_call_count": 62
+  },
+  "session_metrics": {
+    "turn_count": 11
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-04-07T00:31:14.891892Z",
+    "agent_lines": 351,
+    "human_added": 36,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 387,
+    "agent_percentage": 90.69767441860465
+  }
+}
