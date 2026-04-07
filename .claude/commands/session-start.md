@@ -24,17 +24,13 @@ Three styles exist. Choose the right one before starting:
 
 1. Read `docs/plan/handoff_[latest].md` — find the most recent date-suffixed file in `docs/plan/`. Summarise: what was accomplished, what is currently open.
 
-2. Read `docs/plan/tasklist.md` — identify the top 3 unblocked open tasks.
+2. Read `docs/plan/tasklist.md` — identify the top 3 unblocked open tasks and note current sprint focus.
 
 3. Read `docs/architecture/ARCHITECTURE.md` §"Core Structural Decisions" and §"What We Never Do".
 
-4. Read `docs/architecture/SYSTEM.md` §"Rules of Engagement".
+4. Read `docs/architecture/CORE_PATTERNS.md` — the do-not-break checklist. Internalise the Global Constraints table (G1–G13). Do not skip this step before any code change.
 
-5. Read `docs/architecture/CORE_PATTERNS.md` — the do-not-break checklist. Internalise the Global Constraints table (G1–G14). Do not skip this step before any code change.
-
-6. Read `docs/architecture/.ai/memory/active_sprint.md` — architecture sub-project status.
-
-7. **L3 Auto-Route** — Based on the session intent (user's question + open tasks identified above), identify which L3 files are needed *before* starting work. Load them now rather than waiting to be asked mid-session. State each file and the one-line reason.
+5. **L3 Auto-Route** — Based on the session intent (user's question + open tasks identified above), identify which L3 files are needed *before* starting work. Load them now rather than waiting to be asked mid-session. State each file and the one-line reason.
 
 | Session type | L3 files to load |
 |---|---|

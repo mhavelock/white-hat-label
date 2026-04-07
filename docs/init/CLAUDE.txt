@@ -71,14 +71,10 @@
 
 ## UX Goals
 
-- **Immediate delight.** The animation plays instantly on load — no spinner, no splash screen.
-- **Minimal chrome.** On the main page, the clock fills the full viewport. Nothing competes.
-- **Discoverable controls.** `/clock-controls.html` is accessible via keyboard and linked clearly.
-- **Settings persist automatically.** No save button needed — `localStorage` updates on every change.
-- **Large touch targets.** All interactive controls ≥ 44 × 44 px. Labels, inputs, and buttons are large and readable.
+- [Define core UX goals here — e.g. performance targets, interaction principles, accessibility expectations]
+- **Large touch targets.** All interactive controls ≥ 44 × 44 px.
 - **Clean and minimal.** No decoration that doesn't serve the experience.
-- **Orientation aware.** The clock grid adapts gracefully to landscape on small-screen devices.
-- **Reduced motion respect.** The controls page respects `prefers-reduced-motion: reduce`.
+- **Reduced motion respect.** Respect `prefers-reduced-motion: reduce`.
 - **Keyboard accessible.** Every interactive element reachable by Tab, operable by Enter/Space, dismissable by Escape.
 
 ---
@@ -103,9 +99,9 @@
 - `srcset` with `250w` and `500w` resolution variants; `sizes` reflects layout breakpoints.
 - Explicit image dimensions prevent Cumulative Layout Shift (CLS).
 - `defer` attribute on all `<script>` tags.
-- `requestAnimationFrame` for the clock render loop — no layout-triggering properties animated.
-- `logger.js` buffers log entries in memory — no synchronous `sessionStorage` I/O on every call.
+- CSS animations use `transform` and `opacity` only — no layout-triggering properties.
 - **Target: Google PageSpeed ≥ 95 on both mobile and desktop.**
+- [Add project-specific performance constraints here]
 
 ---
 
@@ -130,12 +126,9 @@
 
 | Role | Font stack | Weight |
 |------|-----------|--------|
-| Headings h1–h6 | `Verdana, Geneva, sans-serif` | bold |
-| Body, paragraphs | `Arial, Helvetica, sans-serif` | normal |
+| Headings h1–h6 | [define] | bold |
+| Body, paragraphs | [define] | normal |
 | Monospace / code | `'Courier New', Courier, monospace` | normal |
-| Aside attribution | `'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif` | normal |
-
-The aside attribution uses Gill Sans as a deliberate brand accent — it is a distinct design element separate from the main type system. All are system fonts; no external font requests are made.
 
 - Base: `1rem = 16px` (browser default — do not override `font-size` on `html` or `body`).
 - All font sizes in `em`. All spacing distances in `rem`.
@@ -145,16 +138,12 @@ The aside attribution uses Gill Sans as a deliberate brand accent — it is a di
 
 | Token | Light Mode | Dark Mode |
 |-------|-----------|-----------|
-| `--color-bg` | `#f5f6f7` | `#0e0f12` |
-| `--color-bg-alt` | `#ebeef0` | `#1a1c20` |
-| `--color-text` | `#1d1f24` | `#a1b1ca` |
-| `--color-text-muted` | `#555e64` | `#7a8896` |
-| `--color-btn-primary` | `#a1b1ca` | `#1d1f24` |
-| `--color-text-on-btn-primary` | `#1d1f24` | `#a1b1ca` |
-| `--color-btn-secondary` | `#3e3b1b` | `#ebe6b7` |
-| `--color-text-on-btn-secondary` | `#a1b1ca` | `#1d1f24` |
-| `--color-link` | `#1d1f24` | `#a1b1ca` |
-| `--color-focus` | `#1d1f24` | `#a1b1ca` |
+| `--color-bg` | [define] | [define] |
+| `--color-bg-alt` | [define] | [define] |
+| `--color-text` | [define] | [define] |
+| `--color-text-muted` | [define] | [define] |
+| `--color-link` | [define] | [define] |
+| `--color-focus` | [define] | [define] |
 
 All tokens defined in `styles/colors.css`. All dark-mode overrides via `@media (prefers-color-scheme: dark)` and `[data-theme="dark"]`.
 
@@ -265,11 +254,9 @@ After each significant change, run this review prompt:
 ## Common Commands
 
 ```bash
-# Local dev server
-npx live-server
+# [Define local dev server command — e.g. npx live-server, npm run dev]
 
-# Validate HTML (requires html-validate)
-npx html-validate index.html clock-controls.html
+# [Define HTML validation command if applicable]
 
 # Show staged + unstaged diff before committing
 git diff
@@ -278,8 +265,8 @@ git diff
 git diff --cached
 
 # Stage specific files and commit
-git add styles/colors.css styles/global.css
-git commit -m "style(css): mobile-first refactor and brand colour update"
+git add [files]
+git commit -m "type(scope): description"
 ```
 
 ---
@@ -297,25 +284,7 @@ git commit -m "style(css): mobile-first refactor and brand colour update"
 
 ---
 
-## Logging System
+## Logging
 
-`js/logger.js` provides a structured development logger, kept entirely separate from application code.
-
-```js
-// Log a named event with optional data payload
-Logger.log('section', 'message', { optional: 'data' });
-
-// Time measurements
-Logger.time('hero-image');       // start a named timer
-Logger.timeEnd('hero-image');    // stop timer, log elapsed ms
-
-// Inspect stored logs
-Logger.dump();                   // print all session logs to console
-Logger.clear();                  // clear sessionStorage log store
-```
-
-- Entries buffered in memory — no synchronous storage I/O on `log()` calls.
-- On `beforeunload`, buffer is flushed to `sessionStorage` and a summary snapshot written to `localStorage`.
-- Logger is passive: it never throws, never blocks execution.
-- `Logger.flush()` — write buffer to sessionStorage immediately (e.g. before an expected crash).
-- Remove `<script src="js/logger.js">` from HTML before production deployment if not needed.
+- [Define logging approach for this project — e.g. console-only in dev, structured logger, no logs in production]
+- [Define what is and is not logged — e.g. never log PII, API keys, or user input]
