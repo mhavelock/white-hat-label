@@ -137,7 +137,7 @@
 
 .u-divider-emoji {
   border: none;
-  margin-block: var(--space-10);
+  margin-bottom: var(--space-5);
   opacity: 0.5;
   position: relative;
   text-align: center;
