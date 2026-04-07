@@ -169,3 +169,51 @@ Organise css files: badges, components, custom, global, grid, theme, utilities
 
 ---
 
+## HTML Site
+Create a HTML base site with homepage based on the structure of Cowork/projects/that-guy-promo/index.html 
+
+Set up css files:
+<link rel="stylesheet" href="css/global.css?v=20260326"><!-- increment v= on each deploy to bust phone browser cache -->
+  <link rel="stylesheet" href="css/theme.css">
+  <link rel="stylesheet" href="css/desktop.css" media="(min-width: 768px)">
+
+gobal.css:
+   1.  Design tokens
+   2.  Reset
+   3.  Base elements
+   4.  Typography
+   5.  Layout 
+   6.  Header
+   7.  Footer
+   8.  Basic Navigation
+@import url("grid.css");
+@import url("utilities.css");
+@import url("global-xtra.css");
+   1.  Components — Buttons
+   2.  Components — Forms
+   3.  Components — Alerts
+   4.  Components — Tooltips
+   5.  Components — Modal / Dialog
+   6.  Components — Icons
+
+Theme.css
+@import url("svg-variables.css");
+   1.  Font (Fredoka via Google Fonts)
+   2.  Theme tokens — light / dark (via prefers-color-scheme)
+   3.  Global type overrides
+   4.  Navigation overrides
+
+Desktop.css 
+ - desktop overrides (leave in global css stylesheets using media queries if minor adjustments).
+
+Include some UI controls - accordion, tooltip, modal, buttons
+Add /Users/mat/Claudette/Cowork/projects/white-hat-label/docs/build-assets/favicon
+
+
+- Add the contact form 
+- Add the Bluesky link icon 
+- Add css to theme.css via imports.
+- Setup an example logging system like Cowork/anthropicprinciple/js/logger.js 
+
+ ---
+
