@@ -1,0 +1,3 @@
+hi. Plz show class="site-logo-text" only for screenreaders and display /Users/mat/Claudette/Cowork/projects/white-hat-label/docs/build-assets/rabbit-in-hat.svg as the logo (4rem width/height.
+
+i've removed the contact form - plz check I've removed it properly.
