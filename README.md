@@ -174,3 +174,39 @@ Open `http://127.0.0.1:5500` in your browser.
 ---
 
 See `CLAUDE.md` for full development conventions, coding standards, and workflow rules.
+
+---
+
+## Why Use This With Claude
+
+Claude Code is a powerful coding partner — but it has no memory between sessions. Every time you start a new conversation, Claude begins from scratch. Without a structured context system, you spend the first part of every session re-explaining the project, rediscovering decisions that were already made, and hoping Claude doesn't drift from the patterns you established last time.
+
+This scaffold solves that problem.
+
+**The fundamental issue:** AI-assisted development accumulates drift. Decisions made in one session aren't recorded. Docs fall behind the code. The next session re-derives context from scratch — and sometimes gets it wrong. The same mistakes recur. Good patterns silently erode.
+
+**What this gives you instead:**
+
+- Claude loads a known, minimal set of docs at session start — enough to work effectively, not so much that context is wasted
+- Every code change is checked against documented constraints before it's written
+- Architecture docs stay in sync with the code via a post-session sync step
+- Decisions are recorded with their rationale, so they're never revisited without reason
+- A second model (Gemini) can audit from outside the session when you're stuck or making a hard-to-reverse choice
+
+**The session loop in practice:**
+
+```
+/session-start   → Load context (handoff + tasks + architecture constraints)
+/arch-check      → Verify planned change doesn't violate any constraint
+[code work]
+/sync-arch       → Update docs to match what changed
+/session-synthesis → Cross-session audit; write handoff for next session
+```
+
+Each session hands off cleanly to the next. Context doesn't degrade. Architectural quality compounds rather than drifts.
+
+**This is particularly valuable when:**
+- You work across multiple sessions on the same project
+- Multiple people (or AI sessions) touch the same codebase
+- You want Claude to enforce consistent code quality without repeating yourself every session
+- You're making architectural decisions that need to survive future context resets
