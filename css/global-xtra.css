@@ -449,9 +449,8 @@
 }
 
 .site-logo-img {
-  height: auto;
-  max-height: 3.2rem;
-  width: auto;
+  height: 4rem;
+  width: 4rem;
 }
 
 .site-logo-text {
