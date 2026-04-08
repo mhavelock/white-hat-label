@@ -6,15 +6,15 @@ Builds the app on the connected iPhone and pipes all Metro/JS console output to 
 
 > Run this in your terminal:
 > ```
-> npx expo run:ios --device 2>&1 | tee /tmp/expo-logs.txt
+> npx expo run:ios --device 2>&1 | tee ~/projects/white-hat-label/logs/expo-logs.txt
 > ```
-> Then tap around / speak test phrases. When you want me to check the logs just say "check logs" and I'll read `/tmp/expo-logs.txt` directly.
+> Then tap around / speak test phrases. When you want me to check the logs just say "check logs" and I'll read `~/projects/white-hat-label/logs/expo-logs.txt` directly.
 
 ## What Claude does
 
 When Mat says "check logs" or similar, run:
 ```bash
-tail -100 /tmp/expo-logs.txt
+tail -100 ~/projects/white-hat-label/logs/expo-logs.txt
 ```
 
 Read the output and analyse — no paste needed.
