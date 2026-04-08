@@ -51,7 +51,6 @@ Resolved — all three tasks complete, committed to `main`.
 ---
 
 ## Known Constraints
-- The SVG `<img>` uses `alt=""` + `aria-hidden="true"` — decorative; label comes from the `aria-label` on the parent `<a>` and the sr-only `<span>`
 - `contact.css` still defines neumorphic CSS custom properties (`:root` block) that are now unused since the form was removed — these are low-cost dead tokens; can be pruned in a future tidy pass
 - `docs/build-assets/` is a non-standard asset location; if the project adds a proper `assets/` folder, the logo SVG should be moved there and the `src` updated
 
@@ -76,7 +75,6 @@ Resolved — all three tasks complete, committed to `main`.
 
 ### Claude's Checklist
 - [x] Logo text visually hidden with `u-sr-only`, not `display: none`
-- [x] SVG `<img>` has `alt=""` and `aria-hidden="true"` (decorative)
 - [x] No inline styles added
 - [x] No `!important` added
 - [x] CSS rename reflected in `@import`

@@ -223,7 +223,7 @@ Every interactive component must be keyboard-accessible and screen-reader friend
 - One `<h1>` per page; heading levels sequential
 - All interactive elements reachable via Tab / arrow keys / Enter / Space
 - Visible focus indicators — never remove outline without replacement
-- `alt` on all images (empty `alt=""` for decorative)
+- `alt` on all images
 - **ARIA on interactive controls**: Buttons that toggle something need `aria-expanded` and `aria-controls`. Navigation landmarks need `aria-label` when there are multiple `<nav>` elements. Custom controls need appropriate `role`, `aria-*` attributes.
 - Colour contrast: WCAG AA minimum (4.5:1 text, 3:1 UI)
 - Keyboard dismiss: overlay/modal/panel components must close on Escape key
