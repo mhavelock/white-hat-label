@@ -5,7 +5,7 @@ Cleans up the Metro log file written during a build session.
 ## What to run
 
 ```bash
-rm -f /tmp/expo-logs.txt && echo "iOS build logs deleted."
+rm -f ~/projects/white-hat-label/logs/expo-logs.txt && echo "iOS build logs deleted."
 ```
 
 ## When to use
