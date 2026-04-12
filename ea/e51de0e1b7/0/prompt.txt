@@ -1,0 +1,9 @@
+hi. on the white hat label site - i've moved araound some files - mainly in docs. I've moved 2 files to /docs/tmp as we already have those files in plan folder - but they're different. plz consolidate missing info from /docs/tmp into files in plan folder if missing info & update references to the files ive moced
+
+---
+
+great. plz delete two files in /docs/tmp if no longer needed. i moved summaries into pln - i think you spotted that
+
+---
+
+great - and is readme updated?
