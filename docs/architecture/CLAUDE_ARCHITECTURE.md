@@ -30,8 +30,8 @@ docs/
 
 ## Reading Order for a New Session
 
-1. `context/summaries/handoff_[latest].md` — what happened last session
-2. `context/summaries/tasklist.md` — open tasks
+1. `docs/plan/handoff_[latest].md` — what happened last session
+2. `docs/plan/tasklist.md` — open tasks
 3. `docs/ARCHITECTURE.md` — project blueprint (start here for context)
 4. The specific file being worked on
 
@@ -45,7 +45,7 @@ For architecture or refactor sessions, also load:
 
 **Standard (default):**
 ```
-Read context/summaries/handoff_[latest].md, context/summaries/tasklist.md, and docs/ARCHITECTURE.md.
+Read docs/plan/handoff_[latest].md, docs/plan/tasklist.md, and docs/ARCHITECTURE.md.
 The task is: [task description].
 ```
 
@@ -58,7 +58,7 @@ Do not read any handoffs or session history. Approach this as if you have never 
 
 **Deep (bug investigation):**
 ```
-Read context/summaries/handoff_[latest].md, context/summaries/tasklist.md, docs/ARCHITECTURE.md,
+Read docs/plan/handoff_[latest].md, docs/plan/tasklist.md, docs/ARCHITECTURE.md,
 docs/architecture/CORE_PATTERNS.md, and docs/architecture/ARCHITECTURE_EXTENSION.md.
 The issue is: [bug description]. Include browser console output below.
 ```

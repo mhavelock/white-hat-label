@@ -93,8 +93,8 @@
   /* Layout */
   --max-width:          1440px;
   --content-width:      72rem;
-  --min-width:          320px;
-  --min-element-width:  288px;
+  --min-width:          32rem;
+  --min-element-width:  28.8rem;
   --grid-gutter:        1.6rem;
   --grid-cols:          12;
 
@@ -103,7 +103,7 @@
   --radius-md:    0.8rem;
   --radius-lg:    1.6rem;
   --radius-xl:    2.4rem;
-  --radius-pill:  9999px;
+  --radius-pill:  999rem;
 
   /* Shadows */
   --shadow-sm:  0 1px 3px rgb(0 0 0 / 0.08);

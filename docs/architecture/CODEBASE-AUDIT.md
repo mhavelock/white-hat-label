@@ -23,7 +23,7 @@ CNAME                           # single-line domain file
 ### Soft exclusions (load only if specifically relevant)
 
 ```
-context/summaries/              # historical session summaries
+docs/plan/              # historical session summaries
 js/logger.js                    # dev utility, not application logic
 ```
 
@@ -88,6 +88,6 @@ After any audit session:
 - [ ] `npx html-validate` passes — no errors or warnings
 - [ ] `docs/ARCHITECTURE.md` updated if any structural decisions changed
 - [ ] New constraints added to `CORE_PATTERNS.md` if any new patterns were established
-- [ ] Tasks updated in `context/summaries/tasklist.md`
-- [ ] Handoff written to `context/summaries/handoff_YYYY-MM-DD.md`
+- [ ] Tasks updated in `docs/plan/tasklist.md`
+- [ ] Handoff written to `docs/plan/handoff_YYYY-MM-DD.md`
 - [ ] Changes committed with `git-commit-messaging` skill
