@@ -95,6 +95,7 @@
 After each significant change:
 
 ### Claude's Checklist
+
 - [ ] HTML validates (W3C / `npx html-validate`) — no errors or warnings
 - [ ] All `<img>` have `alt`, `width`, `height`
 - [ ] All `<input>` have an associated `<label for="…">`
@@ -111,4 +112,5 @@ After each significant change:
 - [ ] Open Graph meta tags present on each page (if applicable)
 
 ### [Project-specific checks]
+
 - [ ] [Add project-specific test items here]

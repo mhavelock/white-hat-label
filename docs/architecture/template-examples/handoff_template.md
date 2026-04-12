@@ -1,6 +1,7 @@
 # Session Handoff — YYYY-MM-DD — [Topic]
 
 ## Session Type
+
 [Feature / Bug fix / Refactor / Style / Docs / Architecture / Config] — [brief qualifier]
 
 ---
@@ -8,9 +9,11 @@
 ## What Was Done
 
 ### Goal
+
 [One sentence: what were we trying to achieve this session?]
 
 ### Outcome
+
 [Resolved / Partial / Blocked] — [one sentence on result]
 
 ### Changes Made
@@ -20,6 +23,7 @@
 | [path/file.ext] | [What changed and why] |
 
 ### Steps Covered
+
 1. [Step with outcome]
 2. [Step with outcome]
 3. [Step with outcome]
@@ -35,6 +39,7 @@
 ---
 
 ## Known Constraints
+
 - [Any gotchas, limits, or non-obvious rules established this session]
 
 ---
@@ -52,12 +57,14 @@
 ## Checklist Status
 
 ### Your Checklist
+
 - [ ] [Feature-specific check — add per feature]
 - [ ] Responsive at 320 / 480 / 768 / 1024 / 1440px
 - [ ] Landscape mode fits viewport
 - [ ] Dark mode verified at OS level
 
 ### Claude's Checklist
+
 - [ ] No inline styles
 - [ ] No `!important`
 - [ ] No `max-width` media queries
