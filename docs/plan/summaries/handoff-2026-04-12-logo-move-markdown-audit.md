@@ -24,6 +24,7 @@ Resolved — both tasks complete, committed to `main`.
 4. Audited all 30 project markdown files (README, CLAUDE.md, AGENTS.md, docs/**, templates/**) via subagent
 5. Fixed: missing blank lines around headings/lists/code fences, bare code blocks without language tags, table separator spacing — committed `6713596`
 6. Linter (markdownlint) flagged residual issues in `docs/plan/plan-rules.md` — fixed directly: blank line before list at line 110, table separator spacing at lines 152 and 187, language tags and blank lines for three code blocks at lines 164/170/176 — included in commit `6713596`
+7. `/doctor` warning: Gemini MCP missing `GOOGLE_API_KEY` — key added to `~/.zshrc` by user; `.mcp.json` `${GOOGLE_API_KEY}` reference now resolves correctly on shell startup
 
 ---
 
@@ -48,6 +49,7 @@ Resolved — both tasks complete, committed to `main`.
 - All project markdown files pass CommonMark formatting requirements
 - No linter warnings remaining in `plan-rules.md`
 - Previous handoff archived to `docs/plan/archive/handoffs/`
+- Gemini MCP `GOOGLE_API_KEY` resolved — `/doctor` warning cleared
 - `main` branch clean — 3 commits this session
 
 ---
