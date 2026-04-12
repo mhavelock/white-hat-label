@@ -1,0 +1,22 @@
+plz would you check all the markdown files in the site and correct any bad markdown formatting and ensure the hierachy structures are correct
+
+---
+
+great. plz end session & commit
+
+---
+
+doctor warning says   [Contains warnings] Project config (shared via .mcp.json)
+  Location/Users/mat/Claudette/Cowork/projects/white-hat-label/.
+          mcp.json          
+   └ [Warning] [gemini] mcpServers.gemini: Missing environment 
+   variables: GOOGLE_API_KEY - plz check it is connected refrecing my env file
+
+---
+
+my API key is in cowork/project/.env - its as safe there as zshrc - can it reference that?
+
+---
+
+i dont know what youre doing. ill run echo '\nexport GOOGLE_API_KEY="your-key-here"' >> ~/.zshrc && 
+  source ~/.zshrc - i was just checking

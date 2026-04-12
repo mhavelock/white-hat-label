@@ -1,0 +1,63 @@
+{
+  "cli_version": "0.5.4",
+  "checkpoint_id": "bb6c799f06f5",
+  "session_id": "c38c3684-7e27-4cad-96f9-1d050850dbed",
+  "strategy": "manual-commit",
+  "created_at": "2026-04-12T23:28:45.149734Z",
+  "branch": "main",
+  "checkpoints_count": 4,
+  "files_touched": [],
+  "agent": "Claude Code",
+  "model": "claude-sonnet-4-6",
+  "turn_id": "500a1cf299b4",
+  "token_usage": {
+    "input_tokens": 104,
+    "cache_creation_tokens": 49079,
+    "cache_read_tokens": 2153530,
+    "output_tokens": 12185,
+    "api_call_count": 50
+  },
+  "session_metrics": {
+    "turn_count": 6
+  },
+  "prompt_attributions": [
+    {
+      "checkpoint_number": 2,
+      "user_lines_added": 0,
+      "user_lines_removed": 0,
+      "agent_lines_added": 0,
+      "agent_lines_removed": 0
+    },
+    {
+      "checkpoint_number": 3,
+      "user_lines_added": 5,
+      "user_lines_removed": 0,
+      "agent_lines_added": 3,
+      "agent_lines_removed": 1,
+      "user_added_per_file": {
+        ".github/aw/logs/.gitignore": 5
+      }
+    },
+    {
+      "checkpoint_number": 4,
+      "user_lines_added": 12,
+      "user_lines_removed": 0,
+      "agent_lines_added": 3,
+      "agent_lines_removed": 1,
+      "user_added_per_file": {
+        ".github/aw/logs/.gitignore": 5,
+        "mcps/claude-add-models-mcp/gemini/start.sh": 7
+      }
+    },
+    {
+      "checkpoint_number": 5,
+      "user_lines_added": 5,
+      "user_lines_removed": 0,
+      "agent_lines_added": 3,
+      "agent_lines_removed": 1,
+      "user_added_per_file": {
+        ".github/aw/logs/.gitignore": 5
+      }
+    }
+  ]
+}
