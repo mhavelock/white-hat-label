@@ -14,8 +14,8 @@
 
 ### After Making a Change
 1. If the change alters a structural decision in `ARCHITECTURE.md`, update that file.
-2. Write a handoff to `context/summaries/handoff_YYYY-MM-DD.md` at session end.
-3. Mark completed tasks in `context/summaries/tasklist.md`.
+2. Write a handoff to `docs/plan/handoff_YYYY-MM-DD.md` at session end.
+3. Mark completed tasks in `docs/plan/tasklist.md`.
 
 ---
 
@@ -66,8 +66,8 @@
 | Shared utilities / init | `js/main.js` |
 | Dev logging | `js/logger.js` |
 | Architecture docs | `docs/ARCHITECTURE.md`, `docs/SYSTEM.md` |
-| Task tracking | `context/summaries/tasklist.md` |
-| Session handoffs | `context/summaries/handoff_YYYY-MM-DD.md` |
+| Task tracking | `docs/plan/tasklist.md` |
+| Session handoffs | `docs/plan/handoff_YYYY-MM-DD.md` |
 
 ---
 

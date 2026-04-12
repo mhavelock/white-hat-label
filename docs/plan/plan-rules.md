@@ -114,7 +114,38 @@ Additional auto-triggers (see `docs/architecture/CHECKPOINTS.md` for full table)
 
 ---
 
-## Rule 7 — Choose the right session style
+## Rule 7a — No Autonomous Git Push
+
+`git push` is never run without explicit user confirmation. Pushing to `main` deploys immediately to production. Always confirm: "Ready to push to [branch]?" before executing.
+
+---
+
+## Rule 7b — Review Before Commit
+
+Always run `git diff` before committing. Show the diff to the user and confirm before proceeding.
+
+---
+
+## Rule 7c — Protected Files
+
+Files listed in `docs/ARCHITECTURE.md §"Protected files"` may not have their core behaviour changed without explicit instruction and a new ADR entry in `docs/architecture/DECISIONS.md`.
+
+---
+
+## Rule 7d — Skills
+
+Use the `git-commit-messaging` skill for all commit messages (Conventional Commits format).
+Use the `frontend-standards` skill any time HTML, CSS, or JS is written or reviewed.
+
+---
+
+## Rule 7e — Constraint First
+
+Before implementing a change, check `docs/architecture/CORE_PATTERNS.md` G1–G13. If the change would violate a constraint, stop and discuss rather than implementing a workaround.
+
+---
+
+## Rule 8 — Choose the right session style
 
 | Style | When | Trigger |
 |-------|------|---------|

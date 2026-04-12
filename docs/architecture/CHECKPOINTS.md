@@ -30,15 +30,15 @@ Claude should self-trigger a write at each of these events without being asked.
 
 | Trigger | What fires it | Written to | Format |
 |---------|--------------|-----------|--------|
-| **Significant code change complete** | Any Write/Edit to `js/`, `styles/`, or HTML files | `context/summaries/handoff_[date].md` (append) | "Changed: [file] — [what + why]. Regression check: [result]." |
-| **Bug root-caused** | Root cause identified after investigation | `context/summaries/handoff_[date].md` | Root cause + fix in 2 sentences. Reference BREAKTHROUGHS.md if it's a meaningful pattern. |
-| **Second-model consultation complete** | Gemini or fresh-context audit call resolved | `context/summaries/handoff_[date].md` | "Audit finding: [confirmed / flagged drift / recommended change]." |
-| **Browser test result** | User confirms test pass or fail in browser | `context/summaries/tasklist.md` | Update task status. Log result one line. |
+| **Significant code change complete** | Any Write/Edit to `js/`, `styles/`, or HTML files | `docs/plan/handoff_[date].md` (append) | "Changed: [file] — [what + why]. Regression check: [result]." |
+| **Bug root-caused** | Root cause identified after investigation | `docs/plan/handoff_[date].md` | Root cause + fix in 2 sentences. Reference BREAKTHROUGHS.md if it's a meaningful pattern. |
+| **Second-model consultation complete** | Gemini or fresh-context audit call resolved | `docs/plan/handoff_[date].md` | "Audit finding: [confirmed / flagged drift / recommended change]." |
+| **Browser test result** | User confirms test pass or fail in browser | `docs/plan/tasklist.md` | Update task status. Log result one line. |
 | **Architecture decision made** | New pattern, constraint change, ADR-level choice | `docs/architecture/DECISIONS.md` | New ADR entry (see DECISIONS.md format). |
 | **New breakthrough** | Novel approach, correct decision under pressure, avoided a wrong path | `docs/architecture/BREAKTHROUGHS.md` | New B-XX entry. |
 | **New feedback loop** | Win locked in, limit set, explicit "no" | `docs/architecture/FEEDBACK-LOOPS.md` | New FL-XX entry. |
-| **Context ~70% full** | Estimated from session length / output density | `context/summaries/recovery_[date].md` | Current open tasks + critical in-progress state. Notify user. |
-| **Session end** | User signals end or context compaction imminent | `context/summaries/handoff_[date].md` | Full handoff (see `context/summaries/plan-rules.md` Rule 1 format). |
+| **Context ~70% full** | Estimated from session length / output density | `docs/plan/recovery_[date].md` | Current open tasks + critical in-progress state. Notify user. |
+| **Session end** | User signals end or context compaction imminent | `docs/plan/handoff_[date].md` | Full handoff (see `docs/plan/plan-rules.md` Rule 1 format). |
 
 ---
 
@@ -125,7 +125,7 @@ When the user reports a runtime problem, run this sequence before touching code:
 
 Claude Code does not have a PostToolUse hook that writes structured content automatically. The checkpoint system works via explicit rules that Claude follows as part of its operating mode.
 
-**Rules in `context/summaries/plan-rules.md` (Rule 6)** make checkpoint writing part of the session protocol — not optional, not prompted.
+**Rules in `docs/plan/plan-rules.md` (Rule 6)** make checkpoint writing part of the session protocol — not optional, not prompted.
 
 **The discipline is:**
 - After any Write or Edit to a source file, append a mini-checkpoint to the active handoff

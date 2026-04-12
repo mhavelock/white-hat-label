@@ -255,7 +255,7 @@ Custom component styles that deviate from global brand should extend via a separ
 ## CSS Conventions
 
 - **File per concern.** One responsibility per stylesheet. Never mix concerns.
-- **Load order:** `theme.css` → `global.css` → `grid.css` → `components.css` → `custom.css` → `utilities.css`.
+- **Load order:** `global.css` → `layout.css` → `components.css` → `utilities.css` → `theme.css` → `custom.css`.
 - **Component naming pattern:**
   - `.component` — root: `.card`
   - `.component-element` — child: `.card-title`, `.card-body`
@@ -369,7 +369,7 @@ git commit -m "style(css): update brand colour tokens"
 - **Stop and show `git diff` after each task** — confirm with user before proceeding.
 - **`git push` requires explicit user confirmation** — push deploys immediately to production.
 - Use the `git-commit-messaging` skill for all commit messages.
-- See `context/summaries/plan-rules.md` for full session operating rules.
+- See `docs/plan/plan-rules.md` for full session operating rules.
 
 ---
 

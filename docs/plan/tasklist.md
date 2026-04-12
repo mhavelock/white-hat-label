@@ -39,6 +39,7 @@ Last updated: YYYY-MM-DD
 | ARC1 | Contradiction Hunt | DOCS | ⚠️ Pre-major-change | Feed all L1/L2 architecture docs to Gemini Pro. Top 5 internal contradictions. See `six-hats.md §Contradiction Hunt`. |
 | ARC2 | Recursive Architecture Test | DOCS | ⚠️ Pre-major-change | Feed ARCHITECTURE.md + SYSTEM.md to a fresh model. Compare response to actual code — divergences = doc debt. See `template-examples/GEMINI-CONSULTANCY.md` Pattern 5. |
 | ARC3 | Full codebase audit | DOCS | ⚠️ Periodic | Run `CODEBASE-AUDIT.md` chunk strategy. Each chunk audited against G1–G13. |
+| ARC4 | Drift Check | DOCS | ⚠️ Periodic | Load ARCHITECTURE.md + CORE_PATTERNS.md, then read key source files. Flag divergences between what docs describe and what code actually does. See `docs/architecture/REFLECTIVE-SYNC.md §Drift Check`. |
 
 ---
 
@@ -68,4 +69,5 @@ Last updated: YYYY-MM-DD
 | 🔲 Untested | Implemented but not yet confirmed in browser |
 | ✅ Done YYYY-MM-DD | Completed and verified |
 | ⛔ Blocked | Cannot proceed — see notes |
+| ⏸️ Deferred | Intentionally postponed |
 | ~~Struck through~~ | Abandoned — reason in notes |

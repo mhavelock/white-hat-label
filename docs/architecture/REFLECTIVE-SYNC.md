@@ -14,7 +14,7 @@ Without deliberate synchronisation, AI-assisted development accumulates drift: d
 
 Load minimum context:
 ```
-Read context/summaries/handoff_[latest].md, context/summaries/tasklist.md, and docs/ARCHITECTURE.md.
+Read docs/plan/handoff_[latest].md, docs/plan/tasklist.md, and docs/ARCHITECTURE.md.
 The task is: [task description].
 ```
 
@@ -62,9 +62,9 @@ Flag any violations or potential regressions.
 
 ## Session End
 
-Write handoff per `context/summaries/plan-rules.md` Rule 1:
+Write handoff per `docs/plan/plan-rules.md` Rule 1:
 ```
-Write a session handoff to context/summaries/handoff_YYYY-MM-DD.md covering:
+Write a session handoff to docs/plan/handoff_YYYY-MM-DD.md covering:
 - What was done this session
 - Files changed and how
 - Key decisions made

@@ -93,7 +93,7 @@ Please:
 
 ### Light Handoff (tooling/config sessions with no code changes)
 
-File path: `context/summaries/handoff-YYYY-MM-DD-[topic].md`
+File path: `docs/plan/handoff-YYYY-MM-DD-[topic].md`
 
 ```markdown
 # Session Handoff — YYYY-MM-DD — [Topic]
@@ -127,7 +127,7 @@ File path: `context/summaries/handoff-YYYY-MM-DD-[topic].md`
 
 ### Full Handoff (feature/code sessions)
 
-Use the full template in `context/summaries/handoff_template.md`.
+Use the full template in `docs/plan/handoff_template.md`.
 
 ---
 
