@@ -119,12 +119,14 @@
 - **`requestAnimationFrame` for animation.** Never `setInterval` for animations. Always pause via `visibilitychange` when the tab is hidden.
 
 ### HTML
+
 - Semantic HTML5. One `<h1>` per page. Sequential heading hierarchy.
 - Every `<input>` paired with `<label for="...">`.
 - Every `<img>` has `alt`, `width`, `height`.
 - `defer` on all `<script>` tags.
 
 ### CSS
+
 - Load order: `theme.css` → `global.css` → `grid.css` → `components.css` → `custom.css` → `utilities.css`.
 - `box-sizing: border-box` in every stylesheet reset.
 - Alphabetical properties within each rule block.
@@ -132,6 +134,7 @@
 - Hover, focus, active states only. No `:visited` state.
 
 ### JS
+
 - `const` and `let` only. No `var`.
 - No `eval`, no `innerHTML` with dynamic content.
 - Sanitise `localStorage` before use: parse, type-check, clamp to valid range.
@@ -191,6 +194,7 @@
 ## Layout & Style Guide
 
 ### Grid
+
 - **12-column grid** for page-level layouts — `.container`, `.row`, `.col-*`.
 - **Flex for page layout.** Grid only for components where 2D structure is correct.
 - **Gutter:** `1rem` (16px at browser default).
@@ -312,6 +316,7 @@ After each significant change, run this review prompt:
 > "Taking into account the best practices docs in the project `docs/` folder, please run a code review on what we have. Look for better code organisation, clean code improvements, performance improvements, browser memory usage issues, and a security check. Update the md docs and memory file then add and commit to git. Suggest any additional best practice improvements and anything important I may have forgotten. Check changes didn't break completed task functionality."
 
 ### Your Checklist
+
 - [ ] [Feature works as expected — add specific feature checks here]
 - [ ] Responsive at 320 / 480 / 768 / 1024 / 1440px
 - [ ] Landscape mode fits viewport
@@ -319,6 +324,7 @@ After each significant change, run this review prompt:
 - [ ] PageSpeed ≥ 95 (mobile and desktop)
 
 ### Claude's Checklist
+
 - [ ] HTML validates — W3C validator (no errors, no warnings)
 - [ ] All `<img>` have `alt`, `width`, `height`
 - [ ] All `<input>` have an associated `<label for="…">`

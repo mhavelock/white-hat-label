@@ -1,6 +1,7 @@
 # Session Handoff — YYYY-MM-DD — [Topic]
 
 ## Session Type
+
 [Feature / Bug fix / Refactor / Style / Docs / Architecture / Config / Mixed] — [brief qualifier]
 
 ---
@@ -8,9 +9,11 @@
 ## What Was Done
 
 ### Goal
+
 [One sentence: what were we trying to achieve this session?]
 
 ### Outcome
+
 [Resolved / Partial / Blocked] — [one sentence on result]
 
 ### Changes Made
@@ -36,6 +39,7 @@
 ---
 
 ## Known Constraints
+
 - [Any gotchas, limits, or non-obvious rules established this session]
 
 ---
@@ -62,6 +66,7 @@ ASSUMED: [What was assumed — mark for browser confirmation next session]
 ## Checklist Status
 
 ### Your Checklist
+
 - [ ] [Feature-specific check — update per feature]
 - [ ] Responsive at 320 / 480 / 768 / 1024 / 1440px
 - [ ] Landscape mode fits viewport
@@ -69,6 +74,7 @@ ASSUMED: [What was assumed — mark for browser confirmation next session]
 - [ ] PageSpeed ≥ 95 (mobile and desktop)
 
 ### Claude's Checklist
+
 - [ ] No inline styles
 - [ ] No `!important`
 - [ ] No `max-width` media queries
@@ -89,6 +95,7 @@ Priority order:
 3. [Optional deferred item]
 
 **Entry prompt:**
+
 ```
 Read docs/plan/handoff_YYYY-MM-DD.md, docs/plan/tasklist.md, and docs/ARCHITECTURE.md.
 Task: [specific task description].

@@ -1,6 +1,7 @@
 # Session Handoff — 2026-04-07 — Logo SVG + Contact Form Removal
 
 ## Session Type
+
 Style / Refactor — logo swap, sr-only text, contact form removal, CSS rename
 
 ---
@@ -8,9 +9,11 @@ Style / Refactor — logo swap, sr-only text, contact form removal, CSS rename
 ## What Was Done
 
 ### Goal
+
 Replace the text site logo with an SVG image (screen-reader accessible), verify the contact form had been cleanly removed, and rename `contact-form.css` to `contact.css`.
 
 ### Outcome
+
 Resolved — all three tasks complete, committed to `main`.
 
 ### Changes Made
@@ -25,6 +28,7 @@ Resolved — all three tasks complete, committed to `main`.
 | `CLAUDE.md` | Repository & Deployment table updated: GitHub URL and live site URL filled in from placeholders |
 
 ### Steps Covered
+
 1. Read `index.html` — confirmed contact form HTML already removed; only Bluesky social link remains in `.contact-section`
 2. Checked `contact-form.css` — confirmed no orphaned form CSS; file only contains section/Bluesky/dark-mode styles still needed
 3. Added SVG `<img>` to `.site-logo` in `index.html`; applied `u-sr-only` to the text span
@@ -51,6 +55,7 @@ Resolved — all three tasks complete, committed to `main`.
 ---
 
 ## Known Constraints
+
 - `contact.css` still defines neumorphic CSS custom properties (`:root` block) that are now unused since the form was removed — these are low-cost dead tokens; can be pruned in a future tidy pass
 - `docs/build-assets/` is a non-standard asset location; if the project adds a proper `assets/` folder, the logo SVG should be moved there and the `src` updated
 
@@ -74,6 +79,7 @@ Resolved — all three tasks complete, committed to `main`.
 ## Checklist Status
 
 ### Claude's Checklist
+
 - [x] Logo text visually hidden with `u-sr-only`, not `display: none`
 - [x] No inline styles added
 - [x] No `!important` added

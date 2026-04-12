@@ -39,7 +39,7 @@ This is the **"Gemini Reads, Claude Writes" protocol:** Claude authors and imple
 
 Use after significant changes, before committing a major refactor, or when `FEEDBACK-LOOPS.md` rules may have been under pressure.
 
-```
+```yaml
 system_prompt: "You are performing a cross-session architectural audit of [PROJECT_NAME]. You are the AUDITOR, not the author. Claude Code wrote this code. Your job is to find drift, regressions, and constraint violations — not to suggest new features."
 
 prompt: """
@@ -78,7 +78,7 @@ Output:
 
 Use when the same bug has been fixed 3+ times without finding root cause.
 
-```
+```yaml
 system_prompt: "You are a senior web developer reviewing a problem cold, with no prior history. You have not seen this code before."
 
 prompt: """
@@ -110,7 +110,7 @@ Do not suggest patching the symptoms. Identify the source.
 
 Use before committing to a dependency, architecture choice, or constraint that is hard to reverse.
 
-```
+```yaml
 system_prompt: "You are a devil's advocate auditor. Your job is to find what can go wrong with this decision."
 
 prompt: """
@@ -136,20 +136,20 @@ Is there a simpler alternative that covers the same use case?
 Use when evaluating a library, investigating an API behaviour, or checking how others have solved a class of problem.
 
 **Web search:**
-```
+```yaml
 search_query: "[library name] [specific question or issue]"
 search_recency_filter: "oneYear"  // or "oneMonth" for fast-moving areas
 count: 10
 ```
 
 **Read a specific page:**
-```
+```yaml
 url: "https://[library-docs-url]"
 return_format: "markdown"
 ```
 
 **Parse a PDF** (spec, API reference, report):
-```
+```yaml
 file_url: "https://[publicly accessible PDF URL]"
 parse_mode: "auto"
 ```
@@ -160,7 +160,7 @@ parse_mode: "auto"
 
 Use when you want to verify that your architecture docs accurately reflect the code — before relying on them as source of truth.
 
-```
+```yaml
 system_prompt: "You are a new developer joining this project. You have read only the two documents provided. You have not seen the codebase."
 
 prompt: """
@@ -186,7 +186,7 @@ Compare the response against the actual code. Where it diverges: update the doc 
 
 Use when the codebase has grown and you want a cold assessment of what should be removed.
 
-```
+```yaml
 system_prompt: "You are a senior architect reviewing a codebase for removal candidates and value drift. You are not looking for bugs. You are asking: what should not exist, and has recent work made this project less coherent?"
 
 prompt: """
@@ -218,7 +218,7 @@ Output format:
 Use when the question is complex but you're not sure which parts of the context are relevant.
 
 **Step 1 — Flash as router:**
-```
+```yaml
 tool: ask_gemini (Flash)
 system_prompt: "You are a context triage assistant. Identify the minimum information needed to answer the question. Do not answer it yourself."
 
@@ -235,7 +235,7 @@ List the specific sections and code snippets directly relevant to this question.
 ```
 
 **Step 2 — Pro with filtered payload:**
-```
+```yaml
 tool: ask_gemini_pro
 system_prompt: [persona for the actual question]
 

@@ -28,21 +28,27 @@
 These are the expensive-to-change choices. Each one has a reason that must survive the decision.
 
 ### 1. [Decision name]
+
 [What was decided, and why. Include alternatives considered and the reason this option was chosen.]
 
 ### 2. CSS custom properties as single source of truth
+
 All colours, spacing, and timing values are defined as `--custom-properties` in `styles/theme.css`. Never hard-coded in component CSS. Page- or feature-specific tokens live in their own namespace (e.g. `--[feature]-*`) in their own stylesheet.
 
 ### 3. Mobile-first, min-width breakpoints only
+
 Base styles target the smallest screen. `@media (min-width: ...)` layers on complexity for larger screens. `max-width` breakpoints are never used for layout — they create overrides that compound.
 
 ### 4. CSS-first behaviour
+
 UI state is handled by CSS (`:checked`, `:focus-visible`, custom properties, `@keyframes`) wherever possible. JS is added only when CSS cannot achieve the goal.
 
 ### 5. No inline styles
+
 The `style` attribute is never used. All presentation is in CSS. This keeps the design token system intact and makes tooling effective.
 
 ### 6. localStorage sanitisation
+
 Any value read from `localStorage` is validated before use: type-checked, parsed, and clamped to a valid range. Raw strings are never used directly in logic.
 
 ---

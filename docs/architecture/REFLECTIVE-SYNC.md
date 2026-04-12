@@ -77,6 +77,7 @@ Write a session handoff to docs/plan/handoff_YYYY-MM-DD.md covering:
 ## Architecture Sync (periodic — before major changes)
 
 ### Contradiction Hunt
+
 Feed the architecture docs to Gemini or a fresh Claude session:
 ```
 Read docs/ARCHITECTURE.md, docs/SYSTEM.md, and docs/architecture/CORE_PATTERNS.md.
@@ -85,6 +86,7 @@ For each: quote both sides of the tension, and suggest a resolution.
 ```
 
 ### Drift Check
+
 Test whether the docs still match the code:
 ```
 Read docs/ARCHITECTURE.md and docs/architecture/CORE_PATTERNS.md.

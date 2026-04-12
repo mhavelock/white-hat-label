@@ -96,7 +96,8 @@ If context has clearly degraded (AI references old state, gives contradictory an
 Do not wait until session end to write state. After any Write or Edit to a source file, append a mini-checkpoint to the active `handoff_[date].md`.
 
 **Mini-checkpoint format:**
-```
+
+```md
 ### Checkpoint [HH:MM]
 **Changed:** `[filename]`
 **What:** [one sentence]
@@ -106,6 +107,7 @@ Do not wait until session end to write state. After any Write or Edit to a sourc
 ```
 
 Additional auto-triggers (see `docs/architecture/CHECKPOINTS.md` for full table):
+
 - After a second-model consultation → note the finding in the handoff
 - After a root cause is identified → write it before proposing the fix
 - After a browser test result → update `tasklist.md` task status
@@ -148,7 +150,7 @@ Before implementing a change, check `docs/architecture/CORE_PATTERNS.md` G1–G1
 ## Rule 8 — Choose the right session style
 
 | Style | When | Trigger |
-|-------|------|---------|
+| ----- | ---- | ------- |
 | **Engineered Hybrid** *(default)* | Day-to-day dev, feature work, bug fixing | Read handoff + ARCHITECTURE.md + CORE_PATTERNS.md |
 | **Fresh (Red Team)** | Architecture decisions, new feature design, avoiding tunnel vision | New session, ARCHITECTURE.md + task description only — no handoff |
 | **Deep (Bloated)** | Mystery bugs, >2 failed attempts, "why is this failing?" | Load handoff + ARCHITECTURE_EXTENSION.md + browser console output |
@@ -160,19 +162,22 @@ Before implementing a change, check `docs/architecture/CORE_PATTERNS.md` G1–G1
 ## Entry Prompts for New Sessions
 
 **Engineered Hybrid (default):**
-```
+
+```text
 Read docs/plan/handoff_[latest].md, docs/plan/tasklist.md, and docs/ARCHITECTURE.md.
 The task is: [task description].
 ```
 
 **Fresh (Red Team):**
-```
+
+```text
 Read docs/ARCHITECTURE.md and docs/architecture/CORE_PATTERNS.md. The task is: [task description].
 Do not read any handoffs or session history. Approach this as if you have never seen this code before.
 ```
 
 **Deep (Bloated):**
-```
+
+```text
 Read docs/plan/handoff_[latest].md, docs/plan/tasklist.md, docs/ARCHITECTURE.md,
 docs/architecture/CORE_PATTERNS.md, and docs/architecture/ARCHITECTURE_EXTENSION.md.
 The issue is: [bug description]. Include browser console output below.
@@ -183,7 +188,7 @@ The issue is: [bug description]. Include browser console output below.
 ## Reference
 
 | File | Purpose |
-|------|---------|
+| ---- | ------- |
 | `docs/ARCHITECTURE.md` | What the project is, structural decisions, data flow |
 | `docs/SYSTEM.md` | Developer rules, naming conventions, never-do constraints |
 | `docs/architecture/DECISIONS.md` | Why specific technical choices were made (ADRs) |

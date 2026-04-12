@@ -4,6 +4,7 @@
 > Copy `handoff_template.md` to write your own. This file is for reference only.
 
 ## Session Type
+
 Mixed — Docs (scaffold) + Feature (HTML/CSS site build) + Style (CSS system)
 
 ---
@@ -11,9 +12,11 @@ Mixed — Docs (scaffold) + Feature (HTML/CSS site build) + Style (CSS system)
 ## What Was Done
 
 ### Goal
+
 Build a complete, reusable white-label project starter — architecture documentation scaffold, plan system, and a functioning homepage demonstrating the CSS and component system.
 
 ### Outcome
+
 Resolved — all documentation, CSS files, `index.html`, contact form, Bluesky icons, and dev logger created and committed. Project is ready to clone, adapt, and deploy.
 
 ### Changes Made
@@ -116,12 +119,14 @@ ASSUMED: Points to anthropicprinciple.ai for now (it's a real page). Replace per
 ## Checklist Status
 
 ### Your Checklist
+
 - [ ] Responsive at 320 / 480 / 768 / 1024 / 1440px — not yet browser tested
 - [ ] Landscape mode fits viewport — not yet tested
 - [ ] Dark mode verified at OS level — not yet tested
 - [ ] PageSpeed ≥ 95 — not yet audited
 
 ### Claude's Checklist
+
 - [x] No inline styles — confirmed (only `style` attrs with CSS custom property references used for spacing demo in index.html; these are intentional dev scaffolding)
 - [x] No `!important` — confirmed across all CSS files
 - [x] No `max-width` media queries — confirmed; all breakpoints use `(width >= Npx)` syntax

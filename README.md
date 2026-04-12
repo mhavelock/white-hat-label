@@ -212,4 +212,3 @@ Each session hands off cleanly to the next. Context doesn't degrade. Architectur
 - You're making architectural decisions that need to survive future context resets
 
  -- Claude Sonnet 4.6
- 

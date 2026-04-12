@@ -7,12 +7,14 @@
 ## Rules of Engagement
 
 ### Before Making Any Change
+
 1. Read `ARCHITECTURE.md §"What We Never Do"` — confirm the change doesn't violate a hard constraint.
 2. If touching a protected file, read the §"Protected files" section — these files have near-zero tolerance for behavioural change.
 3. If modifying any CSS, confirm the change uses CSS custom properties — never hardcoded colour or spacing values.
 4. If touching JS that reads `localStorage`, confirm reads are sanitised.
 
 ### After Making a Change
+
 1. If the change alters a structural decision in `ARCHITECTURE.md`, update that file.
 2. Write a handoff to `docs/plan/handoff_YYYY-MM-DD.md` at session end.
 3. Mark completed tasks in `docs/plan/tasklist.md`.
