@@ -26,25 +26,37 @@ A layered doc system designed so an AI session can load the minimum necessary co
 
 | File | Purpose |
 |------|---------|
+| `docs/architecture/CLAUDE_MAINDOCS_INDEX.md` | ⭐ **Live state-of-play** — loaded at every session start. Project metadata, Quick Reference table, current constraints, env vars, phase status, common commands, "Settings — Current State of Play" |
 | `docs/ARCHITECTURE.md` | Golden thread — structural decisions, file structure, dependency diagram, CSS architecture, data flow, "What We Never Do" |
 | `docs/SYSTEM.md` | Developer rules — naming conventions, CSS/JS/HTML rules, commit conventions |
-| `docs/architecture/CORE_PATTERNS.md` | **G1–G13 do-not-break constraints** — with the history behind each rule and correct/wrong code examples |
+| `docs/architecture/CORE_PATTERNS.md` | **G1–G15 do-not-break constraints** — with the history behind each rule and correct/wrong code examples (G14 hook portability + G15 session-tracker hygiene added 2026-05-03) |
 | `docs/architecture/DECISIONS.md` | Architecture Decision Records (ADRs) — why specific technical choices were made |
 | `docs/architecture/FEEDBACK-LOOPS.md` | Wins, limits, and hard rules — evolves as the project accumulates learnings |
 | `docs/architecture/BREAKTHROUGHS.md` | Reflective record of key problem-solving moments |
-| `docs/architecture/ARCHITECTURE_EXTENSION.md` | Design token reference, CSS/JS conventions detail, common pitfalls, Schema.org reference |
-| `docs/architecture/CODEBASE-AUDIT.md` | Audit chunk strategy, G1–G13 checklist, standard audit prompt |
-| `docs/architecture/REFLECTIVE-SYNC.md` | Session-start/mid/end prompts, Contradiction Hunt, Drift Check, Red Team Reset |
+| `docs/architecture/ARCHITECTURE_EXTENSION.md` | Design token reference, CSS/JS conventions detail, hook conventions, common pitfalls, Schema.org reference |
+| `docs/architecture/CODEBASE-AUDIT.md` | Audit chunk strategy, G1–G15 checklist, standard audit prompt — cross-refs `template-examples/audit-template/` for the chunked-audit pattern |
+| `docs/architecture/REFLECTIVE-SYNC.md` | Session-start/mid/end prompts, Security Sync, Contradiction Hunt, Drift Check, Red Team Reset |
 | `docs/architecture/CLAUDE_ARCHITECTURE.md` | Document hierarchy (L1/L2/L3), reading order, and entry prompts for 3 session styles |
-| `docs/architecture/CHECKPOINTS.md` | 9 auto-checkpoint triggers, mini-checkpoint format, log awareness |
+| `docs/architecture/CHECKPOINTS.md` | 10 auto-checkpoint triggers (incl. Security-relevant change), mini-checkpoint format, log awareness |
 | `docs/architecture/FE-VISUALISATION.md` | Visual debugging approach — tool decision tree, viewport testing matrix |
 | `docs/architecture/six-hats.md` | Six Hats thinking model, Inversion, Anchoring Prompts for AI sessions |
+
+### Quick References (`qref/`)
+
+Surgical depth for AI-trap topics that need ≥ 200 words and ≥ 1 worked failure case. Each qref has a strict skeleton: Symptom → Root cause → Worked example → Remedy → See also. Linked from `CLAUDE_MAINDOCS_INDEX.md`'s Quick Reference table.
+
+| File | Topic |
+|------|-------|
+| `qref/README.md` | Pattern, naming convention, when (and when not) to add a qref |
+| `qref/qr-public-repo-hygiene.md` | entire.io session-tracker leak prevention; branch protection; secret-scanning push protection |
+| `qref/qr-static-site-cls.md` | Cumulative Layout Shift killers — image dimensions, font loading, defer scripts, aspect-ratio containers |
+| `qref/qr-claude-code-hooks.md` | Env-var-driven hook paths, exit codes, never-block rule, four-rule portability pattern |
 
 ### Guardrails
 
 Quality rules built into the architecture system — not enforced by tooling, but documented clearly enough that any AI session applies them consistently:
 
-- **G1–G13 constraints** in `CORE_PATTERNS.md` — no `!important`, no inline styles, no `max-width` breakpoints, CSS custom properties for all tokens, `requestAnimationFrame` only, `localStorage` sanitisation, safe external links, etc.
+- **G1–G15 constraints** in `CORE_PATTERNS.md` — no `!important`, no inline styles, no `max-width` breakpoints, CSS custom properties for all tokens, `requestAnimationFrame` only, `localStorage` sanitisation, safe external links, env-var-driven hook paths, gitignore session-tracker artefacts, etc.
 - **"What We Never Do"** table in `ARCHITECTURE.md` — a short, memorable list of hard prohibitions
 - **Feedback Loops** in `FEEDBACK-LOOPS.md` — records of past mistakes and confirmed patterns; prevents the same errors recurring across sessions
 - **ADRs** in `DECISIONS.md` — rationale for every significant technical decision; prevents revisiting settled questions
@@ -58,7 +70,7 @@ The system is designed to self-correct over time:
 - **Contradiction Hunt** — feed all L1/L2 docs to a second model; surface the top 5 internal contradictions
 - **Recursive Architecture Test** — feed `ARCHITECTURE.md` + `SYSTEM.md` to a fresh model; compare its description to the actual code; divergences = doc debt
 - **Breakthroughs log** — root causes of past hard problems; avoids re-diagnosing known issues
-- **Codebase Audit** (`CODEBASE-AUDIT.md`) — periodic full audit against G1–G13; chunks files into manageable batches
+- **Codebase Audit** (`CODEBASE-AUDIT.md` + `template-examples/audit-template/`) — periodic full audit against G1–G15; chunks files into manageable batches; the audit-template provides a structured chunked-audit pattern with worked sample chunks
 
 ### Session Plan System
 
@@ -84,11 +96,15 @@ Keeps state across AI sessions — context resets don't cause lost work:
 
 ### Template Examples
 
-Reference files for server-side, standards tracking, and second-model consultation:
+Reference files for server-side, standards tracking, second-model consultation, and live state-of-play:
 
 - `docs/architecture/template-examples/GEMINI-CONSULTANCY.md` — 7 patterns for using a second model (Gemini or similar) as a consultant: architecture audits, stuck-in-loop recovery, decision validation, quality advocate
-- `docs/architecture/template-examples/SERVERSIDE.md` — server-side architecture template (hosting, domain, env vars, CI/CD, monitoring)
+- `docs/architecture/template-examples/SERVERSIDE.md` — server-side architecture template (hosting, domain, env vars, CI/CD, monitoring) — Vercel-specific subsection included
 - `docs/architecture/template-examples/STANDARDS.md` — quality standards tracking table (Performance, HTML, CSS, JS, A11Y, SEO) — all `⚠️ TBA` until verified
+- `docs/architecture/template-examples/PHASE-STATUS.md` — kanban-in-prose phase table template; conventions for inline-vs-standalone use
+- `docs/architecture/template-examples/STATE-OF-PLAY.md` — "Settings — Current State of Play" sub-section template (production runtime, migration state, long-running flags, open work, pre-launch checklist, entry prompt)
+- `docs/architecture/template-examples/handoff_template.md` — per-session handoff template (pairs with State of Play)
+- `docs/architecture/template-examples/audit-template/` — chunked codebase-audit pattern with README + 2 sample chunks (1-structure, 2-conventions)
 
 ---
 
@@ -177,8 +193,10 @@ Open `http://127.0.0.1:5500` in your browser.
 └── docs/
     ├── ARCHITECTURE.md          # System overview and structural decisions
     ├── SYSTEM.md                # Developer rules and naming conventions
-    ├── architecture/            # Detailed architecture docs (11 files)
-    │   └── template-examples/   # Reference templates (server-side, standards, Gemini)
+    ├── architecture/            # Detailed architecture docs (12 files)
+    │   ├── CLAUDE_MAINDOCS_INDEX.md  # Live state-of-play (loaded every session)
+    │   ├── qref/                # Surgical quick-references for AI-trap topics
+    │   └── template-examples/   # Templates: server-side, standards, Gemini, phase-status, state-of-play, handoff, audit
     ├── plan/                    # Session management system
     │   └── tasklist.md          # Tracked template (rest of dir is gitignored)
     ├── security-sweep-playbook.md  # Two-phase security playbook
@@ -191,7 +209,8 @@ Open `http://127.0.0.1:5500` in your browser.
 
 - [ARCHITECTURE.md](./docs/ARCHITECTURE.md) — system overview, data flows, structural decisions
 - [SYSTEM.md](./docs/SYSTEM.md) — developer rules, naming conventions, never-do constraints
-- [CORE_PATTERNS.md](./docs/architecture/CORE_PATTERNS.md) — G1–G13 constraints and code patterns
+- [CLAUDE_MAINDOCS_INDEX.md](./docs/architecture/CLAUDE_MAINDOCS_INDEX.md) — live state-of-play (loaded every session)
+- [CORE_PATTERNS.md](./docs/architecture/CORE_PATTERNS.md) — G1–G15 constraints and code patterns
 - [DECISIONS.md](./docs/architecture/DECISIONS.md) — architecture decision records
 - [plan-rules.md](./docs/plan/plan-rules.md) — session operating rules
 - [CLAUDE_ARCHITECTURE.md](./docs/architecture/CLAUDE_ARCHITECTURE.md) — how to read this doc system

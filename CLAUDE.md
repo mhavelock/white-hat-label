@@ -78,21 +78,34 @@
     ├── plan/                            # Session workspace (mostly gitignored)
     │   └── tasklist.md                  # Task register — only tracked plan file (template)
     └── architecture/                    # Extended reference docs
-        ├── CORE_PATTERNS.md             # G1–G13 constraints — read before any code change
+        ├── CLAUDE_MAINDOCS_INDEX.md     # ⭐ Live state-of-play — loaded every session start
+        ├── CORE_PATTERNS.md             # G1–G15 constraints — read before any code change
         ├── DECISIONS.md                 # Architecture decision records (ADRs)
         ├── FEEDBACK-LOOPS.md            # Wins, limits, rules from project history
         ├── BREAKTHROUGHS.md             # Key problem-solving records
         ├── ARCHITECTURE_EXTENSION.md    # Coding standards detail, token reference
         ├── CODEBASE-AUDIT.md            # Audit approach and prompts
-        ├── REFLECTIVE-SYNC.md           # Session sync prompts
+        ├── REFLECTIVE-SYNC.md           # Session sync prompts (incl. Security Sync)
         ├── CLAUDE_ARCHITECTURE.md       # How to use the docs / reading order
         ├── CHECKPOINTS.md               # Auto-checkpoint triggers and format
         ├── FE-VISUALISATION.md          # Visual debugging approach
         ├── six-hats.md                  # Thinking approach models
+        ├── qref/                        # Surgical quick-references (≥200 words, ≥1 worked failure)
+        │   ├── README.md                # When/how to add a qref
+        │   ├── qr-public-repo-hygiene.md
+        │   ├── qr-static-site-cls.md
+        │   └── qr-claude-code-hooks.md
         └── template-examples/           # Example implementations to adapt
             ├── GEMINI-CONSULTANCY.md    # Second-model review protocol
-            ├── SERVERSIDE.md            # Serverside infrastructure template
-            └── STANDARDS.md             # Standards tracking template
+            ├── SERVERSIDE.md            # Serverside infrastructure template (incl. Vercel)
+            ├── STANDARDS.md             # Standards tracking template
+            ├── PHASE-STATUS.md          # Kanban-in-prose phase table template
+            ├── STATE-OF-PLAY.md         # Settings — Current State of Play sub-section template
+            ├── handoff_template.md      # Per-session handoff template
+            └── audit-template/          # Chunked codebase-audit pattern
+                ├── README.md            # Pattern + when to skip
+                ├── 1-structure.md       # Sample chunk: file organisation
+                └── 2-conventions.md     # Sample chunk: convention conformance
 ```
 
 > **`docs/plan/`** is gitignored except for `tasklist.md`. Session handoffs (`handoff_YYYY-MM-DD.md`), plan rules, and worked examples live there locally but never reach the public repo.

@@ -144,15 +144,15 @@
       <div class="section-header">
         <p class="eyebrow">Contents</p>
         <h2 id="whats-included-title">What's Included</h2>
-        <p class="section-subtitle">Thirteen architecture documents, a session plan system, and a full CLAUDE.md starter — all genericised and ready to adapt.</p>
+        <p class="section-subtitle">Fourteen architecture documents, a quick-reference library, a chunked-audit pattern, a session plan system, and a full CLAUDE.md starter — all genericised and ready to adapt.</p>
       </div>
 
       <div class="accordion">
 
         <details class="accordion-item">
-          <summary>Architecture Documentation <span class="tag" style="margin-left: auto; margin-right: var(--space-3);">13 docs</span></summary>
+          <summary>Architecture Documentation <span class="tag" style="margin-left: auto; margin-right: var(--space-3);">14 docs</span></summary>
           <div class="accordion-body">
-            <p style="margin-bottom: var(--space-4);">A layered doc system designed so an AI session loads only the minimum necessary context:</p>
+            <p style="margin-bottom: var(--space-4);">A layered doc system designed so an AI session loads only the minimum necessary context. The MAINDOCS_INDEX is loaded at every session start; the rest are loaded as needed.</p>
             <table>
               <thead>
                 <tr>
@@ -161,17 +161,18 @@
                 </tr>
               </thead>
               <tbody>
+                <tr><td><code>docs/architecture/CLAUDE_MAINDOCS_INDEX.md</code> ⭐</td><td><strong>Live state-of-play</strong> — current constraints, env vars, phase status, common commands, "Settings — Current State of Play" — loaded every session</td></tr>
                 <tr><td><code>docs/ARCHITECTURE.md</code></td><td>Golden thread — structural decisions, file structure, dependency diagram, CSS architecture</td></tr>
                 <tr><td><code>docs/SYSTEM.md</code></td><td>Developer rules — naming conventions, CSS/JS/HTML rules, commit conventions</td></tr>
-                <tr><td><code>docs/architecture/CORE_PATTERNS.md</code></td><td>G1–G13 do-not-break constraints with history and correct/wrong code examples</td></tr>
+                <tr><td><code>docs/architecture/CORE_PATTERNS.md</code></td><td>G1–G15 do-not-break constraints with history and correct/wrong code examples</td></tr>
                 <tr><td><code>docs/architecture/DECISIONS.md</code></td><td>Architecture Decision Records (ADRs)</td></tr>
                 <tr><td><code>docs/architecture/FEEDBACK-LOOPS.md</code></td><td>Wins, limits, and hard rules — evolves with the project</td></tr>
                 <tr><td><code>docs/architecture/BREAKTHROUGHS.md</code></td><td>Reflective record of key problem-solving moments</td></tr>
-                <tr><td><code>docs/architecture/ARCHITECTURE_EXTENSION.md</code></td><td>Design token reference, CSS/JS conventions detail, common pitfalls</td></tr>
-                <tr><td><code>docs/architecture/CODEBASE-AUDIT.md</code></td><td>Audit chunk strategy, G1–G13 checklist, standard audit prompt</td></tr>
-                <tr><td><code>docs/architecture/REFLECTIVE-SYNC.md</code></td><td>Session-start/mid/end prompts, Contradiction Hunt, Drift Check</td></tr>
+                <tr><td><code>docs/architecture/ARCHITECTURE_EXTENSION.md</code></td><td>Design token reference, CSS/JS conventions detail, hook conventions, common pitfalls</td></tr>
+                <tr><td><code>docs/architecture/CODEBASE-AUDIT.md</code></td><td>Audit chunk strategy, G1–G15 checklist, standard audit prompt</td></tr>
+                <tr><td><code>docs/architecture/REFLECTIVE-SYNC.md</code></td><td>Session-start/mid/end prompts, Security Sync, Contradiction Hunt, Drift Check</td></tr>
                 <tr><td><code>docs/architecture/CLAUDE_ARCHITECTURE.md</code></td><td>Document hierarchy (L1/L2/L3), reading order, entry prompts</td></tr>
-                <tr><td><code>docs/architecture/CHECKPOINTS.md</code></td><td>9 auto-checkpoint triggers and mini-checkpoint format</td></tr>
+                <tr><td><code>docs/architecture/CHECKPOINTS.md</code></td><td>10 auto-checkpoint triggers (incl. Security-relevant change) and mini-checkpoint format</td></tr>
                 <tr><td><code>docs/architecture/FE-VISUALISATION.md</code></td><td>Visual debugging approach, tool decision tree, viewport testing matrix</td></tr>
                 <tr><td><code>docs/architecture/six-hats.md</code></td><td>Six Hats thinking model, Inversion, Anchoring Prompts for AI sessions</td></tr>
               </tbody>
@@ -180,21 +181,61 @@
         </details>
 
         <details class="accordion-item">
-          <summary>Template Examples <span class="tag" style="margin-left: auto; margin-right: var(--space-3);">3 files</span></summary>
+          <summary>Quick References <code>qref/</code> <span class="tag" style="margin-left: auto; margin-right: var(--space-3);">3 + README</span></summary>
+          <div class="accordion-body">
+            <p style="margin-bottom: var(--space-4);">Surgical depth for AI-trap topics that need ≥ 200 words and ≥ 1 worked failure case. Strict skeleton: Symptom → Root cause → Worked example → Remedy → See also. Linked from <code>CLAUDE_MAINDOCS_INDEX.md</code>'s Quick Reference table.</p>
+            <div class="grid-1x3" style="gap: var(--space-4);">
+              <div class="card card-alt" data-tooltip="entire.io leak prevention, branch protection, secret-scanning push protection">
+                <div class="card-title">Public-Repo Hygiene</div>
+                <p class="card-body">Session-tracker auto-push, the four controls (branch protection, secret-scanning, gitignore, env-var hooks), worked filter-repo remediation.</p>
+              </div>
+              <div class="card card-alt" data-tooltip="Image dimensions, font loading, defer scripts, aspect-ratio containers">
+                <div class="card-title">Static-Site CLS</div>
+                <p class="card-body">The killer trio that prevents ~95% of layout shift. <code>width</code>/<code>height</code> attributes, font-display strategies, <code>defer</code> for scripts, programmatic CLS measurement.</p>
+              </div>
+              <div class="card card-alt" data-tooltip="Env-var paths, exit codes, never-block rule, four-rule portability pattern">
+                <div class="card-title">Claude Code Hooks</div>
+                <p class="card-body">How to write portable, fork-safe hooks: <code>$COWORK_LOG_DIR</code> with project-local fallback, exit-zero diagnostic rule, <code>set -u</code> not <code>set -e</code>, input validation.</p>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="accordion-item">
+          <summary>Audit Template <code>template-examples/audit-template/</code> <span class="tag" style="margin-left: auto; margin-right: var(--space-3);">README + 2 chunks</span></summary>
+          <div class="accordion-body">
+            <p>A pattern for running a periodic structured audit broken into 8–15 focused chunks. Each chunk is independently committable; findings flow to <code>FEEDBACK-LOOPS.md</code> and <code>DECISIONS.md</code>. Includes two worked sample chunks (project structure, convention conformance) with grep recipes for evidence gathering. Skip for projects with &lt; 5 conventions or &lt; 10 source files.</p>
+          </div>
+        </details>
+
+        <details class="accordion-item">
+          <summary>Template Examples <span class="tag" style="margin-left: auto; margin-right: var(--space-3);">6 files</span></summary>
           <div class="accordion-body">
             <p style="margin-bottom: var(--space-4);">Reference files for common extended concerns — only load these in sessions where they're relevant:</p>
             <div class="grid-1x3" style="gap: var(--space-4);">
               <div class="card card-alt" data-tooltip="7 patterns for using a second model as a consultant">
                 <div class="card-title">Gemini Consultancy</div>
-                <p class="card-body">Patterns for architecture audits, stuck-in-loop recovery, and decision validation using a second AI model.</p>
+                <p class="card-body">Patterns for architecture audits, stuck-in-loop recovery, decision validation, quality advocate, and recursive architecture testing.</p>
               </div>
-              <div class="card card-alt" data-tooltip="Hosting, domain, env vars, CI/CD, monitoring">
+              <div class="card card-alt" data-tooltip="Hosting, domain, env vars, CI/CD, monitoring, Vercel-specific section">
                 <div class="card-title">Server-Side Template</div>
-                <p class="card-body">Server-side architecture template. All values are placeholders — fill in as the project grows.</p>
+                <p class="card-body">Server-side architecture template — hosting, domain, env vars, CI/CD, monitoring. Vercel subsection included for Next.js projects.</p>
               </div>
               <div class="card card-alt" data-tooltip="Performance, HTML, CSS, JS, A11Y, SEO tables">
                 <div class="card-title">Standards Tracker</div>
                 <p class="card-body">Quality standards tracking table. All entries start as ⚠️ TBA — update as each standard is verified.</p>
+              </div>
+              <div class="card card-alt" data-tooltip="Kanban-in-prose phase table; conventions for inline vs standalone use">
+                <div class="card-title">Phase Status</div>
+                <p class="card-body">Kanban-in-prose template. Inline in <code>MAINDOCS_INDEX.md</code> for ≤15 rows; standalone <code>PHASE-STATUS.md</code> when the table grows.</p>
+              </div>
+              <div class="card card-alt" data-tooltip="Production runtime, migration state, long-running flags, open work, pre-launch, entry prompt">
+                <div class="card-title">State of Play</div>
+                <p class="card-body">"Settings — Current State of Play" sub-section template. Subsections explicitly prune-able per project type.</p>
+              </div>
+              <div class="card card-alt" data-tooltip="Per-session handoff template; pairs with State of Play">
+                <div class="card-title">Handoff Template</div>
+                <p class="card-body">Per-session handoff structure. Pairs with State of Play — handoff is what happened this session; State of Play is the project at session end.</p>
               </div>
             </div>
           </div>
@@ -234,10 +275,10 @@
       </div>
 
       <div class="grid-1x4">
-        <div class="card" data-tooltip="No !important, no inline styles, no max-width breakpoints, CSS custom properties everywhere">
+        <div class="card" data-tooltip="No !important, no inline styles, no max-width breakpoints, CSS custom properties everywhere; G14 hook portability + G15 session-tracker hygiene">
           <div class="card-meta">CORE_PATTERNS.md</div>
-          <div class="card-title">G1–G13 Constraints</div>
-          <p class="card-body">Thirteen do-not-break rules, each with the history behind it and correct/wrong code examples.</p>
+          <div class="card-title">G1–G15 Constraints</div>
+          <p class="card-body">Fifteen do-not-break rules, each with the history behind it and correct/wrong code examples. G14 (env-var hook paths) and G15 (gitignore session-trackers) added 2026-05-03.</p>
         </div>
         <div class="card" data-tooltip="A short, memorable list of hard prohibitions — never drift from these">
           <div class="card-meta">ARCHITECTURE.md</div>
@@ -294,7 +335,7 @@
         <details class="accordion-item">
           <summary>Codebase Audit</summary>
           <div class="accordion-body">
-            <p>Periodic full audit against G1–G13. The file <code>CODEBASE-AUDIT.md</code> chunks the codebase into manageable batches so the audit can be done across multiple sessions without losing track of what's been checked.</p>
+            <p>Periodic full audit against G1–G15. The file <code>CODEBASE-AUDIT.md</code> chunks the codebase into manageable batches so the audit can be done across multiple sessions without losing track of what's been checked. The <code>template-examples/audit-template/</code> directory provides a structured chunked-audit pattern with worked sample chunks for projects that have grown past ~5 conventions.</p>
           </div>
         </details>
 
@@ -490,7 +531,8 @@
 
       <div style="margin-top: var(--space-10);">
         <h3 style="font-size: var(--font-size-xl); margin-bottom: var(--space-4);">Entry Prompt — Hybrid Session (Default)</h3>
-        <pre>Read docs/plan/handoff_[latest].md, docs/plan/tasklist.md, and docs/ARCHITECTURE.md.
+        <pre>Read docs/plan/handoff_[latest].md, docs/plan/tasklist.md,
+docs/architecture/CLAUDE_MAINDOCS_INDEX.md, and docs/ARCHITECTURE.md.
 The task is: [task description].</pre>
       </div>
     </section>
