@@ -19,7 +19,7 @@
 - **Hosting:** [GitHub Pages / Vercel / Cloudflare Pages] — branch `main` auto-deploys
 - **Domain:** [domain.com] (CNAME to [hosting provider])
 - **Repository:** [https://github.com/[owner]/[repo]]
-- **Local dev:** `npx live-server` — http://127.0.0.1:5500
+- **Local dev:** `npx live-server` — <http://127.0.0.1:5500>
 
 ---
 
@@ -55,7 +55,7 @@ Any value read from `localStorage` is validated before use: type-checked, parsed
 
 ## File Structure
 
-```
+```text
 [project-root]/
 ├── index.html              # Main entry point
 │
@@ -101,7 +101,7 @@ Any value read from `localStorage` is validated before use: type-checked, parsed
 
 ## Page / Script Dependency Diagram
 
-```
+```text
 index.html
 ├── styles/theme.css          (design tokens — always first)
 ├── styles/global.css         (base resets and element defaults)
@@ -137,7 +137,7 @@ Font sizes use `em` so they scale relative to the element's inherited font size.
 
 ## Data Flow
 
-```
+```text
 [Describe the main data flow for this project — e.g. user interaction → JS → state → DOM update]
 
 Example:

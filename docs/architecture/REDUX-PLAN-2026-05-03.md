@@ -14,7 +14,7 @@ Crucially, hardy-succulents' state-of-play index is project-specific (Shopify, V
 
 ## Comparative survey — what each repo has
 
-```
+```text
 hardy-succulents/docs/architecture/                white-hat-label/docs/architecture/
 ├── ARCHITECTURE.md                                ├── ARCHITECTURE.md
 ├── ARCHITECTURE_EXTENSION.md                      ├── ARCHITECTURE_EXTENSION.md
@@ -184,7 +184,7 @@ Single session can handle A + start of B. Two sessions safer. Three sessions com
 
 ## Suggested entry prompt for next session
 
-```
+```text
 Read docs/architecture/REDUX-PLAN-2026-05-03.md and the latest handoff
 in docs/plan/. Continue the architecture redux at Phase A. The plan is
 additive — no existing docs are deleted; new template files are added

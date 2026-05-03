@@ -77,7 +77,7 @@
 
 > The verbatim prompt to paste into the next session. Should reference the latest handoff and this section, plus the immediate goal.
 
-```
+```text
 Read docs/plan/handoff_[YYYY-MM-DD].md and
 docs/architecture/CLAUDE_MAINDOCS_INDEX.md "## Settings — Current State of Play".
 Continuing [phase / task]. Need to:

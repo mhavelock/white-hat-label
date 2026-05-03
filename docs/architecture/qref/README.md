@@ -33,7 +33,7 @@ If you can capture the lesson in ≤ 3 bullets in `CLAUDE_MAINDOCS_INDEX.md`'s *
 
 ## Naming convention
 
-```
+```text
 qref/qr-<kebab-topic>.md
 ```
 

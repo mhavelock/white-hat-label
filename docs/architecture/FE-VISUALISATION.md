@@ -8,7 +8,7 @@ Documented approach models, wins, and hard rules for visual debugging on web pro
 
 Start here before reaching for any tool. Pick the **lowest-friction option that answers the question**.
 
-```
+```text
 Is there already a screenshot in the conversation?
   └─ YES → Use it. Don't re-capture.
   └─ NO ↓
@@ -174,7 +174,7 @@ Standard viewports to test at for any layout change:
 
 ## Hard Rules Summary
 
-```
+```text
 FE VISUALISATION HARD RULES
 
 1. Never fix a visual bug without looking first — snap or screenshot before proposing

@@ -66,7 +66,7 @@ All three checks clean — no urgent rotation needed. Proceeded to Phase 1 at no
 
 ## Per-project quick reference (fill-in)
 
-```
+```text
 Project: white-hat-label
 Repo URL: https://github.com/mhavelock/white-hat-label
 Visibility: public

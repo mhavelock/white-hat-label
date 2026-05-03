@@ -134,7 +134,7 @@
 
 ### Production runtime
 
-- [FILL PER PROJECT — e.g. "Public site: https://example.com — live on GitHub Pages, builds green"]
+- [FILL PER PROJECT — e.g. "Public site: <https://example.com> — live on GitHub Pages, builds green"]
 - [FILL PER PROJECT — e.g. "Render mode: static; no server runtime"]
 
 ### Long-running flags
@@ -153,7 +153,7 @@
 
 ### Entry prompt for next session
 
-```
+```text
 [FILL PER PROJECT — the verbatim prompt to paste into the next session;
  should reference the latest handoff and this file's "Settings" section]
 ```

@@ -271,7 +271,7 @@ In-place filter-repo is right for "I want to pre-emptively clean up before going
 
 When applying to a new project, fill these in and save it next to this file:
 
-```
+```text
 Project: <name>
 Repo URL: <url>
 Visibility: <public/private>

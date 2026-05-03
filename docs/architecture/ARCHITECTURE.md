@@ -37,7 +37,7 @@ For the full ADR register (why each decision was made, alternatives considered),
 
 ## File Structure
 
-```
+```text
 [Define once the project is scaffolded — list key directories and their responsibilities]
 ```
 
@@ -47,7 +47,7 @@ For the full ADR register (why each decision was made, alternatives considered),
 
 [Describe how data moves through the system — from user input to render output. Use a simple diagram or numbered steps.]
 
-```
+```text
 [User action] → [State / Store] → [API call] → [Response] → [Render]
 ```
 

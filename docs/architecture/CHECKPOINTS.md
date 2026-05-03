@@ -9,14 +9,14 @@ Automatic checkpoint writing at defined trigger points — not requiring the use
 Without explicit checkpoints, the session handoff is the only durability mechanism. If context compacts mid-session or a session ends abruptly, the in-progress state is lost.
 
 **The GitHub analogy:**
-```
+```text
 Issue opened → branch created → commit pushed → CI runs → PR merged → deploy → monitoring
    ↕               ↕              ↕              ↕          ↕           ↕          ↕
  ticket          state         diff saved     test log   merged     live log   alert log
 ```
 
 Every stage produces an artifact. For this project:
-```
+```text
 Task starts → work done → checkpoint written → session ends → handoff → next session
    ↕              ↕              ↕                  ↕             ↕          ↕
 tasklist.md   CORE_PATTERNS   mini-checkpoint    handoff.md    MEMORY.md  /session-start
@@ -101,7 +101,7 @@ For runtime JS errors on the page.
 - Visual glitches that could be JS-related
 
 **Common patterns to look for:**
-```
+```text
 Uncaught TypeError: ...              → JS error — check the file and line
 Failed to read 'localStorage'        → Private browsing mode or storage quota
 ReferenceError: X is not defined     → Module not loaded or wrong script load order
@@ -112,7 +112,7 @@ Uncaught SyntaxError: ...            → Parse error in a JS file
 
 When the user reports a runtime problem, run this sequence before touching code:
 
-```
+```text
 1. git log --oneline -5            → Did something recent change?
 2. fe-visualisation snap           → What does the UI actually look like right now?
 3. Ask for browser console output  → Any JS errors?

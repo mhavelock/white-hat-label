@@ -34,7 +34,7 @@ Public repos default to "everything tracked is public." Tracked-by-accident is t
 
 A routine `git branch -r` on this repo showed:
 
-```
+```text
 origin/main
 origin/entire/checkpoints/v1   ← unexpected
 ```
@@ -101,7 +101,7 @@ GitHub: Settings → Code security → Secret scanning → **Push protection: en
 
 ### 3. `.gitignore` for session and plan artefacts
 
-```
+```text
 # Session trackers
 .entire/
 .aider/

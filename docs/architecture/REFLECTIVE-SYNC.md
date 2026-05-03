@@ -13,7 +13,7 @@ Without deliberate synchronisation, AI-assisted development accumulates drift: d
 ## Session Start
 
 Load minimum context:
-```
+```text
 Read docs/plan/handoff_[latest].md, docs/plan/tasklist.md, and docs/ARCHITECTURE.md.
 The task is: [task description].
 ```
@@ -21,7 +21,7 @@ The task is: [task description].
 For architecture work, also load `docs/architecture/CORE_PATTERNS.md`.
 
 For a completely fresh read (no prior session context):
-```
+```text
 Read docs/ARCHITECTURE.md and docs/architecture/CORE_PATTERNS.md. The task is: [task description].
 Do not read any handoffs or session history. Approach this as if you have never seen this code before.
 ```
@@ -31,13 +31,13 @@ Do not read any handoffs or session history. Approach this as if you have never 
 ## Before a Significant Code Change
 
 Check against constraints:
-```
+```text
 Read docs/architecture/CORE_PATTERNS.md.
 I'm about to [describe change]. Does this violate any of G1–G15?
 ```
 
 For changes to core files or patterns:
-```
+```text
 Read docs/ARCHITECTURE.md §"What We Never Do" and docs/SYSTEM.md.
 I want to [describe change]. Is this consistent with the architectural decisions recorded here?
 If not, what would need to change in the docs to support it?
@@ -48,12 +48,12 @@ If not, what would need to change in the docs to support it?
 ## After Completing Code Changes
 
 Check if docs need updating:
-```
+```text
 I changed [file]. Does docs/ARCHITECTURE.md or docs/SYSTEM.md need updating?
 ```
 
 Check for constraint compliance:
-```
+```text
 Review the changes in [file] against G1–G15 in docs/architecture/CORE_PATTERNS.md.
 Flag any violations or potential regressions.
 ```
@@ -63,7 +63,7 @@ Flag any violations or potential regressions.
 ## Session End
 
 Write handoff per `docs/plan/plan-rules.md` Rule 1:
-```
+```text
 Write a session handoff to docs/plan/handoff_YYYY-MM-DD.md covering:
 - What was done this session
 - Files changed and how
@@ -79,7 +79,7 @@ Write a session handoff to docs/plan/handoff_YYYY-MM-DD.md covering:
 ### Contradiction Hunt
 
 Feed the architecture docs to Gemini or a fresh Claude session:
-```
+```text
 Read docs/ARCHITECTURE.md, docs/SYSTEM.md, and docs/architecture/CORE_PATTERNS.md.
 Identify the top 5 internal contradictions or tensions between these documents.
 For each: quote both sides of the tension, and suggest a resolution.
@@ -88,7 +88,7 @@ For each: quote both sides of the tension, and suggest a resolution.
 ### Drift Check
 
 Test whether the docs still match the code:
-```
+```text
 Read docs/ARCHITECTURE.md and docs/architecture/CORE_PATTERNS.md.
 Then read [key files — e.g. styles/theme.css, js/main.js].
 Are there any divergences between what the docs describe and what the code actually does?
@@ -100,7 +100,7 @@ Are there any divergences between what the docs describe and what the code actua
 
 Run Phase 0 of `docs/security-sweep-playbook.md` as a 3-min triage. Use this prompt:
 
-```
+```text
 Read docs/security-sweep-playbook.md.
 Run Phase 0 (3-min triage) on this repo. Check:
 - git log --all -- '.env*' for any committed env files

@@ -19,7 +19,7 @@ Use **GitHub on your local machine** as the source of truth, and **Cowork for de
 
 ### Workflow Pattern
 
-```
+```text
 Local Machine (Your Mac)
     ↓ (push)
 GitHub Repository
@@ -177,7 +177,7 @@ cp /path/to/cowork/eruditorum/VERIFICATION_COMPLETE.md ~/eruditorum/
 
 ### 4. Create PR on GitHub.com (1 min)
 
-- Go to https://github.com/mhavelock/eruditorum
+- Go to <https://github.com/mhavelock/eruditorum>
 - You'll see "Compare & pull request" button
 - Click it
 - Add description

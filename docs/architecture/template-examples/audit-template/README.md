@@ -35,7 +35,7 @@ Don't run an audit:
 
 ## Directory structure
 
-```
+```text
 docs/architecture/audit-YYYY-MM-DD/
 ├── README.md           # what this audit covers, who ran it, summary findings
 ├── 1-structure.md      # project structure, file organisation, naming
@@ -95,7 +95,7 @@ Every chunk follows this skeleton:
 
 ## Naming convention
 
-```
+```text
 docs/architecture/audit-YYYY-MM-DD/<N>-<kebab-topic>.md
 ```
 

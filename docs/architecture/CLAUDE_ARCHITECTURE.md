@@ -6,7 +6,7 @@ A quick guide to what each architecture document is for and when to load it.
 
 ## The Document Hierarchy
 
-```
+```text
 docs/
 ├── ARCHITECTURE.md                     # L1 — What the project is; structural decisions; never-do rules
 ├── SYSTEM.md                           # L1 — Developer rules; naming conventions; HTML/CSS/JS standards
@@ -50,14 +50,14 @@ If MAINDOCS_INDEX's Quick Reference table points to a `qref/<file>` for the topi
 ## Entry Prompts
 
 **Standard (default):**
-```
+```text
 Read docs/plan/handoff_[latest].md, docs/plan/tasklist.md,
 docs/architecture/CLAUDE_MAINDOCS_INDEX.md, and docs/ARCHITECTURE.md.
 The task is: [task description].
 ```
 
 **Fresh read (no prior context):**
-```
+```text
 Read docs/architecture/CLAUDE_MAINDOCS_INDEX.md, docs/ARCHITECTURE.md,
 and docs/architecture/CORE_PATTERNS.md.
 The task is: [task description].
@@ -65,7 +65,7 @@ Do not read any handoffs or session history. Approach this as if you have never 
 ```
 
 **Deep (bug investigation):**
-```
+```text
 Read docs/plan/handoff_[latest].md, docs/plan/tasklist.md,
 docs/architecture/CLAUDE_MAINDOCS_INDEX.md, docs/ARCHITECTURE.md,
 docs/architecture/CORE_PATTERNS.md, and docs/architecture/ARCHITECTURE_EXTENSION.md.

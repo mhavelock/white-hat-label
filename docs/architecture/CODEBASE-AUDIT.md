@@ -10,7 +10,7 @@ These paths should not be loaded into AI context for audits. They are either bin
 
 ### Hard exclusions (never load)
 
-```
+```text
 .git/                           # version history — use git log/diff instead
 assets/photos/                  # binary files
 assets/graphics/                # visual assets
@@ -22,7 +22,7 @@ CNAME                           # single-line domain file
 
 ### Soft exclusions (load only if specifically relevant)
 
-```
+```text
 docs/plan/              # historical session summaries
 js/logger.js                    # dev utility, not application logic
 ```
@@ -74,7 +74,7 @@ Check each chunk against the global constraints from `CORE_PATTERNS.md`. For eac
 
 Use this prompt to run a full audit chunk:
 
-```
+```text
 Read [list of files].
 Then read docs/ARCHITECTURE.md §"What We Never Do" and docs/architecture/CORE_PATTERNS.md.
 
