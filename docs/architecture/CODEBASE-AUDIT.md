@@ -78,7 +78,7 @@ Use this prompt to run a full audit chunk:
 Read [list of files].
 Then read docs/ARCHITECTURE.md §"What We Never Do" and docs/architecture/CORE_PATTERNS.md.
 
-Audit the files against G1–G13. For each constraint, verdict: ✅ Pass / ⚠️ Warning / ❌ Fail.
+Audit the files against G1–G15. For each constraint, verdict: ✅ Pass / ⚠️ Warning / ❌ Fail.
 List all failures and warnings with line numbers and specific fixes.
 Also check for: code organisation improvements, unused CSS/JS, accessibility issues, and security concerns.
 ```
@@ -89,7 +89,7 @@ Also check for: code organisation improvements, unused CSS/JS, accessibility iss
 
 After any audit session:
 
-- [ ] All G1–G13 failures fixed
+- [ ] All G1–G15 failures fixed
 - [ ] `npx html-validate` passes — no errors or warnings
 - [ ] `docs/ARCHITECTURE.md` updated if any structural decisions changed
 - [ ] New constraints added to `CORE_PATTERNS.md` if any new patterns were established

@@ -183,7 +183,7 @@ Apply when: starting work on any JS or CSS file, before adding a new page or com
 ### Anchoring Prompt Templates
 
 **Before any JS change:**
-> "Read `docs/architecture/CORE_PATTERNS.md`. I need to [task]. Ensure your solution does not regress: the G1–G13 constraints, any existing localStorage sanitisation patterns, and module isolation (no new globals)."
+> "Read `docs/architecture/CORE_PATTERNS.md`. I need to [task]. Ensure your solution does not regress: the G1–G15 constraints, any existing localStorage sanitisation patterns, and module isolation (no new globals)."
 
 **Before any CSS change:**
 > "Read `docs/architecture/CORE_PATTERNS.md §Global Constraints`. I need to [task]. Ensure: no inline styles, no `!important`, no `max-width` breakpoints (mobile-first `min-width` only), and all colours and spacing via CSS custom properties from `theme.css`."

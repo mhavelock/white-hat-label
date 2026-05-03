@@ -33,7 +33,7 @@ Do not read any handoffs or session history. Approach this as if you have never 
 Check against constraints:
 ```
 Read docs/architecture/CORE_PATTERNS.md.
-I'm about to [describe change]. Does this violate any of G1–G13?
+I'm about to [describe change]. Does this violate any of G1–G15?
 ```
 
 For changes to core files or patterns:
@@ -54,7 +54,7 @@ I changed [file]. Does docs/ARCHITECTURE.md or docs/SYSTEM.md need updating?
 
 Check for constraint compliance:
 ```
-Review the changes in [file] against G1–G13 in docs/architecture/CORE_PATTERNS.md.
+Review the changes in [file] against G1–G15 in docs/architecture/CORE_PATTERNS.md.
 Flag any violations or potential regressions.
 ```
 

@@ -140,6 +140,6 @@ Each grep produces candidate lines for review. Many will be false positives (e.g
 ## See also
 
 - `SYSTEM.md` — developer rules and naming conventions.
-- `CORE_PATTERNS.md` — G1–G13 constraints (the "do not break" checklist).
+- `CORE_PATTERNS.md` — G1–G15 constraints (the "do not break" checklist).
 - `ARCHITECTURE_EXTENSION.md` — coding standards detail.
 - `FEEDBACK-LOOPS.md` — durable home for confirmed wins/limits.
