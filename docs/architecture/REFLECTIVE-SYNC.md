@@ -96,6 +96,32 @@ Are there any divergences between what the docs describe and what the code actua
 
 ---
 
+## Security Sync (before any major release)
+
+Run Phase 0 of `docs/security-sweep-playbook.md` as a 3-min triage. Use this prompt:
+
+```
+Read docs/security-sweep-playbook.md.
+Run Phase 0 (3-min triage) on this repo. Check:
+- git log --all -- '.env*' for any committed env files
+- git branch -r for shadow branches (entire/, aider/, cursor-derived)
+- bundle output for vendor-prefixed env vars (NEXT_PUBLIC_*, VITE_*)
+- .gitignore covers .entire/, .claude/logs/, .claude/.backups/, /docs/plan/**
+- branch protection on main is intact (allow_force_pushes:false)
+Report: PASS / FAIL with findings. If FAIL, list remediation steps in priority order.
+```
+
+Run before:
+
+- Any major release.
+- Adopting a new AI tool that integrates with git (session trackers, agentic dev tools, AI commit-message generators).
+- Onboarding a new contributor with push access.
+- Quarterly cadence as a backstop.
+
+Cross-ref `FEEDBACK-LOOPS.md` FL-10 and `BREAKTHROUGHS.md` B-01 for the incident that drove this.
+
+---
+
 ## Red Team Reset
 
 **The premise:** After many iterations on a problem, context accumulates recency bias — optimising for the constraints learned recently, not the ideal solution. A fresh-context read bypasses this.

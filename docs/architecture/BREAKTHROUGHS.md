@@ -12,20 +12,28 @@ When you solve a problem in a way that was non-obvious — or when you find that
 
 ---
 
-## B-01: [Breakthrough name]
+## B-01: entire.io session-tracker leak diagnosis
 
-**Date:** YYYY-MM-DD
-**Session type:** [Performance / Bug fix / Architecture / Refactor / Feature]
+**Date:** 2026-05-03
+**Session type:** Security / public-repo posture
 
-**Situation:** [Describe what the problem or situation was. What was observed? What was the symptom?]
+**Situation:** Routine `git branch -r` on the white-hat-label public repo showed an unexpected `origin/entire/checkpoints/v1` branch with 9 commits. Each commit was an entire.io session checkpoint pushed automatically by the tool's default behaviour. `git show` on any commit revealed full conversation transcripts — code, prompts, internal reasoning, vendor names, process notes. **No credentials**, but high-context IP and process leakage, world-readable on a public repo.
 
-**Temptation:** [What was the easy or obvious response that would have been wrong — or at least suboptimal?]
+**Temptation:** Delete the branch (`git push origin --delete entire/checkpoints/v1`), assume the leak was contained, move on. The checkpoints would still exist in any clone made during the leak window, but the immediate source would be gone.
 
-**What we actually did:** [The actual solution chosen. Be specific — name files, functions, or patterns involved.]
+**What we actually did:** Multi-step remediation in the right order:
+1. **Stop future leakage first** — `entire enable --skip-push-sessions` (must precede history rewrite, otherwise the next session pushes a fresh checkpoint).
+2. **Strip from history** — `git filter-repo --invert-paths --path .entire/`.
+3. **Delete remote shadow branches** — `git push origin --delete entire/checkpoints/v1`.
+4. **Delete local shadows** — `git branch | grep entire/ | xargs git branch -D`.
+5. **Force-push cleaned main** — `git push --force-with-lease origin main`.
+6. **Add to `.gitignore`** — `.entire/` plus matching patterns for `.aider/`, `.cursor/`-style trackers.
+7. **Add branch protection** — prevent future accidental force-push (see ADR-006).
+8. **Add `docs/security-sweep-playbook.md`** — formalise the audit so the next sweep is repeatable, not improvisational.
 
-**Lesson:** [The generalised principle extracted from this. What does this mean for future decisions?]
+**Lesson:** Any tool with default-on push to origin is a leak vector until proven otherwise. The remediation cost (an afternoon of filter-repo + force-push + branch-protection setup) is permanent and incomplete — anything cloned during the leak window is already out. The prevention cost (one flag, set once before first use) is trivial. Generalises beyond entire.io: assume hostile defaults on any third-party tool that touches version control or pushes artefacts. Also: order matters in remediation — opt out *before* rewriting history, not after.
 
-**ADR reference:** [ADR-00X if a formal decision was recorded, or "none"]
+**ADR reference:** ADR-005 (two-phase security playbook), ADR-006 (branch protection), ADR-007 (opt-out for session-trackers).
 
 ---
 

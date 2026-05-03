@@ -39,6 +39,7 @@ Claude should self-trigger a write at each of these events without being asked.
 | **New feedback loop** | Win locked in, limit set, explicit "no" | `docs/architecture/FEEDBACK-LOOPS.md` | New FL-XX entry. |
 | **Context ~70% full** | Estimated from session length / output density | `docs/plan/recovery_[date].md` | Current open tasks + critical in-progress state. Notify user. |
 | **Session end** | User signals end or context compaction imminent | `docs/plan/handoff_[date].md` | Full handoff (see `docs/plan/plan-rules.md` Rule 1 format). |
+| **Security-relevant change** | Any commit touching `.gitignore`, `.claude/hooks/`, `settings*.json`, secrets handling, or branch protection | `docs/plan/handoff_[date].md` | "Security checkpoint: [what changed]. Phase 0 status: [pass/fail/N/A]. Branch protection: [intact/changed]." Cross-ref `docs/security-sweep-playbook.md` if Phase 0 was run. |
 
 ---
 

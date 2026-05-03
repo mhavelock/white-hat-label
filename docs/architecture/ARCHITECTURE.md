@@ -1,6 +1,6 @@
 # Architecture — [PROJECT_NAME]
 
-> L1 — Load for every session. This is what the project is, how it is structured, and what it never does.
+> L1 — Load for every session alongside `CLAUDE_MAINDOCS_INDEX.md`. This is what the project is, how it is structured, and what it never does. The MAINDOCS_INDEX is *current state* (changes session-to-session); this file is *rules and structure* (changes rarely).
 
 ---
 
@@ -62,7 +62,7 @@ These are absolute constraints. Violations require a new ADR, not just a comment
 - [Example: Never use `innerHTML` with dynamic content — XSS risk]
 - [Add project-specific constraints as they are established]
 
-The compact checklist form of these rules is in `CORE_PATTERNS.md` (G1–G13 table).
+The compact checklist form of these rules is in `CORE_PATTERNS.md` (G1–G15 table).
 
 ---
 

@@ -1,6 +1,6 @@
 # System Rules — [PROJECT_NAME]
 
-> L1 — Load for any session involving code changes. These are the developer rules: naming, structure, and hard constraints.
+> L1 — Load for any session involving code changes. These are the developer rules: naming, structure, and hard constraints. Pair with `architecture/CLAUDE_MAINDOCS_INDEX.md` for current state of play (current phase, env vars, open work) — that file is *live state*, this one is *fixed rules*.
 
 ---
 
@@ -86,6 +86,9 @@
 
 - Never commit API keys, secrets, or `.env` files to git.
 - Never log sensitive data (API keys, user PII, auth tokens).
+- Gitignore session-tracker dirs (`.entire/`, `.aider/`, `.cursor/`-derived) AND opt out of auto-push at the tool level (G15). Gitignore alone does not stop a tool's own push hook.
+- No hardcoded `/Users/<name>/...` paths in tracked scripts (G14). Use `${COWORK_LOG_DIR:-$(git rev-parse --show-toplevel)/.claude/logs}` style fallback.
+- Run Phase 0 of `docs/security-sweep-playbook.md` (3-min triage) before any major release.
 - [Add project-specific security rules as they are established]
 
 ---

@@ -27,6 +27,8 @@ Stated as rules. Each one is absolute — no exceptions without a new ADR.
 | **G11** | Skip `alt`, `width`, `height` on images | Required on every `<img>` | Missing `alt` fails accessibility; missing dimensions cause CLS |
 | **G12** | Use `innerHTML` with dynamic content | Sanitise input or use `textContent` / DOM methods | `innerHTML` with user-supplied data is an XSS vector |
 | **G13** | Override `html` or `body` font-size | Leave browser default (16px) intact | Overriding breaks rem-based accessibility — users who set a larger base font lose that setting |
+| **G14** | Hardcode `/Users/<name>/...` paths in `.claude/hooks/*.sh` (or any tracked script) | Derive at runtime — `${COWORK_LOG_DIR:-$(git rev-parse --show-toplevel)/.claude/logs}` | Forks inherit unusable paths; hardcoded usernames leak in public repos |
+| **G15** | Let session-tracker dirs (`.entire/`, `.aider/`, `.cursor/`-derived) reach origin on a public repo | Gitignore them and disable auto-push (e.g. `entire enable --skip-push-sessions`) | Session transcripts are full conversation dumps — IP/process leak even without credentials |
 
 ---
 
@@ -67,6 +69,12 @@ Minimum standards that all new code must meet.
 
 **G12 — No innerHTML with dynamic content**
 `innerHTML` with user-supplied strings is an XSS vector. If the string contains `<script>`, `<img onerror=...>`, or other executable HTML, it runs in the user's browser context. Use `textContent` for text, `createElement` + `appendChild` for DOM construction, or sanitise the string with a trusted library before passing to `innerHTML`.
+
+**G14 — Env-var-driven hook paths**
+A hook with `LOG_DIR="/Users/mat/..."` works on Mat's machine and nowhere else. Fork it and the hook either silently fails (`mkdir` on a non-existent path) or noisily blocks the underlying tool call (non-zero exit). Both modes are bad. Pattern: `LOG_DIR="${COWORK_LOG_DIR:-$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.claude/logs}"`. Cross-project log aggregation if the env var is set; project-local fallback (gitignored) otherwise. Born from the security sweep on 2026-05-03 — see `qref/qr-claude-code-hooks.md`.
+
+**G15 — Gitignore session-tracker artefacts**
+Session-tracker tools (entire.io, aider, cursor-derived) often default to auto-pushing checkpoint branches to origin. On a public repo, those checkpoint commits are full conversation transcripts — high-context IP and process leaks even when no credentials are involved. Gitignore the artefact dir AND opt out of auto-push at the tool level. Gitignore alone is not enough — the tool's own push hook bypasses the working tree. Born from the `entire/checkpoints/v1` leak on 2026-05-03 — see `qref/qr-public-repo-hygiene.md`.
 
 ---
 
@@ -235,3 +243,5 @@ Run before committing any change to `js/` or `styles/`:
 - [ ] No `innerHTML` with dynamic/user content
 - [ ] Every `<img>` has `alt`, `width`, `height`
 - [ ] `const` and `let` only — no `var`
+- [ ] No hardcoded `/Users/<name>/...` in tracked scripts (use env-var with project-local fallback)
+- [ ] Session-tracker dirs (`.entire/`, `.aider/`, etc.) gitignored AND auto-push disabled at the tool level

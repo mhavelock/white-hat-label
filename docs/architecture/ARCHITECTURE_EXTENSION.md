@@ -33,6 +33,29 @@ All colours, spacing, and transitions defined in `theme.css`. Feature namespaces
 
 ---
 
+### Hook Conventions
+
+Hooks in `.claude/hooks/*.sh` run on every relevant tool call. They must work on every developer's machine, never block legitimate work, and never leak the original author's username via hardcoded paths. Four rules:
+
+**1. Env-var-driven paths.** Never hardcode `/Users/<name>/...`. Pattern:
+
+```bash
+LOG_DIR="${COWORK_LOG_DIR:-$(git rev-parse --show-toplevel 2>/dev/null || pwd)/.claude/logs}"
+mkdir -p "$LOG_DIR" 2>/dev/null || exit 0
+```
+
+If a cross-project env var (`$COWORK_LOG_DIR`, `$COWORK_BACKUP_DIR`) is set, use it. Otherwise fall back to a project-local directory that's already in `.gitignore`. (See `CORE_PATTERNS.md` G14.)
+
+**2. Diagnostic hooks always exit 0.** Logging, backup, telemetry hooks: never block the underlying tool call on failure. End the script with `exit 0`. Gating hooks (path-guards, secret-scanners) are the exception — they exit non-zero deliberately, and must document this at the top of the script.
+
+**3. `set -u`, not `set -e`.** `set -u` catches typos; `set -e` turns "log directory missing" into "tool call blocked." If a section genuinely needs `set -e`, scope it inside a subshell.
+
+**4. Validate inputs.** Tool inputs arrive via env vars (`$TOOL_NAME`, `$TOOL_INPUT`) and may contain newlines or shell metacharacters. Truncate and strip before piping into commands.
+
+Full reference: `qref/qr-claude-code-hooks.md` (worked example, four-rules detail, sample header).
+
+---
+
 ### JS Conventions
 
 **Module pattern (IIFE):** Every JS file is a self-contained IIFE that exposes a named object. No globals. No shared mutable state between files.

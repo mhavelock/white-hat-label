@@ -83,3 +83,22 @@ Inline styles bypass the design token system, create specificity issues, and are
 ### FL-09: No `innerHTML` with dynamic content
 
 XSS risk. Use `textContent`, `createElement`, or a trusted sanitisation library. No exceptions for user-supplied content.
+
+---
+
+## Category 4: Security & Public-Repo Hygiene
+
+### FL-10: entire.io session-tracker leak — assume hostile defaults on third-party tools
+
+**What happened:** On 2026-05-03 a routine `git branch -r` on this public repo revealed `origin/entire/checkpoints/v1` — 9 commits of full session transcripts pushed automatically by entire.io's default-on push behaviour. No credentials leaked, but full conversation context was world-readable. Remediation required `git filter-repo`, force-push, branch protection, and a repeatable security-sweep playbook. See `BREAKTHROUGHS.md` B-01 and `qref/qr-public-repo-hygiene.md`.
+
+**Win locked in:** Two-phase security playbook adopted (ADR-005). Branch protection on `main` (ADR-006). Session-tracker opt-out before first use (ADR-007). Three new gitignore patterns: `.entire/`, `.aider/`, `.cursor/` derivatives.
+
+**Rule extracted:** Any third-party tool that touches version control or pushes artefacts is a leak vector until proven otherwise. The cost of opting out before first use is trivial; the cost of remediation is permanent and incomplete (anything cloned during the leak window is already out).
+
+**How to apply:**
+1. Before adopting any AI tool that integrates with git (session trackers, AI commit-message generators, agentic dev tools), check the docs for default push / sync behaviour.
+2. If default-on push exists, opt out before the first run — not as a remediation step.
+3. Add a matching gitignore pattern even if the tool claims to manage its own paths.
+4. Run Phase 0 of the security playbook (3-min triage) at every major release as a backstop.
+5. On a public repo, treat every commit as world-readable and every branch as a publishing surface — include `entire/`, `aider/`, and similar patterns in the protected-branch posture.

@@ -33,6 +33,8 @@ js/logger.js                    # dev utility, not application logic
 
 Break the codebase into chunks that fit within a single context load. Each chunk should be auditable in isolation.
 
+For a **structured, repeatable audit** with chunk files committed to a dated directory (`docs/architecture/audit-YYYY-MM-DD/`), use the chunked-audit pattern in `template-examples/audit-template/`. That pattern is best for periodic audits whose findings should accumulate over time. The simple chunk table below is for one-off in-session audits where the deliverable is a chat response, not a tracked artefact.
+
 | Chunk | Files | Focus |
 |-------|-------|-------|
 | **A1 — HTML** | `index.html`, `[other].html` | Semantics, accessibility, SEO, meta tags, script loading |
@@ -40,10 +42,11 @@ Break the codebase into chunks that fit within a single context load. Each chunk
 | **A3 — Component CSS** | `components.css`, `badges.css`, `custom.css` | Component patterns, namespace isolation |
 | **A4 — JS** | `main.js`, `[feature].js` | Module patterns, localStorage handling, event listeners |
 | **A5 — Docs** | `docs/ARCHITECTURE.md`, `docs/SYSTEM.md`, `docs/architecture/CORE_PATTERNS.md` | Accuracy of docs vs actual code |
+| **A6 — Security** | `.gitignore`, `.claude/hooks/`, `settings*.json` | Public-repo posture; runs Phase 0 of `docs/security-sweep-playbook.md` |
 
 ---
 
-## 3. Audit Guidelines (G1–G13)
+## 3. Audit Guidelines (G1–G15)
 
 Check each chunk against the global constraints from `CORE_PATTERNS.md`. For each constraint, verdict: ✅ Pass / ⚠️ Warning / ❌ Fail.
 
@@ -62,6 +65,8 @@ Check each chunk against the global constraints from `CORE_PATTERNS.md`. For eac
 | G11 — Image attributes | Every `<img>` has `alt`, `width`, `height` |
 | G12 — No `innerHTML` with dynamic content | Dynamic content uses `textContent` or DOM methods |
 | G13 — No font-size override | `html`/`body` font-size not set |
+| G14 — Env-var-driven hook paths | No `/Users/<name>/...` in tracked scripts; `${COWORK_LOG_DIR:-...}` pattern with project-local fallback |
+| G15 — Gitignore session-tracker artefacts | `.entire/`, `.aider/`, `.cursor/`-derived dirs gitignored AND auto-push disabled at the tool level |
 
 ---
 

@@ -67,3 +67,48 @@ When a significant technical decision is made — a choice that would be expensi
 - [...]
 
 **Why [...]:** [...]
+
+---
+
+## ADR-005: Two-phase security playbook for public repos
+
+**Decision:** Every public repo runs **Phase 0** (3-min triage) before any major release and **Phase 1** (full status table) before going public for the first time. Playbook lives at `docs/security-sweep-playbook.md`.
+
+**Context:** White-hat-label was made public without a structured security sweep, leading to the discovery on 2026-05-03 of the entire.io session-tracker leak (full conversation transcripts published to a public branch). A repeatable playbook is the only way to catch this category of leak before it reaches origin.
+
+**Alternatives:**
+- Ad-hoc audits — relies on memory; fails the moment a session is rushed.
+- Third-party scanner only (e.g. truffleHog, gitleaks) — catches credentials but misses IP/process leaks (transcripts contain no secrets), client-bundle env-var leakage, hardcoded user paths.
+- Manual review at PR time — doesn't help on direct-to-main projects, and humans skim.
+
+**Why two-phase playbook:** Phase 0 is small enough to run unprompted (3 minutes). Phase 1 produces a status table that future audits diff against — drift is visible. The playbook explicitly covers the categories third-party scanners miss (session-tracker artefacts, plan workspaces, vendor-prefixed env-var leakage). See `BREAKTHROUGHS.md` B-01 for the incident that drove this.
+
+---
+
+## ADR-006: Branch protection on `main`
+
+**Decision:** GitHub branch protection on `main` with `allow_force_pushes: false`, `allow_deletions: false`, `enforce_admins: false` (admin bypass on for the owner).
+
+**Context:** The 2026-05-03 security sweep required a `git filter-repo` + force-push to strip leaked content. Mid-sweep, the realisation: nothing was preventing an accidental force-push at any other moment. Branch protection was added after the sweep, with admin bypass retained for legitimate emergency rewrites.
+
+**Alternatives:**
+- No protection — the previous default; one mistyped command rewrites public history.
+- Full lockdown (`enforce_admins: true`) — blocks Mat from running another emergency filter-repo; would have prevented the very sweep that surfaced the need for this ADR.
+- Per-PR review required — overkill for a solo project; adds ceremony to every commit.
+
+**Why protection-with-admin-bypass:** Default behaviour is now safe. The owner can still bypass when a legitimate emergency rewrite is needed (and is now expected to flag the bypass in commit history / handoff). The bypass is explicit, not implicit.
+
+---
+
+## ADR-007: `--skip-push-sessions` for any AI session-tracker on a public repo
+
+**Decision:** Any AI session-tracker tool used on a public-repo project (entire.io, aider, cursor-derived equivalents) must be opted out of auto-push to origin **before first use**, not retroactively.
+
+**Context:** entire.io's default behaviour pushes checkpoint branches to origin. On a public repo, those checkpoints are world-readable conversation transcripts. The opt-out flag exists (`entire enable --skip-push-sessions`) but is not the default.
+
+**Alternatives:**
+- Gitignore the artefact dir only — does not prevent the tool's own push hook firing; it pushes branches that don't touch the working tree.
+- Post-hoc cleanup — once content is on a public origin, force-push limits future readers but cannot un-clone existing copies.
+- Don't use session-trackers — viable, but throws away the value.
+
+**Why opt-out-before-first-use:** The window between adopting a tool and discovering it leaks is the window during which the leak compounds. Opt-out is a one-time cost; remediation is permanent and incomplete. This pattern generalises to any third-party tool with default-on push behaviour — assume hostile, verify benign.
