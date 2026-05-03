@@ -1,8 +1,12 @@
-# env files 
+# env files
 .env*
 
 .vercel
 # .claude
+
+# entire.io session-tracker — local-only, never sync
+.entire/
+
 .vscode/
 dist/
 logs/
