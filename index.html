@@ -62,6 +62,7 @@
         <a href="#whats-included" class="site-nav-link">Docs</a>
         <a href="#guardrails" class="site-nav-link">Guardrails</a>
         <a href="#plan-system" class="site-nav-link">Plan System</a>
+        <a href="#security" class="site-nav-link">Security</a>
         <a href="#get-started" class="site-nav-link">Get Started</a>
       </nav>
     </div>
@@ -321,20 +322,24 @@
 
       <div class="grid-1x3">
         <div class="card">
-          <div class="card-meta"><code>docs/plan/plan-rules.md</code></div>
-          <div class="card-title">8 Operating Rules</div>
-          <p class="card-body">When to write handoffs, how to mark tasks, how to record OPEN questions vs silent assumptions, and when to write mid-session checkpoints.</p>
-        </div>
-        <div class="card">
-          <div class="card-meta"><code>docs/plan/tasklist.md</code></div>
+          <div class="card-meta"><code>docs/plan/tasklist.md</code> <span class="tag tag-accent">Tracked</span></div>
           <div class="card-title">Task Register</div>
-          <p class="card-body">Canonical task list — every task (open and completed) lives here. Tasks are never deleted; the history is the record.</p>
+          <p class="card-body">Canonical task list — every task (open and completed) lives here. The only tracked file in <code>docs/plan/</code> — empty template, ready to fill in.</p>
         </div>
         <div class="card">
-          <div class="card-meta"><code>docs/plan/handoff_template.md</code></div>
-          <div class="card-title">Handoff Template</div>
-          <p class="card-body">Written at session end. Covers what was done, current state (working / not working), open questions, and the next session entry prompt.</p>
+          <div class="card-meta"><code>docs/plan/plan-rules.md</code> <span class="tag">Local-only</span></div>
+          <div class="card-title">Operating Rules</div>
+          <p class="card-body">When to write handoffs, how to mark tasks, how to record OPEN questions vs silent assumptions, and when to write mid-session checkpoints. Stays local — gitignored on a public boilerplate.</p>
         </div>
+        <div class="card">
+          <div class="card-meta"><code>docs/plan/handoff_YYYY-MM-DD.md</code> <span class="tag">Local-only</span></div>
+          <div class="card-title">Per-Session Handoffs</div>
+          <p class="card-body">Written at session end. Covers what was done, current state (working / not working), open questions, and the next session entry prompt. Local — not pushed publicly.</p>
+        </div>
+      </div>
+
+      <div class="alert alert-info" style="margin-top: var(--space-6);">
+        <strong>Why most of <code>docs/plan/</code> is gitignored:</strong> session work and operating rules contain ongoing context that doesn't belong on a public boilerplate. Only the empty <code>tasklist.md</code> template ships in git — forks build their own session history locally. See <code>docs/security-sweep-playbook.md</code> for the rationale.
       </div>
 
       <!-- Session style table -->
@@ -396,6 +401,47 @@
           <span class="tag">PostgreSQL</span>
         </div>
         <button class="btn btn-outline" onclick="document.getElementById('modal-stack').showModal()">View full stack list</button>
+      </div>
+    </section>
+
+    <hr class="u-divider-emoji" data-emoji="🛡" aria-hidden="true">
+
+    <!-- =====================================================================
+         Security
+         ===================================================================== -->
+    <section class="section" id="security" aria-labelledby="security-title">
+      <div class="section-header">
+        <p class="eyebrow">Public-Repo Hygiene</p>
+        <h2 id="security-title">Security</h2>
+        <p class="section-subtitle">This is a public boilerplate. Anything committed becomes world-readable. The scaffold ships with a two-phase playbook to keep your fork clean.</p>
+      </div>
+
+      <div class="grid-1x2">
+        <div class="card">
+          <div class="card-meta"><code>docs/security-sweep-playbook.md</code></div>
+          <div class="card-title">Two-Phase Playbook</div>
+          <p class="card-body">Phase 0: 3-min critical-only triage (<code>.env</code> in history, vendor-prefixed token leaks, client-side env leaks). Phase 1: 10-min top-level sweep with one-page status table. Phase 2: rotation order + history rewrite via <code>git filter-repo</code>. Run before going public, after suspecting a leak, or quarterly.</p>
+        </div>
+        <div class="card">
+          <div class="card-meta"><code>docs/security-phase1-2026-05-03.md</code></div>
+          <div class="card-title">Worked Example</div>
+          <p class="card-body">Phase 1 status table from this repo's own sweep — entire.io session-tracker leak removed from history, <code>docs/plan/</code> stripped, hook paths made fork-portable, branch protection added on <code>main</code>.</p>
+        </div>
+      </div>
+
+      <div style="margin-top: var(--space-10);">
+        <h3 style="font-size: var(--font-size-xl); margin-bottom: var(--space-4);">Hardening built in</h3>
+        <ul style="list-style: none; padding: 0; display: flex; flex-direction: column; gap: var(--space-3); max-width: 64rem;">
+          <li><strong>Session-tracker isolation</strong> — <code>.entire/</code> is gitignored. If you use <a href="https://entire.io" target="_blank" rel="noopener noreferrer">entire.io</a>, run <code>entire enable --skip-push-sessions</code> so session branches never auto-push to a public remote.</li>
+          <li><strong>Branch protection on <code>main</code></strong> — force-pushes and deletions blocked at the GitHub level. Repo admins keep bypass for legitimate emergency rewrites.</li>
+          <li><strong>Hook paths are env-var driven</strong> — <code>.claude/hooks/</code> scripts read <code>$COWORK_LOG_DIR</code> / <code>$COWORK_BACKUP_DIR</code>, falling back to project-local <code>.claude/logs/</code> and <code>.claude/.backups/</code> (both gitignored). No developer-specific paths leak into the public repo.</li>
+          <li><strong>Workspace docs stay local</strong> — <code>/docs/plan/**</code> is gitignored except for the empty <code>tasklist.md</code> template. Real session handoffs and plan rules never reach the public repo.</li>
+          <li><strong>Settings under guard</strong> — <code>settings.json</code> and <code>settings.local.json</code> edits are in the Claude Code <code>ask</code> list; every change prompts the user.</li>
+        </ul>
+      </div>
+
+      <div class="alert alert-warning" style="margin-top: var(--space-8);">
+        <strong>Forking?</strong> Run Phase 0 of the playbook against your new fork before adding any real content. Update the four SEO canonicals in <code>index.html</code> to your own domain. Add <code>SECURITY.md</code> + <code>.well-known/security.txt</code> for disclosure contact. Consider a pre-commit hook + CI secret-scan (<code>gitleaks</code>, <code>trufflehog</code>).
       </div>
     </section>
 
@@ -612,7 +658,7 @@ The task is: [task description].</pre>
       <nav class="footer-nav" aria-label="Footer navigation">
         <a href="https://github.com/[username]/white-hat-label" class="footer-nav-link" target="_blank" rel="noopener noreferrer">GitHub</a>
         <a href="docs/ARCHITECTURE.md" class="footer-nav-link">Architecture</a>
-        <a href="docs/plan/plan-rules.md" class="footer-nav-link">Plan Rules</a>
+        <a href="docs/security-sweep-playbook.md" class="footer-nav-link">Security Playbook</a>
         <a href="CLAUDE.md" class="footer-nav-link">CLAUDE.md</a>
         <a href="https://bsky.app/profile/anthropicprinciple.ai" class="footer-nav-link" target="_blank" rel="noopener noreferrer" aria-label="Bluesky">
           <svg class="bsky-flutter" viewBox="0 0 566 500" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">

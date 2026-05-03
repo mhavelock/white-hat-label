@@ -65,5 +65,6 @@ package-lock.json
 docs/build-assets/
 
 # session/handoff workspace — local-only; only the tasklist template is tracked
-/docs/plan/
+/docs/plan/**
+!/docs/plan/
 !/docs/plan/tasklist.md

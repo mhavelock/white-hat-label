@@ -64,15 +64,17 @@ The system is designed to self-correct over time:
 
 Keeps state across AI sessions — context resets don't cause lost work:
 
-| File | Purpose |
-|------|---------|
-| `docs/plan/plan-rules.md` | 8 operating rules for every session — when to write handoffs, how to mark tasks, OPEN vs ASSUMED, checkpoint format |
-| `docs/plan/tasklist.md` | Canonical task register — all tasks (open and completed) live here, never deleted |
-| `docs/plan/handoff_template.md` | Handoff document template — written at session end, covers what was done, current state, open questions, next entry prompt |
-| `docs/plan/example-tasklist.md` | Worked example — setup session tasks in completed state |
-| `docs/plan/example-handoff_2026-04-06.md` | Worked example — full handoff document for the setup session |
+| File | Purpose | Tracked? |
+|------|---------|----------|
+| `docs/plan/tasklist.md` | Canonical task register — all tasks (open and completed) live here, never deleted | ✅ Tracked (sanitized template) |
+| `docs/plan/handoff_YYYY-MM-DD-*.md` | Per-session handoff written at session end — covers what was done, current state, open questions, next entry prompt | 🚫 Gitignored (`/docs/plan/**`) |
+| `docs/plan/plan-rules.md` | 8 operating rules for every session — checkpoint format, OPEN vs ASSUMED, when to write handoffs | 🚫 Gitignored (local workspace) |
+| `docs/plan/handoff_template.md` | Handoff document template | 🚫 Gitignored |
+| `docs/plan/example-*.md` | Worked examples | 🚫 Gitignored |
 
-**Three session styles** (from `plan-rules.md`):
+> **Why most of `docs/plan/` is gitignored:** session handoffs and plan rules contain ongoing project work and would clutter a public boilerplate. Only the empty `tasklist.md` template is tracked. Forks start with the same `tasklist.md` template and build their own session history locally. See [`docs/security-sweep-playbook.md`](./docs/security-sweep-playbook.md) and [`docs/security-phase1-2026-05-03.md`](./docs/security-phase1-2026-05-03.md) for the rationale.
+
+**Three session styles** (conceptual — `plan-rules.md` is local-only):
 
 | Style | When |
 |-------|------|
@@ -118,6 +120,31 @@ Documented in `docs/SYSTEM.md` and `docs/ARCHITECTURE.md`:
 
 ---
 
+## Security
+
+This is a **public** boilerplate. Anything committed becomes world-readable. The repo ships with a two-phase security playbook to keep your fork-or-derivative clean:
+
+- **[`docs/security-sweep-playbook.md`](./docs/security-sweep-playbook.md)** — Phase 0 (3-min critical-only triage), Phase 1 (10-min top-level sweep), Phase 2 (rotation + history rewrite). Use before turning a private project public, after suspecting a leak, or quarterly.
+- **[`docs/security-phase1-2026-05-03.md`](./docs/security-phase1-2026-05-03.md)** — Phase 1 status table from this repo's own sweep. Worked example.
+
+### Public-repo gotchas this scaffold hardens against
+
+| Risk | What this repo does about it |
+|------|------------------------------|
+| Session-tracker tools (entire.io, etc.) auto-pushing transcripts to public branches | `.gitignore` excludes `.entire/`. If you use entire.io, run `entire enable --skip-push-sessions` so session branches are never pushed. |
+| Force-push accidents on `main` | GitHub branch-protection rule on `main` (pattern `*`, `allow_force_pushes:false`, admin bypass on for legitimate emergency rewrites). |
+| Hook-script paths leaking developer-specific dirs | `.claude/hooks/change-log.sh` and `pre-edit-backup.sh` read `$COWORK_LOG_DIR` / `$COWORK_BACKUP_DIR` (cross-project aggregation) with project-local `.claude/logs/` and `.claude/.backups/` defaults. Both fallback dirs are `.gitignore`d. |
+| Private workspace docs in public history | `/docs/plan/**` is gitignored except for the empty `tasklist.md` template. Real session handoffs and plan rules stay local. |
+
+### If you fork this
+
+1. Run Phase 0 of the playbook against your new fork before adding any real content.
+2. Update `index.html` SEO canonicals (the four `mhavelock.github.io/white-hat-label/` URLs) to your own domain.
+3. Add `SECURITY.md` and `.well-known/security.txt` for disclosure contact (this scaffold doesn't include them — best practice for any public repo).
+4. Consider adding a pre-commit hook + CI secret-scan (`gitleaks`, `trufflehog`) — see playbook §"Lock the door behind you".
+
+---
+
 ## Getting Started
 
 1. Clone the repo and rename `[PROJECT_NAME]` throughout `CLAUDE.md`, `docs/ARCHITECTURE.md`, and `docs/SYSTEM.md`
@@ -153,10 +180,8 @@ Open `http://127.0.0.1:5500` in your browser.
     ├── architecture/            # Detailed architecture docs (11 files)
     │   └── template-examples/   # Reference templates (server-side, standards, Gemini)
     ├── plan/                    # Session management system
-    │   ├── plan-rules.md
-    │   ├── tasklist.md
-    │   ├── handoff_template.md
-    │   └── example-*.md
+    │   └── tasklist.md          # Tracked template (rest of dir is gitignored)
+    ├── security-sweep-playbook.md  # Two-phase security playbook
     └── init/                    # Setup instructions (delete once configured)
 ```
 

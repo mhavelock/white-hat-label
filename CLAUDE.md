@@ -70,32 +70,32 @@
 │   ├── main.js             # Entry point — shared utilities, init
 │   └── logger.js           # Dev logger — buffered in memory, separate from app
 │
-├── docs/
-│   ├── ARCHITECTURE.md     # System overview and structural decisions
-│   ├── SYSTEM.md           # Developer rules, naming conventions
-│   └── architecture/       # Extended reference docs
-│       ├── CORE_PATTERNS.md             # G1–G13 constraints — read before any code change
-│       ├── DECISIONS.md                 # Architecture decision records (ADRs)
-│       ├── FEEDBACK-LOOPS.md            # Wins, limits, rules from project history
-│       ├── BREAKTHROUGHS.md             # Key problem-solving records
-│       ├── ARCHITECTURE_EXTENSION.md    # Coding standards detail, token reference
-│       ├── CODEBASE-AUDIT.md            # Audit approach and prompts
-│       ├── REFLECTIVE-SYNC.md           # Session sync prompts
-│       ├── CLAUDE_ARCHITECTURE.md       # How to use the docs / reading order
-│       ├── CHECKPOINTS.md               # Auto-checkpoint triggers and format
-│       ├── FE-VISUALISATION.md          # Visual debugging approach
-│       ├── six-hats.md                  # Thinking approach models
-│       └── template-examples/           # Example implementations to adapt
-│           ├── GEMINI-CONSULTANCY.md    # Second-model review protocol
-│           ├── SERVERSIDE.md            # Serverside infrastructure template
-│           └── STANDARDS.md            # Standards tracking template
-│
-└── context/
-    └── summaries/
-        ├── plan-rules.md               # Session operating rules
-        ├── tasklist.md                 # Task register
-        └── handoff_template.md         # Handoff template
+└── docs/
+    ├── ARCHITECTURE.md     # System overview and structural decisions
+    ├── SYSTEM.md           # Developer rules, naming conventions
+    ├── security-sweep-playbook.md       # Two-phase security playbook (run before going public)
+    ├── security-phase1-2026-05-03.md    # Phase 1 status table — this repo's own sweep
+    ├── plan/                            # Session workspace (mostly gitignored)
+    │   └── tasklist.md                  # Task register — only tracked plan file (template)
+    └── architecture/                    # Extended reference docs
+        ├── CORE_PATTERNS.md             # G1–G13 constraints — read before any code change
+        ├── DECISIONS.md                 # Architecture decision records (ADRs)
+        ├── FEEDBACK-LOOPS.md            # Wins, limits, rules from project history
+        ├── BREAKTHROUGHS.md             # Key problem-solving records
+        ├── ARCHITECTURE_EXTENSION.md    # Coding standards detail, token reference
+        ├── CODEBASE-AUDIT.md            # Audit approach and prompts
+        ├── REFLECTIVE-SYNC.md           # Session sync prompts
+        ├── CLAUDE_ARCHITECTURE.md       # How to use the docs / reading order
+        ├── CHECKPOINTS.md               # Auto-checkpoint triggers and format
+        ├── FE-VISUALISATION.md          # Visual debugging approach
+        ├── six-hats.md                  # Thinking approach models
+        └── template-examples/           # Example implementations to adapt
+            ├── GEMINI-CONSULTANCY.md    # Second-model review protocol
+            ├── SERVERSIDE.md            # Serverside infrastructure template
+            └── STANDARDS.md             # Standards tracking template
 ```
+
+> **`docs/plan/`** is gitignored except for `tasklist.md`. Session handoffs (`handoff_YYYY-MM-DD.md`), plan rules, and worked examples live there locally but never reach the public repo.
 
 ### ⚠️ Protected files — do not modify without explicit instruction
 
@@ -299,6 +299,23 @@ Custom component styles that deviate from global brand should extend via a separ
 
 ---
 
+## Security (public-repo posture)
+
+This repo is **public**. Treat everything committed as world-readable. Operating rules:
+
+- **Never commit `.env*` files or values.** `.env*` is in `.gitignore`. If a secret hits staging, abort the commit and rotate.
+- **Run Phase 0 of `docs/security-sweep-playbook.md`** before any major release or quarterly: 3-min triage for `.env` history, vendor-prefixed token leaks, and client-side env-var leaks.
+- **`.entire/` is gitignored.** If you use entire.io for session tracking, make sure `entire enable --skip-push-sessions` is set so session branches never auto-push.
+- **`/docs/plan/**` is gitignored** except for `tasklist.md`. Session handoffs and plan rules are local-only — never put real session work into a tracked file.
+- **Branch protection on `main`:** `allow_force_pushes:false`, `allow_deletions:false`. Admin (Mat) can bypass for legitimate emergency rewrites — don't use this casually.
+- **GitHub `secret_scanning_push_protection`** is enabled. If a push is rejected for a detected secret, **rotate** the secret first, then strip from history with `git filter-repo`.
+- **Hook paths are env-var driven.** `.claude/hooks/change-log.sh` and `pre-edit-backup.sh` use `$COWORK_LOG_DIR` / `$COWORK_BACKUP_DIR` (cross-project aggregation if set), falling back to project-local `.claude/logs/` and `.claude/.backups/` (both gitignored). Don't hardcode user-specific paths.
+- **Path guards:** the user-level guard hook restricts edits to `~/Claudette/Cowork` and `~/AI`. Honour `.claude` ask-list — every settings.json edit prompts the user.
+
+When in doubt, prefer rotation over history-rewriting — force-push to a public repo doesn't undo what's already cloned.
+
+---
+
 ## Skills
 
 | Skill | When to invoke |
@@ -375,7 +392,7 @@ git commit -m "style(css): update brand colour tokens"
 - **Stop and show `git diff` after each task** — confirm with user before proceeding.
 - **`git push` requires explicit user confirmation** — push deploys immediately to production.
 - Use the `git-commit-messaging` skill for all commit messages.
-- See `docs/plan/plan-rules.md` for full session operating rules.
+- `docs/plan/plan-rules.md` (gitignored, local-only) holds full session operating rules. Forks: copy in your own equivalent or use this scaffold's three-style heuristic (Hybrid / Fresh / Deep).
 
 ---
 
