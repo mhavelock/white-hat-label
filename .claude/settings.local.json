@@ -14,7 +14,6 @@
       "Bash(npm info *)",
       "Bash(npm run lint)",
       "Bash(npm run test *)",
-      "Read(~/.zshrc)",
       "Bash(npm list:*)",
       "Bash(brew list:*)",
       "Bash(pandoc --list-output-formats)",
@@ -83,19 +82,22 @@
       "mcp__claude_ai_Vercel__list_teams",
       "mcp__claude_ai_Vercel__list_projects",
       "Bash(vercel project *)",
-      "Bash(vercel ls *)"
-    ],
-    "ask": [
-      "Bash(git branch -D)",
-      "Bash(git checkout)",
-      "Bash(git restore)",
-      "Bash(gh pr:*)",
-      "Bash(git add:*)",
-      "Bash(git commit:*)",
-      "Bash(git checkout:*)",
-      "Bash(git merge:*)",
-      "Edit(*settings.json)",
-      "Edit(*settings.local.json)"
+      "Bash(vercel ls *)",
+      "Bash(git remote *)",
+      "Bash(git gc *)",
+      "Bash(/opt/homebrew/bin/entire --help)",
+      "Bash(/opt/homebrew/bin/entire hooks *)",
+      "Bash(/opt/homebrew/bin/entire config *)",
+      "Bash(entire enable *)",
+      "Bash(entire status *)",
+      "Bash(git fetch *)",
+      "Read(//Users/mat/Claudette/Cowork/projects/**)",
+      "Bash(git bundle *)",
+      "Read(//tmp/**)",
+      "Read(//private/tmp/**)",
+      "Bash(git check-ignore *)",
+      "mcp__ide__getDiagnostics",
+      "Bash(npx html-validate *)"
     ],
     "deny": [
       "Bash(curl * | bash)",
@@ -120,6 +122,18 @@
       "Bash(*Cowork/logs*)",
       "Bash(npx wrangler pages deploy*)",
       "Bash(npx wrangler deploy*)"
+    ],
+    "ask": [
+      "Bash(git branch -D)",
+      "Bash(git checkout)",
+      "Bash(git restore)",
+      "Bash(gh pr:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git checkout:*)",
+      "Bash(git merge:*)",
+      "Edit(*settings.json)",
+      "Edit(*settings.local.json)"
     ]
   }
 }
