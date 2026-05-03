@@ -97,8 +97,29 @@ XSS risk. Use `textContent`, `createElement`, or a trusted sanitisation library.
 **Rule extracted:** Any third-party tool that touches version control or pushes artefacts is a leak vector until proven otherwise. The cost of opting out before first use is trivial; the cost of remediation is permanent and incomplete (anything cloned during the leak window is already out).
 
 **How to apply:**
+
 1. Before adopting any AI tool that integrates with git (session trackers, AI commit-message generators, agentic dev tools), check the docs for default push / sync behaviour.
 2. If default-on push exists, opt out before the first run — not as a remediation step.
 3. Add a matching gitignore pattern even if the tool claims to manage its own paths.
 4. Run Phase 0 of the security playbook (3-min triage) at every major release as a backstop.
 5. On a public repo, treat every commit as world-readable and every branch as a publishing surface — include `entire/`, `aider/`, and similar patterns in the protected-branch posture.
+
+---
+
+### FL-11: Update all references when a fact changes → Grep for the OLD value across the project before declaring doc work complete
+
+**What happened:** Originated on the sister `hardy-succulents` project (2026-05-03). An AI image-generation model was swapped end-to-end. A thorough handoff was written. The user explicitly prompted: "ensure the correct model we are using is correct in docs". A project-wide grep surfaced stale references in `README.md`, the task tracker, and a phase plan — all needing manual reconciliation. Without that prompt, those would have created conflicting memories for future sessions.
+
+**Win locked in:** Treat fact-changes as cross-document operations. The handoff is one of N references, not the canonical home. Discovery / research docs are the exception — they get a top-of-doc correction note rather than a retcon, since the original reasoning is itself part of their value.
+
+**Rule extracted:** Whenever a fact changes (model, endpoint, env var, version, file path, vendor name, threshold), grep the entire project for the OLD value before declaring the doc work complete. Update every current-state reference; annotate every research/discovery reference as historical. Handoffs are not magic — they don't reach back into other files.
+
+**How to apply:**
+
+1. After any fact change: `grep -rln "old_value" --include="*.md" .` (extend to `*.ts`, `*.json`, `*.html`, etc. if relevant — on this boilerplate repo, also check qref/, GEMINI-CONSULTANCY.md, and STANDARDS.md).
+2. For each match, decide: current-state (update inline) or research/discovery (top-of-doc "Status update" callout pointing at the new canonical source).
+3. Only then consider the doc work complete.
+
+**Particularly relevant for white-hat-label:** This repo is a boilerplate consumed by other projects. Stale references in standards or workflow docs propagate downstream — they become silent gotchas in projects that copy the boilerplate later. The grep-on-fact-change discipline is doubly important here.
+
+**Cross-reference:** B-02 in `BREAKTHROUGHS.md`. Originating incident documented in `hardy-succulents/docs/architecture/BREAKTHROUGHS.md` BD-06.

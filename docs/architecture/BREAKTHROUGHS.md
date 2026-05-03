@@ -37,20 +37,24 @@ When you solve a problem in a way that was non-obvious — or when you find that
 
 ---
 
-## B-02: [Breakthrough name]
+## B-02: Update all references when a fact changes — not just the most recent handoff
 
-**Date:** YYYY-MM-DD
-**Session type:** [...]
+**Date:** 2026-05-03
+**Session type:** Documentation discipline (cross-project lesson)
 
-**Situation:** [...]
+**Situation:** Originated on the sister `hardy-succulents` project. An AI image-generation model was swapped (FLUX Pro v1.1 Redux → FLUX Kontext Pro) after the first iteration produced "lovely AI rendering but no text" (Redux is image-variation, ignores prompts). A thorough handoff was written capturing execution data, version IDs, and the iteration narrative. The doc work was considered complete. The model name was also referenced in three other places: the project README (stack table), the tasklist (active task description with stale endpoint and parameters), and the relevant phase plan. None of those were touched.
 
-**Temptation:** [...]
+**Temptation:** Treat the handoff as the canonical record of changes. New facts go in the handoff; if anyone needs to know later, they read the handoff. Move on.
 
-**What we actually did:** [...]
+**What we actually did:** Only after the user prompted ("ensure the correct model we are using is correct in docs") a project-wide grep surfaced the stale references. Each was updated — current-state docs in place, research/discovery docs annotated with a top-of-doc "Status update" callout pointing at the new canonical source rather than retconned (the original reasoning is part of their value).
 
-**Lesson:** [...]
+**Lesson:** When a fact changes — model name, env var, endpoint, version, file path, vendor, threshold value — the handoff is one place to record it, but **not the only place to update**. README, tasklist, qref files, plan documents, and `CLAUDE.md` often duplicate the same fact for different audiences. Leaving the old fact in those files creates conflicting "memories" that future sessions and humans pick up at random — exactly the kind of drift that erodes trust in the doc system.
 
-**ADR reference:** [...]
+**Rule extracted:** After changing a fact, `grep -rln "OLD_VALUE" --include="*.md" .` across the project and either update each reference or explicitly annotate it as historical. Writing the handoff is the *start* of the doc work, not the end. Discovery / research docs are the exception — they get a top-of-doc correction note rather than a retcon.
+
+**Cross-project relevance for white-hat-label:** Particularly applicable when standards or boilerplate decisions change (e.g. a renamed protected file, a new gitignore pattern after a security incident, a swapped OAuth provider, a moved env var). The boilerplate is consumed by other projects — a stale reference in this repo's docs propagates downstream.
+
+**ADR reference:** none
 
 ---
 
