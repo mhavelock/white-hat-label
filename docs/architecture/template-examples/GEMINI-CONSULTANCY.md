@@ -2,6 +2,8 @@
 
 How to use the Gemini MCP for architectural audit, decision validation, root cause analysis, and research within a Claude Code session.
 
+> Cross-referenced from `REFLECTIVE-SYNC.md § Architecture Sync` (when running a Contradiction Hunt or Drift Check) and `CHECKPOINTS.md` (Trigger: Second-model consultation complete). The "Recursive Architecture Test" (Pattern 5 below) pairs naturally with the new `CLAUDE_MAINDOCS_INDEX.md` — feed it alongside ARCHITECTURE.md to verify the live-state file matches the rules.
+
 ---
 
 ## Why a Second Model

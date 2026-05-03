@@ -1,8 +1,10 @@
 # Session Handoff — YYYY-MM-DD — [Topic]
 
+> Pairs with `CLAUDE_MAINDOCS_INDEX.md` § Settings — Current State of Play. The handoff is *what happened this session*; the State of Play is *the project at the end of the session*. Update both before closing.
+
 ## Session Type
 
-[Feature / Bug fix / Refactor / Style / Docs / Architecture / Config] — [brief qualifier]
+[Feature / Bug fix / Refactor / Style / Docs / Architecture / Config / Security] — [brief qualifier]
 
 ---
 

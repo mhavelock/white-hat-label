@@ -1,6 +1,8 @@
 # Serverside — [PROJECT_NAME]
 
 > **Template skeleton.** Fill in the project-specific values. Delete sections that don't apply. Add sections for serverside components this project uses.
+>
+> The live values (current env vars, current build status, current secrets-rotation state) live in `CLAUDE_MAINDOCS_INDEX.md` § Environment Variables and § Settings — Current State of Play. This file is the reference *shape*; the MAINDOCS_INDEX is the current values. Don't duplicate.
 
 ---
 
@@ -19,11 +21,25 @@
 
 | Component | Details |
 |-----------|---------|
-| Host | [GitHub Pages / Vercel / Cloudflare Pages / etc.] |
+| Host | [GitHub Pages / Vercel / Cloudflare Pages / Netlify / Fly.io / etc.] |
 | Source branch | `main` |
-| Build step | [None — files served as-is / `npm run build` / etc.] |
+| Build step | [None — files served as-is / `npm run build` / `next build` / etc.] |
 | HTTPS | [Enforced automatically / manual SSL config] |
 | CDN | [Provider CDN / Cloudflare / None] |
+| Preview deploys | [Yes — automatic per-PR / Yes — per-branch / No] |
+
+### Vercel-specific (if hosting on Vercel)
+
+| Component | Details |
+|-----------|---------|
+| Project ID | [from Vercel dashboard → Project Settings] |
+| Production branch | `main` (deploys on push) |
+| Preview branches | `dev` + feature branches (deploys on push) |
+| Env var scopes | Production / Preview / Development — set in Vercel dashboard, sync with `vercel env pull .env.local` |
+| Build command | [auto-detected / `next build` / custom] |
+| Output directory | [auto-detected / `.next/` / `dist/`] |
+| Cron jobs | [Yes — defined in `vercel.json` / No] |
+| Speed Insights | [Enabled / Disabled] |
 
 ---
 

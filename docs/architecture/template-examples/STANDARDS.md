@@ -2,6 +2,8 @@
 
 A living record of the quality standards established and maintained across this project. Update status as work progresses. Intended as a quality benchmark for future sessions and an honest account of what is still open.
 
+> Pairs with `CLAUDE_MAINDOCS_INDEX.md` (live state) and `CORE_PATTERNS.md` (G1–G15 rules). The MAINDOCS_INDEX answers "where are we now?"; this file answers "which standards have we verified, and which are still TBA?"
+
 ---
 
 ## Performance Standards
