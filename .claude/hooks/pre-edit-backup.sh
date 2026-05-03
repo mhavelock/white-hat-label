@@ -1,9 +1,12 @@
 #!/bin/bash
-# pre-edit-backup.sh — PreToolUse backup hook (Cowork project level)
+# pre-edit-backup.sh — PreToolUse backup hook
 #
-# PURPOSE: Before any modification to a sensitive file, copies the current version to
-#          Cowork/.backups/ so the pre-edit state is always recoverable.
-# LOADED FROM: Cowork/.claude/settings.json (PreToolUse, Edit|Write)
+# PURPOSE: Before any modification to a sensitive file, copies the current version
+#          so the pre-edit state is always recoverable.
+# LOADED FROM: .claude/settings.json (PreToolUse, Edit|Write)
+#
+# BACKUP LOCATION: $COWORK_BACKUP_DIR if set (cross-project aggregation),
+#                  otherwise <project-root>/.claude/.backups/ (project-local default).
 #
 # SENSITIVE files backed up:
 #   /.claude/* directories
@@ -11,7 +14,7 @@
 #   settings.json
 #   settings.local.json
 #
-# BACKUP FORMAT: .backups/YYYYMMDD-HHMMSS-[filename].bak
+# BACKUP FORMAT: <backup-dir>/YYYYMMDD-HHMMSS-[filename].bak
 # EXIT CODES: 0 = always allow (this hook never blocks — backup-only)
 
 INPUT=$(cat)
@@ -36,7 +39,7 @@ is_sensitive "$FILE_PATH" || exit 0
 # File must exist to back up (Write to new file = nothing to back up)
 [ -f "$FILE_PATH" ] || exit 0
 
-BACKUP_DIR="/Users/mat/Claudette/Cowork/.backups"
+BACKUP_DIR="${COWORK_BACKUP_DIR:-${CLAUDE_PROJECT_DIR:-$PWD}/.claude/.backups}"
 mkdir -p "$BACKUP_DIR"
 
 TIMESTAMP=$(date '+%Y%m%d-%H%M%S')

@@ -1,22 +1,25 @@
 #!/bin/bash
 # change-log.sh — PostToolUse hook for Edit/Write operations
 #
-# PURPOSE: Creates a timestamped change log in Cowork/logs/ after every file modification.
-# LOADED FROM: Cowork/.claude/settings.json (PostToolUse, Edit|Write)
+# PURPOSE: Creates a timestamped change log after every file modification.
+# LOADED FROM: .claude/settings.json (PostToolUse, Edit|Write)
 #
-# FORMAT: Cowork/logs/YYYYMMDD-HHMMSS-[tool]-[filename].log
+# LOG LOCATION: $COWORK_LOG_DIR if set (cross-project aggregation),
+#               otherwise <project-root>/.claude/logs/ (project-local default).
+#
+# FORMAT: <log-dir>/YYYYMMDD-HHMMSS-[tool]-[filename].log
 #   Edit: records old_string → new_string (full diff)
 #   Write: records file path + first 50 lines of content
 #
-# NOTE: Log files are append-only — deny rules in Cowork settings.json block
-#       Edit and Bash-based modifications to Cowork/logs/. Only Write (new files) allowed.
+# NOTE: Log files should be treated as append-only — recommended deny rules in
+#       settings.json block Edit/Bash modifications to the log dir.
 
 INPUT=$(cat)
 TOOL=$(echo "$INPUT" | jq -r '.tool_name // empty')
 
 [[ "$TOOL" != "Edit" && "$TOOL" != "Write" ]] && exit 0
 
-LOG_DIR="/Users/mat/Claudette/Cowork/logs"
+LOG_DIR="${COWORK_LOG_DIR:-${CLAUDE_PROJECT_DIR:-$PWD}/.claude/logs}"
 mkdir -p "$LOG_DIR"
 
 FILE_PATH=$(echo "$INPUT" | jq -r '.tool_input.file_path // empty')

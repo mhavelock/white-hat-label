@@ -207,7 +207,7 @@ Desktop.css
  - desktop overrides (leave in global css stylesheets using media queries if minor adjustments).
 
 Include some UI controls - accordion, tooltip, modal, buttons
-Add /Users/mat/Claudette/Cowork/projects/white-hat-label/docs/build-assets/favicon
+Add favicon assets from docs/build-assets/favicon
 
 
 - Add the contact form 

@@ -7,6 +7,10 @@
 # entire.io session-tracker — local-only, never sync
 .entire/
 
+# Claude Code hook outputs — project-local fallbacks for change-log + pre-edit-backup
+.claude/logs/
+.claude/.backups/
+
 .vscode/
 dist/
 logs/
